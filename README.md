@@ -3,7 +3,15 @@
 > **Note**
 > Development is ongoing. API might change and break. Currently only [JSX object representation](https://github.com/vercel/satori#use-without-jsx) is supported.
 
-This plugin helps to create OG Images from HTML/CSS via [satori](https://github.com/vercel/satori). For usage see the [example](./example).
+This plugin helps to create OG Images from HTML/CSS via [satori](https://github.com/vercel/satori).
+
+## Usage
+
+```shell
+npm install eleventy-plugin-og-image --save-dev
+```
+
+For usage see the [example](./example).
 
 ## Acknowledgements & Attributions
 
