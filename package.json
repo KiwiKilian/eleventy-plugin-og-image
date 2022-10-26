@@ -1,0 +1,43 @@
+{
+  "name": "eleventy-plugin-og-image",
+  "version": "0.0.1",
+  "description": "A plugin to create Open Graph Images from JSX for Eleventy.",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write **/*.{js,json,scss,yml} !_site",
+    "example": "cd example && eleventy",
+    "example:start": "npm run example -- --serve",
+    "example:build": "npm run example",
+    "example:clean": "rimraf example/_site"
+  },
+  "author": "Kilian Finger",
+  "license": "MIT",
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "eleventy-plugin",
+    "og:image"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KiwiKilian/eleventy-plugin-og-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image/issues"
+  },
+  "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.1.0",
+    "node-fetch": "^2.6.7",
+    "satori": "^0.0.43",
+    "sharp": "^0.31.1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0-canary.16",
+    "@fontsource/inter": "^4.5.14",
+    "@types/sharp": "^0.31.0",
+    "prettier": "2.7.1",
+    "twemoji": "^14.0.2"
+  }
+}
