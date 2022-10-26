@@ -1,0 +1,12 @@
+# Config files
+.nvmrc
+.prettierrc
+
+
+# Build results
+/example/_site/
+/example/.cache/
+
+# IDEs
+/.idea/
+/.vscode/
