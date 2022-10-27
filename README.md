@@ -1,7 +1,7 @@
 # Eleventy Plugin OG Image
 
 > **Note**
-> Development is ongoing. API might change and break. Currently only [JSX object representation](https://github.com/vercel/satori#use-without-jsx) is supported.
+> Development is ongoing. API might change and break.
 
 This plugin helps to create OG Images from HTML/CSS via [satori](https://github.com/vercel/satori).
 
