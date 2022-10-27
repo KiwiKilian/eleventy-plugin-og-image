@@ -1,3 +1,4 @@
+const { html } = require('./build/satori-html');
 const { default: satori } = require('satori');
 const { Resvg } = require('@resvg/resvg-js');
 const fetch = require('node-fetch');
@@ -20,16 +21,14 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
     },
   };
 
-  eleventyConfig.addTemplateFormats('og.json');
+  eleventyConfig.addTemplateFormats('og');
 
-  eleventyConfig.addExtension('og.json', {
+  eleventyConfig.addExtension('og', {
     outputFileExtension,
     outputFilePath: 'public',
 
     compile: async (inputContent, inputPath) => {
-      const structure = JSON.parse(inputContent);
-      const svg = await satori(structure, satoriOptions);
-
+      const svg = await satori(html(inputContent), satoriOptions);
       const resvg = new Resvg(svg, { font: { loadSystemFonts: false } });
       const pngBuffer = resvg.render().asPng();
 

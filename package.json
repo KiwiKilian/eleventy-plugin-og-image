@@ -4,6 +4,7 @@
   "description": "A plugin to create Open Graph Images from JSX for Eleventy.",
   "main": ".eleventy.js",
   "scripts": {
+    "postinstall": "esbuild node_modules/satori-html/dist/index.js --outfile=build/satori-html.js --bundle --platform=node",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write **/*.{js,json,scss,yml} !_site",
     "example": "cd example && eleventy",
@@ -31,12 +32,14 @@
     "@resvg/resvg-js": "^2.1.0",
     "node-fetch": "^2.6.7",
     "satori": "^0.0.43",
+    "satori-html": "^0.3.0",
     "sharp": "^0.31.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.16",
     "@fontsource/inter": "^4.5.14",
     "@types/sharp": "^0.31.0",
+    "esbuild": "^0.15.12",
     "prettier": "2.7.1",
     "twemoji": "^14.0.2"
   }
