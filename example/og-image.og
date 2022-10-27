@@ -1,0 +1,5 @@
+<div style="background-color: white; height: 100%; width: 100%; display: flex; align-items: stretch; justify-content: center; font-family: Inter; font-weight: 700;">
+  <div style="flex-grow: 1; margin: 80px; display: flex; align-items: center; justify-content: center; background-color: black; color: white; text-align: center; font-size: 80px;">
+    Hello World! 👋
+  </div>
+</div>
