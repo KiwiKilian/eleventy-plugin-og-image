@@ -1,4 +1,4 @@
-# Eleventy Plugin OG Image
+# Eleventy Plugin OG Image [![npm](https://img.shields.io/npm/v/eleventy-plugin-og-image?color=blue)](https://www.npmjs.com/package/eleventy-plugin-og-image)
 
 > **Note**
 > Development is ongoing. API might change and break.
