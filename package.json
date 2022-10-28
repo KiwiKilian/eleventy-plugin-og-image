@@ -41,7 +41,7 @@
   "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
   "dependencies": {
     "@resvg/resvg-js": "^2.1.0",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.10",
     "satori": "^0.0.43",
     "satori-html": "^0.3.0",
     "sharp": "^0.31.1"
