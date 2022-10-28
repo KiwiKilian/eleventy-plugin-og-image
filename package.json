@@ -2,12 +2,19 @@
   "name": "eleventy-plugin-og-image",
   "version": "0.1.0",
   "description": "A plugin to create Open Graph Images from JSX for Eleventy.",
-  "main": ".eleventy.js",
+  "main": "./.eleventy.js",
+  "exports": {
+    ".": "./.eleventy.js",
+    "./package.json": "./package.json"
+  },
+  "types": "./index.d.ts",
   "files": [
-    "index.d.ts"
+    ".eleventy.js",
+    "index.d.ts",
+    "postinstall.js"
   ],
   "scripts": {
-    "postinstall": "esbuild node_modules/satori-html/dist/index.js --outfile=build/satori-html.js --bundle --platform=node",
+    "postinstall": "node postinstall.js",
     "semantic-release": "semantic-release",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write **/*.{js,json,scss,yml} !_site",
