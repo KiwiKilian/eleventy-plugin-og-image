@@ -42,6 +42,8 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.16",
     "@fontsource/inter": "^4.5.14",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@types/sharp": "^0.31.0",
     "esbuild": "^0.15.12",
     "prettier": "2.7.1",
