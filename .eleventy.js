@@ -1,8 +1,12 @@
-const { html } = require('./build/satori-html');
+const fs = require('fs');
+const path = require('path');
+const { TemplatePath } = require('@11ty/eleventy-utils');
+const { html: htmlToSatori } = require('./build/satori-html');
 const { default: satori } = require('satori');
 const { Resvg } = require('@resvg/resvg-js');
 const fetch = require('node-fetch');
 const sharp = require('sharp');
+const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
 globalThis.fetch = fetch;
 
 /**
@@ -10,7 +14,8 @@ globalThis.fetch = fetch;
  * @param { import('./index.d.ts').EleventyPluginOgImageOptions } options
  * */
 module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
-  const { outputFileExtension, satoriOptions, sharpOptions } = {
+  const { inputFileGlob, outputFileExtension, satoriOptions, sharpOptions } = {
+    inputFileGlob: '*.og.*',
     outputFileExtension: 'png',
     ...options,
 
@@ -21,27 +26,32 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
     },
   };
 
-  eleventyConfig.addTemplateFormats('og');
+  eleventyConfig.ignores.add(inputFileGlob);
 
-  eleventyConfig.addExtension('og', {
-    outputFileExtension,
-    outputFilePath: 'public',
+  eleventyConfig.addAsyncShortcode('ogImage', async function (inputPath, data) {
+    if (!fs.existsSync(TemplatePath.normalizeOperatingSystemFilePath(inputPath))) {
+      throw new Error('Could not find file for the `ogImage` shortcode, looking for: ' + inputPath);
+    }
 
-    compile: async (inputContent, inputPath) => {
-      const svg = await satori(html(inputContent), satoriOptions);
-      const resvg = new Resvg(svg, { font: { loadSystemFonts: false } });
-      const pngBuffer = resvg.render().asPng();
+    const outputFilename = `${path.parse(inputPath).name}.${outputFileExtension}`;
+    const outputPath = eleventyConfig.dir.output;
+    const outputFilePath = path.join(outputPath, outputFilename);
 
-      let outputBuffer;
-      if (outputFileExtension === 'png') {
-        outputBuffer = pngBuffer;
-      } else {
-        outputBuffer = sharp(pngBuffer).toFormat(outputFileExtension, sharpOptions).toBuffer();
-      }
+    if (!fs.existsSync(outputPath)) {
+      fs.mkdirSync(outputPath);
+    }
 
-      return async () => {
-        return outputBuffer;
-      };
-    },
+    console.log(outputFilePath);
+
+    const html = await (await File(inputPath))(data);
+    const svg = await satori(htmlToSatori(html), satoriOptions);
+    const resvg = new Resvg(svg, { font: { loadSystemFonts: false } });
+    const pngBuffer = resvg.render().asPng();
+
+    await sharp(pngBuffer).toFormat(outputFileExtension, sharpOptions).toFile(outputFilePath);
+
+    eleventyConfig.logger.log(`Writing OG Image ${outputFilePath} from ${inputPath}`);
+
+    return `<meta property="og:image" content="${outputFilePath.replace(outputPath, '')}" />`;
   });
 };

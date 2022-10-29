@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Eleventy Plugin OG Image Example</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:image" content="/og-image.png" />
+    {% ogImage "./og-image.og.njk", { title: "Hello World! 👋", subTitle: "Eleventy Plugin OG Image" } %}
   </head>
 
   <body>
-    <h1>Eleventy Plugin OG Image Example</h1>
+    <h1>{{ title }}</h1>
   </body>
 </html>
