@@ -1,0 +1,15 @@
+name: Lint
+
+on:
+  workflow_call:
+  pull_request:
+
+jobs:
+  install:
+    uses: ./.github/workflows/install.yml
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint
+        run: npm run lint
