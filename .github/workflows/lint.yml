@@ -1,5 +1,4 @@
 name: Lint
-runs-on: ubuntu-latest
 runs:
   using: "composite"
   steps:

@@ -5,8 +5,10 @@ on:
 
 jobs:
   install:
+    runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/install.yml
   lint:
+    runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/lint.yml
