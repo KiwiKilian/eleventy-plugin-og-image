@@ -31,7 +31,7 @@ module.exports = (eleventyConfig) => {
 };
 ```
 
-Create an OG-image-template, e.g. `og-image.og.njk`:
+Create an OG-image-template, using the supported HTML elements[^2] and CSS properties[^3]. This is an example `og-image.og.njk`:
 
 ```njk
 <div style="height: 100%; width: 100%; display: flex; align-items: stretch; background-color: white;">
