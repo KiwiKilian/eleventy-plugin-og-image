@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { TemplatePath } = require('@11ty/eleventy-utils');
+// eslint-disable-next-line node/no-unpublished-require
 const { html: htmlToSatori } = require('./build/satori-html');
 const { default: satori } = require('satori');
 const { Resvg } = require('@resvg/resvg-js');
