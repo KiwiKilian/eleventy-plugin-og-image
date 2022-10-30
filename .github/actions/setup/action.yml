@@ -4,9 +4,6 @@ description: Setup a Node.js and install dependencies
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
-      with:
-        path: ./source-repo/
     - uses: actions/setup-node@v3
       with:
         cache: npm
