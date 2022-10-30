@@ -4,5 +4,6 @@ description: Run linting
 runs:
   using: composite
   steps:
+    - uses: ./.github/actions/setup
     - run: npm run lint
       shell: bash
