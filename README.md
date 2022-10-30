@@ -34,11 +34,13 @@ module.exports = (eleventyConfig) => {
 Create an OG-image-template, e.g. `og-image.og.njk`:
 
 ```njk
-<div style="background-color: white; height: 100%; width: 100%; display: flex; align-items: stretch; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 700;">
-  <div style="flex-grow: 1; margin: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: black; color: white; text-align: center;">
-    <h1 style="font-size: 80px;">{{ title }}</h1>
-    <h2 style="font-size: 44px;">{{ subTitle }}</h2>
-  </div>
+<div style="height: 100%; width: 100%; display: flex; align-items: stretch; background-color: white;">
+    <div style="display: flex; flex-grow: 1; justify-content: center; align-items: center; margin: 80px; background-color: black;">
+        <div style="display: flex; flex-direction: column; align-items: center; font-family: 'Inter'; font-weight: 700; color: white; text-align: center;">
+            <h1 style="font-size: 80px;">{{ title }}</h1>
+            <h2 style="font-size: 44px;">{{ subTitle }}</h2>
+        </div>
+    </div>
 </div>
 ```
 
