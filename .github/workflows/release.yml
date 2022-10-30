@@ -6,16 +6,27 @@ on:
       - main
 
 jobs:
-  install:
-    steps:
-      - uses: ./.github/workflows/install.yml
-  lint:
-    steps:
-      - uses: ./.github/workflows/lint.yml
-  release:
-    name: Release
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+  lint:
+    name: Lint
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/lint
+  release:
+    name: Release
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
