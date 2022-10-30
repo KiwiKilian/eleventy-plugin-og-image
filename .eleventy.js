@@ -11,7 +11,9 @@ const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
 globalThis.fetch = fetch;
 
 /**
- * @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig
+ * @param { import('@11ty/eleventy/src/UserConfig')
+ *   & { dir: { input: string, includes: string, data: string, output: string }}
+ * } eleventyConfig
  * @param { import('./index.d.ts').EleventyPluginOgImageOptions } options
  * */
 module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
@@ -31,18 +33,17 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
 
   eleventyConfig.addAsyncShortcode('ogImage', async function (inputPath, data) {
     if (!fs.existsSync(TemplatePath.normalizeOperatingSystemFilePath(inputPath))) {
-      throw new Error('Could not find file for the `ogImage` shortcode, looking for: ' + inputPath);
+      throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${inputPath}`);
     }
 
-    const outputFilename = `${path.parse(inputPath).name}.${outputFileExtension}`;
-    const outputPath = eleventyConfig.dir.output;
+    const outputFilename = `${path.parse(inputPath).name.split('.')[0]}.${outputFileExtension}`;
+    const outputPath = eleventyConfig.dir.output + this.page.url;
     const outputFilePath = path.join(outputPath, outputFilename);
+    const outputUrl = path.join(this.page.url, outputFilename);
 
     if (!fs.existsSync(outputPath)) {
-      fs.mkdirSync(outputPath);
+      fs.mkdirSync(outputPath, { recursive: true });
     }
-
-    console.log(outputFilePath);
 
     const html = await (await File(inputPath))(data);
     const svg = await satori(htmlToSatori(html), satoriOptions);
@@ -53,6 +54,6 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
 
     eleventyConfig.logger.log(`Writing OG Image ${outputFilePath} from ${inputPath}`);
 
-    return `<meta property="og:image" content="${outputFilePath.replace(outputPath, '')}" />`;
+    return `<meta property="og:image" content="${outputUrl}" />`;
   });
 };
