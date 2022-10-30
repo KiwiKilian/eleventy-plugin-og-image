@@ -1,15 +1,8 @@
 name: Lint
+runs:
+  using: "composite"
+  steps:
+    - name: Run linting
+      run: npm run lint
 
-on:
-  workflow_call:
-  pull_request:
 
-jobs:
-  install:
-    uses: ./.github/workflows/install.yml
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Lint
-        run: npm run lint

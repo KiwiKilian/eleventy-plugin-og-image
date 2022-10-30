@@ -1,0 +1,12 @@
+name: Review
+
+on:
+  pull_request:
+
+jobs:
+  install:
+    steps:
+      - uses: ./.github/workflows/install.yml
+  lint:
+    steps:
+      - uses: ./.github/workflows/lint.yml
