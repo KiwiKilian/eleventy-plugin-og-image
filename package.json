@@ -17,7 +17,8 @@
     "postinstall": "node postinstall.js",
     "semantic-release": "semantic-release",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write **/*.{js,json,scss,yml} !_site",
+    "lint": "eslint --ignore-pattern '!.eleventy.js' .eleventy.js postinstall.js",
+    "format": "prettier --write .",
     "example": "cd example && eleventy",
     "example:start": "npm run example -- --serve",
     "example:build": "npm run example",
@@ -39,8 +40,12 @@
     "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image/issues"
   },
   "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@resvg/resvg-js": "^2.1.0",
+    "esbuild": "^0.15.12",
     "node-fetch": "^2.6.7",
     "satori": "^0.0.43",
     "satori-html": "^0.3.0",
@@ -52,7 +57,9 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@types/sharp": "^0.31.0",
-    "esbuild": "^0.15.12",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
     "prettier": "2.7.1",
     "semantic-release": "^19.0.5",
     "twemoji": "^14.0.2"

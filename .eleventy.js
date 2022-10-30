@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const { html } = require('./build/satori-html');
 const { default: satori } = require('satori');
 const { Resvg } = require('@resvg/resvg-js');
@@ -27,7 +28,7 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
     outputFileExtension,
     outputFilePath: 'public',
 
-    compile: async (inputContent, inputPath) => {
+    compile: async (inputContent) => {
       const svg = await satori(html(inputContent), satoriOptions);
       const resvg = new Resvg(svg, { font: { loadSystemFonts: false } });
       const pngBuffer = resvg.render().asPng();

@@ -1,0 +1,12 @@
+name: Setup
+description: Setup a Node.js and install dependencies
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        cache: npm
+        node-version-file: '.nvmrc'
+    - run: npm ci
+      shell: bash
