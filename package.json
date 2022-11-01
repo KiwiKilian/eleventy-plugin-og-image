@@ -2,6 +2,26 @@
   "name": "eleventy-plugin-og-image",
   "version": "1.0.0",
   "description": "A plugin to create Open Graph Images from JSX for Eleventy.",
+  "author": {
+    "name": "Kilian Finger",
+    "email": "npm@kilianfinger.com",
+    "url": "https://www.kilianfinger.com/"
+  },
+  "license": "MIT",
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "eleventy-plugin",
+    "og:image"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image/issues"
+  },
+  "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
   "main": "./.eleventy.js",
   "exports": {
     ".": "./.eleventy.js",
@@ -24,22 +44,6 @@
     "example:build": "npm run example",
     "example:clean": "rimraf example/_site"
   },
-  "author": "Kilian Finger",
-  "license": "MIT",
-  "keywords": [
-    "11ty",
-    "eleventy",
-    "eleventy-plugin",
-    "og:image"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image.git"
-  },
-  "bugs": {
-    "url": "https://github.com/KiwiKilian/eleventy-plugin-og-image/issues"
-  },
-  "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
   "engines": {
     "node": ">=16.0.0"
   },
