@@ -1,7 +1,7 @@
-const EleventyPluginOgImage = require('../.eleventy.js');
 const fs = require('fs');
 const twemoji = require('twemoji/dist/twemoji.npm');
 const fetch = require('node-fetch');
+const EleventyPluginOgImage = require('../.eleventy');
 
 /** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
 module.exports = (eleventyConfig) => {
@@ -25,6 +25,8 @@ module.exports = (eleventyConfig) => {
 
           return `data:image/svg+xml;base64,${Buffer.from(emojiSvg).toString('base64')}`;
         }
+
+        return segment;
       },
     },
   };

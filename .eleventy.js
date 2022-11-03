@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const { TemplatePath } = require('@11ty/eleventy-utils');
-// eslint-disable-next-line node/no-unpublished-require
-const { html: htmlToSatori } = require('./build/satori-html');
 const { default: satori } = require('satori');
 const { Resvg } = require('@resvg/resvg-js');
 const fetch = require('node-fetch');
 const sharp = require('sharp');
 const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
+// eslint-disable-next-line node/no-unpublished-require
+const { html: htmlToSatori } = require('./build/satori-html');
+
 globalThis.fetch = fetch;
 
 /**
@@ -31,7 +32,7 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, options) {
 
   eleventyConfig.ignores.add(inputFileGlob);
 
-  eleventyConfig.addAsyncShortcode('ogImage', async function (inputPath, data) {
+  eleventyConfig.addAsyncShortcode('ogImage', async function ogImageShortcode(inputPath, data) {
     if (!fs.existsSync(TemplatePath.normalizeOperatingSystemFilePath(inputPath))) {
       throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${inputPath}`);
     }
