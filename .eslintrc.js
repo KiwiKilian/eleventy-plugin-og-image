@@ -1,7 +1,14 @@
+require('@kiwikilian/eslint-config/patch/modern-module-resolution');
+
 module.exports = {
-  extends: ['eslint:recommended', 'plugin:node/recommended', 'prettier'],
+  extends: ['@kiwikilian/eslint-config/profile/node'],
 
   rules: {
-    'prefer-template': 'error',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['./example/**', './example/.eleventy.js'],
+      },
+    ],
   },
 };
