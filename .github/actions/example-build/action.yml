@@ -1,0 +1,9 @@
+name: Example Build
+description: Build the example project
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/setup
+    - run: npm run example:build
+      shell: bash
