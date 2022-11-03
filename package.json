@@ -44,6 +44,7 @@
     "example:build": "npm run example",
     "example:clean": "rimraf example/_site"
   },
+  "prettier": "@kiwikilian/prettier-config",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -64,12 +65,12 @@
   },
   "devDependencies": {
     "@fontsource/inter": "^4.5.14",
+    "@kiwikilian/eslint-config": "^1.0.1",
+    "@kiwikilian/prettier-config": "1.0.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@types/sharp": "^0.31.0",
     "eslint": "^8.26.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-node": "^11.1.0",
     "prettier": "2.7.1",
     "semantic-release": "^19.0.5",
     "twemoji": "^14.0.2"
