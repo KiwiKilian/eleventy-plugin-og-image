@@ -25,7 +25,8 @@
   "main": "./.eleventy.js",
   "exports": {
     ".": "./.eleventy.js",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./render": "./src/renderOgImage.js"
   },
   "types": "./index.d.ts",
   "files": [
