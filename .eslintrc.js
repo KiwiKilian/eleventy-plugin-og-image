@@ -6,9 +6,17 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
-      {
-        devDependencies: ['./example/**', './example/.eleventy.js'],
-      },
+      { devDependencies: ['./example/**', './example/.eleventy.js', './test/**'] },
     ],
   },
+
+  overrides: [
+    {
+      files: './test/**',
+      rules: {
+        'import/no-unresolved': ['off'],
+        'node/no-missing-require': ['error', { allowModules: ['ava'] }],
+      },
+    },
+  ],
 };

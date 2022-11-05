@@ -1,0 +1,9 @@
+name: Test
+description: Run ava tests
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/setup
+    - run: npm test
+      shell: bash
