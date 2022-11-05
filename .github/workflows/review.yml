@@ -17,6 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/lint
+  test:
+    name: Test
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/test
   example-build:
     name: Example Build
     needs: setup
