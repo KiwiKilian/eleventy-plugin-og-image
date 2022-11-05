@@ -25,13 +25,15 @@
   "main": "./.eleventy.js",
   "exports": {
     ".": "./.eleventy.js",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./render": "./src/renderOgImage.js"
   },
   "types": "./index.d.ts",
   "files": [
     ".eleventy.js",
     "index.d.ts",
-    "postinstall.js"
+    "postinstall.js",
+    "src"
   ],
   "scripts": {
     "postinstall": "node postinstall.js",
