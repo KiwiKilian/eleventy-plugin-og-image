@@ -1,5 +1,5 @@
 const fs = require('fs');
-const twemoji = require('twemoji/dist/twemoji.npm');
+const twemoji = require('twemoji');
 const fetch = require('node-fetch');
 const EleventyPluginOgImage = require('../.eleventy');
 
