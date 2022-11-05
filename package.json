@@ -37,7 +37,7 @@
   "scripts": {
     "postinstall": "node postinstall.js",
     "semantic-release": "semantic-release",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "lint": "eslint .",
     "format": "prettier --write .",
     "example": "cd example && eleventy",
@@ -71,6 +71,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@types/sharp": "^0.31.0",
+    "ava": "^5.0.1",
     "eslint": "^8.26.0",
     "prettier": "2.7.1",
     "semantic-release": "^19.0.5",
