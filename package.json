@@ -31,7 +31,8 @@
   "files": [
     ".eleventy.js",
     "index.d.ts",
-    "postinstall.js"
+    "postinstall.js",
+    "src"
   ],
   "scripts": {
     "postinstall": "node postinstall.js",
