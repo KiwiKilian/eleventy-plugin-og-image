@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.1.0...v1.1.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* remove ultrahtml override ([#26](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/26)) ([220a965](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/220a965ce319852fd75a913bed4dd0133c7ce698))
+
 # [1.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.0.1...v1.1.0) (2022-11-05)
 
 
