@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.1.1...v1.2.0) (2022-12-30)
+
+
+### Features
+
+* add generateHTML option ([#34](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/34)) ([aec8082](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/aec808227bc69866acdf2db11fbc9c7ef94fb113))
+
 ## [1.1.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.1.0...v1.1.1) (2022-12-12)
 
 
