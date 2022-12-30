@@ -95,6 +95,8 @@ The following options can be passed when adding the plugin:
 
 ## Advanced Usage
 
+### Custom Shortcode
+
 If you would like to build your own shortcode, you can directly use the `renderOgImage` function.
 
 ```js
@@ -102,6 +104,26 @@ const { renderOgImage } = require('eleventy-plugin-og-image/render');
 
 const { html, svg, pngBuffer } = await renderOgImage(inputPath, data, satoriOptions);
 ```
+
+### Capture Output URL
+
+If you don't want to directly generate HTML with the shortcode, you can modify the `generateHTML` option to directly return the `outputUrl`:
+
+```js
+eleventyConfig.addPlugin(EleventyPluginOgImage, {
+  generateHTML: (outputUrl) => outputUrl,
+});
+```
+
+Now you can capture the `outputUrl` in your page, e.g. in Nunjucks:
+
+```njk
+{% setAsync "ogOutputUrl" -%}
+    {% ogImage "./og-image.og.njk", { title: "Hello World!" } %}
+{%- endsetAsync %}
+```
+
+And use it anywhere below with `{{ ogOutputUrl }}`.
 
 ## Acknowledgements & Attributions
 
