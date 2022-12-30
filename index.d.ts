@@ -16,6 +16,7 @@ declare type EleventyPluginOgImageOptions = {
   outputDir?: string;
   urlPath?: string;
   hashLength?: number;
+  generateHTML: (outputUrl: string) => string,
 
   satoriOptions?: Partial<SatoriOptions>;
   sharpOptions?: Parameters<Sharp['toFormat']>[1];
