@@ -36,6 +36,6 @@ module.exports = function eleventyPluginOgImage(eleventyConfig, pluginOptions) {
 
     eleventyConfig.logger.log(`Writing OG Image ${outputFilePath} from ${inputPath}`);
 
-    return `<meta property="og:image" content="${outputUrl}" />`;
+    return options.generateHTML(outputUrl);
   });
 };

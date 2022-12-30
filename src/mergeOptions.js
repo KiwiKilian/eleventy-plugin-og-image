@@ -12,6 +12,7 @@ module.exports = {
       outputDir: path.join(eleventyConfig.dir.output, 'og-images/'),
       urlPath: '/og-images/',
       hashLength: 10,
+      generateHTML: (outputUrl) => `<meta property="og:image" content="${outputUrl}" />`,
       ...pluginOptions,
 
       satoriOptions: {
