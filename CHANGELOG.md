@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.2.0...v1.3.0) (2023-01-04)
+
+
+### Features
+
+* render og image with templateConfig ([#40](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/40)) ([6884b90](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/6884b90c1e2423527a9b3c864480fee576727e1c))
+
 # [1.2.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.1.1...v1.2.0) (2022-12-30)
 
 
