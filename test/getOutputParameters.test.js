@@ -1,11 +1,10 @@
 const test = require('ava');
 const { getOutputParameters } = require('../src/getOutputParameters');
 const { mergeOptions } = require('../src/mergeOptions');
-
-const eleventyConfig = { dir: { input: '.', includes: '_includes', data: '_data', output: '_site' } };
+const { directoriesConfig } = require('./utils/directoriesConfig');
 
 test('returns proper defaults', (t) => {
-  const { outputFilename, outputFilePath, outputUrl } = getOutputParameters('<svg />', mergeOptions(eleventyConfig));
+  const { outputFilename, outputFilePath, outputUrl } = getOutputParameters('<svg />', mergeOptions(directoriesConfig));
 
   const hash = '9o5yTSfY93';
 

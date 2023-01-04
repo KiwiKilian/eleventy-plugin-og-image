@@ -102,7 +102,7 @@ If you would like to build your own shortcode, you can directly use the `renderO
 ```js
 const { renderOgImage } = require('eleventy-plugin-og-image/render');
 
-const { html, svg, pngBuffer } = await renderOgImage(inputPath, data, satoriOptions);
+const { html, svg, pngBuffer } = await renderOgImage(inputPath, data, satoriOptions, templateConfig);
 ```
 
 ### Capture Output URL

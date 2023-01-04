@@ -9,9 +9,10 @@ module.exports = {
    * @param { string } inputPath
    * @param { Record<string, any> } [data]
    * @param { import('satori').SatoriOptions } satoriOptions
+   * @param { import('@11ty/eleventy/src/TemplateConfig') } [templateConfig]
    * */
-  async renderOgImage(inputPath, data, satoriOptions) {
-    const html = await (await File(inputPath))(data);
+  async renderOgImage(inputPath, data, satoriOptions, templateConfig) {
+    const html = await (await File(inputPath, { templateConfig }))(data);
     const svg = await satori(htmlToSatori(html), satoriOptions);
     const resvg = new Resvg(svg, { font: { loadSystemFonts: false } });
     const pngBuffer = resvg.render().asPng();
