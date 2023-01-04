@@ -38,7 +38,7 @@
   "scripts": {
     "postinstall": "node postinstall.js",
     "semantic-release": "semantic-release",
-    "test": "ava",
+    "test": "ava test/**/*.test.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "example": "cd example && eleventy",
