@@ -5,6 +5,8 @@ const EleventyPluginOgImage = require('../.eleventy');
 
 /** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
 module.exports = (eleventyConfig) => {
+  eleventyConfig.addShortcode('testShortcode', () => 'Eleventy Plugin OG Image');
+
   /** @type { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } */
   const eleventyPluginOgImageOptions = {
     outputFileExtension: 'png',
