@@ -7,7 +7,7 @@ module.exports = {
    * */
   mergeOptions(directoriesConfig, pluginOptions) {
     return {
-      inputFileGlob: '*.og.*',
+      inputFileGlob: '**/*.og.*',
       outputFileExtension: 'png',
       outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images/'),
       urlPath: '/og-images/',
