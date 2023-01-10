@@ -22,7 +22,9 @@ module.exports = (eleventyConfig) => {
       ],
       loadAdditionalAsset: async (languageCode, segment) => {
         if (languageCode === 'emoji') {
-          const emojiUrl = `https://twemoji.maxcdn.com/v/latest/svg/${twemoji.convert.toCodePoint(segment)}.svg`;
+          const emojiUrl = `https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/${twemoji.convert.toCodePoint(
+            segment,
+          )}.svg`;
           const emojiSvg = await (await fetch(emojiUrl)).text();
 
           return `data:image/svg+xml;base64,${Buffer.from(emojiSvg).toString('base64')}`;
