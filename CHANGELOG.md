@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.3.0...v1.4.0) (2023-01-11)
+
+
+### Bug Fixes
+
+* satori with yoga-layout-prebuilt ([5a91800](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5a918009bc2e224a368e6aa1384deebb6010b753))
+
+
+### Features
+
+* inputFileGlob now ignores in subDirectories ([#48](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/48)) ([aef85eb](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/aef85eb5238162d5d2c6a287dc45178ba2930da2))
+
 # [1.3.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.2.0...v1.3.0) (2023-01-04)
 
 
