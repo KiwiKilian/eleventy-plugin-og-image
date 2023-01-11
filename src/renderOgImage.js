@@ -1,8 +1,11 @@
 const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
-const { default: satori } = require('satori');
+const { default: satori, init } = require('satori/wasm');
+const yoga = require('yoga-layout-prebuilt');
 const { Resvg } = require('@resvg/resvg-js');
 // eslint-disable-next-line node/no-unpublished-require
 const { html: htmlToSatori } = require('../build/satori-html');
+
+init(yoga);
 
 module.exports = {
   /**
