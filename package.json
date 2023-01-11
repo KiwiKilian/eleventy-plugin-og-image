@@ -58,7 +58,8 @@
     "node-fetch": "^2.6.7",
     "satori": "^0.1.0",
     "satori-html": "^0.3.2",
-    "sharp": "^0.31.1"
+    "sharp": "^0.31.1",
+    "yoga-layout-prebuilt": "^1.10.0"
   },
   "devDependencies": {
     "@fontsource/inter": "^4.5.14",
