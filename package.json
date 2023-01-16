@@ -48,7 +48,7 @@
   },
   "prettier": "@kiwikilian/prettier-config",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=14"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.0-canary.18",
