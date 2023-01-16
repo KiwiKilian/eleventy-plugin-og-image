@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.0...v1.4.1) (2023-01-16)
+
+
+### Bug Fixes
+
+* align node minimum version with eleventy ([#50](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/50)) ([1a55b78](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/1a55b78767fcd42e0f21def605e8b884231fa172))
+
 # [1.4.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.3.0...v1.4.0) (2023-01-11)
 
 
