@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.1...v1.4.2) (2023-01-25)
+
+
+### Bug Fixes
+
+* @11ty/eleventy as peerDependency ([#57](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/57)) ([48b2353](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/48b2353c22ffea76240b9d208ab3da579e690862))
+
 ## [1.4.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.0...v1.4.1) (2023-01-16)
 
 
