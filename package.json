@@ -50,18 +50,24 @@
   "engines": {
     "node": ">=14"
   },
+  "11ty": {
+    "compatibility": ">=1.0.0-beta.5"
+  },
+  "peerDependencies": {
+    "@11ty/eleventy": ">=1.0.0-beta.5 || >=2.0.0-beta.1"
+  },
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0-canary.18",
     "@11ty/eleventy-utils": "^1.0.1",
-    "@resvg/resvg-js": "^2.1.0",
-    "esbuild": "^0.16.4",
-    "node-fetch": "^2.6.7",
-    "satori": "^0.1.0",
+    "@resvg/resvg-js": "^2.2.0",
+    "esbuild": "^0.17.4",
+    "node-fetch": "^2.6.8",
+    "satori": "^0.1.1",
     "satori-html": "^0.3.2",
-    "sharp": "^0.31.1",
+    "sharp": "^0.31.3",
     "yoga-layout-prebuilt": "^1.10.0"
   },
   "devDependencies": {
+    "@11ty/eleventy": "2.0.0-beta.1",
     "@fontsource/inter": "^4.5.14",
     "@kiwikilian/eslint-config": "^1.0.1",
     "@kiwikilian/prettier-config": "1.0.1",
