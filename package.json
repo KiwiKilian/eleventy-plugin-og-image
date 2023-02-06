@@ -67,7 +67,7 @@
     "yoga-layout-prebuilt": "^1.10.0"
   },
   "devDependencies": {
-    "@11ty/eleventy": "2.0.0-beta.1",
+    "@11ty/eleventy": "2.0.0-canary.35",
     "@fontsource/inter": "^4.5.14",
     "@kiwikilian/eslint-config": "^1.0.1",
     "@kiwikilian/prettier-config": "1.0.1",
