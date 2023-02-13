@@ -61,7 +61,7 @@
     "@resvg/resvg-js": "^2.2.0",
     "esbuild": "^0.17.4",
     "node-fetch": "^2.6.8",
-    "satori": "^0.1.1",
+    "satori": "^0.3.0",
     "satori-html": "^0.3.2",
     "sharp": "^0.31.3",
     "yoga-layout-prebuilt": "^1.10.0"
