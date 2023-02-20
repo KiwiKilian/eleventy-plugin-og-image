@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.2...v1.5.0) (2023-02-20)
+
+
+### Features
+
+* use yoga-wasm-web ([#72](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/72)) ([d189d35](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/d189d351325f1b1b7f550273638977d849b4c37c))
+
 ## [1.4.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.1...v1.4.2) (2023-01-25)
 
 
