@@ -48,7 +48,7 @@
   },
   "prettier": "@kiwikilian/prettier-config",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "11ty": {
     "compatibility": ">=1.0.0-beta.5"
@@ -61,10 +61,10 @@
     "@resvg/resvg-js": "^2.2.0",
     "esbuild": "^0.17.4",
     "node-fetch": "^2.6.8",
-    "satori": "^0.1.1",
+    "satori": "^0.3.2",
     "satori-html": "^0.3.2",
     "sharp": "^0.31.3",
-    "yoga-layout-prebuilt": "^1.10.0"
+    "yoga-wasm-web": "0.3.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "2.0.0",
