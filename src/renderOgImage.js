@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
 const { default: satori, init } = require('satori/wasm');
 const { Resvg } = require('@resvg/resvg-js');
@@ -15,7 +16,9 @@ module.exports = {
    * @param { import('@11ty/eleventy/src/TemplateConfig') } [templateConfig]
    * */
   async renderOgImage(inputPath, data, satoriOptions, templateConfig) {
-    const yoga = await initYoga(fs.readFileSync('../node_modules/yoga-wasm-web/dist/yoga.wasm'));
+    const yoga = await initYoga(
+      fs.readFileSync(`${path.dirname(require.resolve('yoga-wasm-web/package.json'))}/dist/yoga.wasm`),
+    );
     init(yoga);
 
     const html = await (await File(inputPath, { templateConfig }))(data);
