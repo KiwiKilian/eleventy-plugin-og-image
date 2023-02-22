@@ -6,6 +6,22 @@ const { mergeOptions } = require('./src/mergeOptions');
 const { getOutputParameters } = require('./src/getOutputParameters');
 const { renderOgImage } = require('./src/renderOgImage');
 
+function rmDir(dirPath, removeSelf) {
+  let files;
+  try { files = fs.readdirSync(dirPath); }
+  catch(e) { return; }
+  if (files.length > 0)
+    for (let i = 0; i < files.length; i++) {
+      let filePath = dirPath + '/' + files[i];
+      if (fs.statSync(filePath).isFile())
+        fs.unlinkSync(filePath);
+      else
+        rmDir(filePath, true);
+    }
+  if (removeSelf)
+    fs.rmdirSync(dirPath);
+};
+
 globalThis.fetch = fetch;
 
 /**
@@ -22,6 +38,13 @@ module.exports = (eleventyConfig, pluginOptions) => {
   eleventyConfig.on('eleventy.config', (config) => {
     templateConfig = config;
   });
+  
+  if (pluginOptions.emptyOutputOnRebuild) {
+    eleventyConfig.on('eleventy.before', () => {
+      const options = mergeOptions(directoriesConfig, pluginOptions);
+      rmDir(options.outputDir); //empty output directory
+    });
+  }
 
   eleventyConfig.ignores.add(mergeOptions(undefined, pluginOptions).inputFileGlob);
 
