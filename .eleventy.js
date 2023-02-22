@@ -12,7 +12,7 @@ function rmDir(dirPath, removeSelf) {
   catch(e) { return; }
   if (files.length > 0)
     for (let i = 0; i < files.length; i++) {
-      let filePath = dirPath + '/' + files[i];
+      const filePath = `${dirPath}/${files[i]}`;
       if (fs.statSync(filePath).isFile())
         fs.unlinkSync(filePath);
       else
@@ -42,7 +42,7 @@ module.exports = (eleventyConfig, pluginOptions) => {
   if (pluginOptions.emptyOutputOnRebuild) {
     eleventyConfig.on('eleventy.before', () => {
       const options = mergeOptions(directoriesConfig, pluginOptions);
-      rmDir(options.outputDir); //empty output directory
+      rmDir(options.outputDir);
     });
   }
 
