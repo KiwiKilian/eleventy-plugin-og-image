@@ -6,22 +6,6 @@ const { mergeOptions } = require('./src/mergeOptions');
 const { getOutputParameters } = require('./src/getOutputParameters');
 const { renderOgImage } = require('./src/renderOgImage');
 
-function rmDir(dirPath, removeSelf) {
-  let files;
-  try { files = fs.readdirSync(dirPath); }
-  catch(e) { return; }
-  if (files.length > 0)
-    for (let i in files) {
-      const filePath = `${dirPath}/${files[i]}`;
-      if (fs.statSync(filePath).isFile())
-        fs.unlinkSync(filePath);
-      else
-        rmDir(filePath, true);
-    }
-  if (removeSelf)
-    fs.rmdirSync(dirPath);
-};
-
 globalThis.fetch = fetch;
 
 /**
