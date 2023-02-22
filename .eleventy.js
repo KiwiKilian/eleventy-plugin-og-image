@@ -39,12 +39,10 @@ module.exports = (eleventyConfig, pluginOptions) => {
     templateConfig = config;
   });
   
-  if (pluginOptions.emptyOutputOnRebuild) {
-    eleventyConfig.on('eleventy.before', () => {
-      const options = mergeOptions(directoriesConfig, pluginOptions);
-      rmDir(options.outputDir);
-    });
-  }
+  eleventyConfig.on('eleventy.before', () => {
+    const options = mergeOptions(directoriesConfig, pluginOptions);
+    fs.rmSync(options.outputDir, { recursive: true, force: true });
+  });
 
   eleventyConfig.ignores.add(mergeOptions(undefined, pluginOptions).inputFileGlob);
 
