@@ -22,6 +22,11 @@ module.exports = (eleventyConfig, pluginOptions) => {
   eleventyConfig.on('eleventy.config', (config) => {
     templateConfig = config;
   });
+  
+  eleventyConfig.on('eleventy.before', () => {
+    const options = mergeOptions(directoriesConfig, pluginOptions);
+    fs.rmSync(options.outputDir, { recursive: true, force: true });
+  });
 
   eleventyConfig.ignores.add(mergeOptions(undefined, pluginOptions).inputFileGlob);
 
