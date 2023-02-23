@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.5.0...v1.6.0) (2023-02-23)
+
+
+### Features
+
+* clear outputDir on eleventy.build event ([#74](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/74)) ([3e60531](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/3e60531e01f333c637cd9f330ff1e63bdd2d2945))
+
 # [1.5.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.4.2...v1.5.0) (2023-02-20)
 
 
