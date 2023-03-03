@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.0...v1.6.1) (2023-03-03)
+
+
+### Bug Fixes
+
+* use export to resolve yoga.wasm ([#78](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/78)) ([fdb4d20](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/fdb4d20fd369baac62be428efd3930c040e0c1cb))
+
 # [1.6.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.5.0...v1.6.0) (2023-02-23)
 
 
