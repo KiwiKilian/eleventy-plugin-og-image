@@ -4,8 +4,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    assignees: [KiwiKilian]
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    assignees: [KiwiKilian]
