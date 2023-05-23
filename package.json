@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0",
-    "@fontsource/inter": "^4.5.14",
+    "@fontsource/inter": "^5.0.1",
     "@kiwikilian/eslint-config": "^1.0.1",
     "@kiwikilian/prettier-config": "1.0.1",
     "@semantic-release/changelog": "^6.0.1",
