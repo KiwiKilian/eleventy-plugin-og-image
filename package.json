@@ -24,7 +24,10 @@
   "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
   "main": "./.eleventy.js",
   "exports": {
-    ".": "./.eleventy.js",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./.eleventy.js"
+    },
     "./package.json": "./package.json",
     "./render": "./src/renderOgImage.js"
   },
