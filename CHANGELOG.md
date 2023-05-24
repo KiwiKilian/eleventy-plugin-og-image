@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.1...v1.6.2) (2023-05-24)
+
+
+### Bug Fixes
+
+* exports of types ([#120](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/120)) ([e679ebb](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e679ebb1a7f822ccd518b1af4c17d0629303581f))
+
 ## [1.6.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.0...v1.6.1) (2023-03-03)
 
 
