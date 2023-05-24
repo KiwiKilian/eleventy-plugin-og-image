@@ -1,0 +1,9 @@
+name: Publint
+description: Run packaging linting
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/setup
+    - run: npx publint --strict
+      shell: bash
