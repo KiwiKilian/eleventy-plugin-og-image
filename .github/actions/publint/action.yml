@@ -5,5 +5,5 @@ runs:
   using: composite
   steps:
     - uses: ./.github/actions/setup
-    - run: npx publint
+    - run: npx publint --strict
       shell: bash
