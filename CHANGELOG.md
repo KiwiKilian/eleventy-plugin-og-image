@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.2...v2.0.0) (2023-06-01)
+
+
+### Features
+
+* add development mode ([#123](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/123)) ([8711954](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/8711954c7e5dc58b507b972252a32389dc0fbef7))
+
+
+### BREAKING CHANGES
+
+* switch `renderOgImage` parameters to object style
+
 ## [1.6.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.1...v1.6.2) (2023-05-24)
 
 
