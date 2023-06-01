@@ -3,14 +3,14 @@ const { mergeOptions } = require('../src/mergeOptions');
 const { directoriesConfig } = require('./utils/directoriesConfig');
 
 test('works without pluginOptions', (t) => {
-  const { satoriOptions, sharpOptions, ...options } = mergeOptions(directoriesConfig);
+  const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig });
 
   t.truthy(options);
   t.truthy(satoriOptions);
 });
 
 test('creates default options', (t) => {
-  const { satoriOptions, sharpOptions, ...options } = mergeOptions(directoriesConfig);
+  const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig });
 
   t.is(options.outputFileExtension, 'png');
   t.is(options.inputFileGlob, '**/*.og.*');

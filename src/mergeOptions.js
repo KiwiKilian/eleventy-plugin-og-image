@@ -4,8 +4,13 @@ module.exports = {
   /**
    * @param { import('eleventy-plugin-og-image').DirectoriesConfig } [directoriesConfig]
    * @param { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } [pluginOptions]
+   *
+   * @returns {
+   *   Omit<Required<EleventyPluginOgImageOptions>, 'sharpOptions'> &
+   *   Pick<EleventyPluginOgImageOptions, 'sharpOptions'>
+   * }
    * */
-  mergeOptions(directoriesConfig, pluginOptions) {
+  mergeOptions({ directoriesConfig, pluginOptions } = {}) {
     return {
       inputFileGlob: '**/*.og.*',
       outputFileExtension: 'png',

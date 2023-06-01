@@ -94,6 +94,10 @@ The following options can be passed when adding the plugin:
 | `satoriOptions`       | `{ width: 1200, height: 630, fonts: [] }`                                  | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | If an OG-image-template contains text, it's required to load a font ([example](#usage)). |
 | `sharpOptions`        | `undefined`                                                                | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | Options must be corresponding to choosen `outputFileExtension`.                          |
 
+## Development Mode
+
+During development the OG image file name is the url slug of the page it's generated from. In production builds, a hash of the content will be used.
+
 ## Advanced Usage
 
 ### Custom Shortcode
@@ -103,7 +107,7 @@ If you would like to build your own shortcode, you can directly use the `renderO
 ```js
 const { renderOgImage } = require('eleventy-plugin-og-image/render');
 
-const { html, svg, pngBuffer } = await renderOgImage(inputPath, data, satoriOptions, templateConfig);
+const { html, svg, pngBuffer } = await renderOgImage({ inputPath, data, satoriOptions, templateConfig });
 ```
 
 ### Capture Output URL
