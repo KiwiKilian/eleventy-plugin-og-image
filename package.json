@@ -41,7 +41,7 @@
     "test": "ava test/**/*.test.js",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "example": "cd example && eleventy",
+    "example": "cd example && npx @11ty/eleventy",
     "example:start": "npm run example -- --serve",
     "example:build": "npm run example",
     "example:clean": "rimraf example/_site"
@@ -59,6 +59,7 @@
   "dependencies": {
     "@11ty/eleventy-utils": "^1.0.1",
     "@resvg/resvg-js": "^2.2.0",
+    "@sindresorhus/slugify": "^1.1.2",
     "esbuild": "^0.17.4",
     "node-fetch": "^2.6.8",
     "satori": "^0.8.1",
