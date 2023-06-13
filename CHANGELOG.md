@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.0.0...v2.0.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* unify logging ([#131](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/131)) ([de6ca1d](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/de6ca1d0a1a694016e0292b502a9680534d4abc9))
+
 # [2.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v1.6.2...v2.0.0) (2023-06-01)
 
 
