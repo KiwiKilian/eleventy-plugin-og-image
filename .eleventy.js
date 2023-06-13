@@ -35,7 +35,7 @@ module.exports = (eleventyConfig, pluginOptions) => {
       previewFilenames = true;
 
       if (!logged) {
-        console.log(`[eleventy-plugin-og-image] OG images use stable filenames for development`);
+        eleventyConfig.logger.log('eleventy-plugin-og-image uses stable filenames for development');
         logged = true;
       }
     }
@@ -79,7 +79,7 @@ module.exports = (eleventyConfig, pluginOptions) => {
 
       await image.toFile(outputFilePath);
 
-      eleventyConfig.logger.log(`Writing OG Image ${outputFilePath} from ${inputPath}`);
+      eleventyConfig.logger.log(`Writing ${outputFilePath} from ${inputPath}`);
 
       return options.generateHTML(outputUrl);
     },
