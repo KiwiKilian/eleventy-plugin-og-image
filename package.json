@@ -80,7 +80,7 @@
     "@types/sharp": "^0.32.0",
     "ava": "^5.0.1",
     "eslint": "^8.26.0",
-    "prettier": "3.0.0",
+    "prettier": "3.0.2",
     "semantic-release": "^21.0.1",
     "twemoji": "^14.0.2"
   }
