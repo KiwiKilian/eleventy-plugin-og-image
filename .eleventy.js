@@ -2,11 +2,9 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 const sharp = require('sharp');
 const { TemplatePath } = require('@11ty/eleventy-utils');
-const slugify = require('@sindresorhus/slugify');
 const { mergeOptions } = require('./src/mergeOptions');
 const { getOutputParameters } = require('./src/getOutputParameters');
 const { renderOgImage } = require('./src/renderOgImage');
-const { getHash } = require('./src/getHash');
 
 globalThis.fetch = fetch;
 
@@ -28,18 +26,7 @@ module.exports = (eleventyConfig, pluginOptions) => {
     templateConfig = config;
   });
 
-  let logged = false;
-  let previewFilenames = false;
-  eleventyConfig.on('eleventy.before', ({ runMode }) => {
-    if (runMode === 'serve' || runMode === 'watch') {
-      previewFilenames = true;
-
-      if (!logged) {
-        eleventyConfig.logger.log('eleventy-plugin-og-image uses stable filenames for development');
-        logged = true;
-      }
-    }
-
+  eleventyConfig.on('eleventy.before', () => {
     const options = mergeOptions({ directoriesConfig, pluginOptions });
     fs.rmSync(options.outputDir, { recursive: true, force: true });
   });
@@ -68,9 +55,7 @@ module.exports = (eleventyConfig, pluginOptions) => {
 
       const { outputFilePath, outputUrl } = getOutputParameters({
         options,
-        fileSlug: previewFilenames
-          ? slugify(this.page.url) || 'index'
-          : getHash({ input: svg, hashLength: options.hashLength }),
+        fileSlug: options.getOutputFileSlug({ inputPath, data, svg, context: this }),
       });
 
       if (!fs.existsSync(options.outputDir)) {
