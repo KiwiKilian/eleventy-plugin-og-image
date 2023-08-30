@@ -83,20 +83,20 @@ For applied usage see the [example](./example).
 
 The following options can be passed when adding the plugin:
 
-| Property              | Default                                                                    | Type                                                                                                       |                                                                                          |
-| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `inputFileGlob`       | `**/*.og.*`                                                                | `glob`                                                                                                     | This must match the OG-image-templates to prevent HTML compilation.                      |
-| `outputFileExtension` | `png`                                                                      | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           |                                                                                          |
-| `outputDir`           | `_site/og-images/`                                                         | `string`                                                                                                   | Directory into which OG images will be emitted. Change `urlPath` accordingly.            |
-| `urlPath`             | `/og-images/`                                                              | `string`                                                                                                   | URL-prefix which will be used in returned meta-tags. Change `outputDir` accordingly.     |
-| `hashLength`          | `10`                                                                       | `number`                                                                                                   | Length of the hash used for filenames.                                                   |
-| `generateHTML`        | `` (outputUrl) => `<meta property="og:image" content="${outputUrl}" />` `` | `function`                                                                                                 | Change the rendered HTML in pages.                                                       |
-| `satoriOptions`       | `{ width: 1200, height: 630, fonts: [] }`                                  | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | If an OG-image-template contains text, it's required to load a font ([example](#usage)). |
-| `sharpOptions`        | `undefined`                                                                | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | Options must be corresponding to choosen `outputFileExtension`.                          |
+| Property              | Type                                                                                                       | Default                                   |                                                                                          |
+|-----------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------|------------------------------------------------------------------------------------------|
+| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                      |
+| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Generation of the output file slug, excluding the file extension.                        |
+| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                          |
+| `outputDir`           | `string`                                                                                                   | `_site/og-images/`                        | Directory into which OG images will be emitted. Change `urlPath` accordingly.            |
+| `urlPath`             | `string`                                                                                                   | `/og-images/`                             | URL-prefix which will be used in returned meta-tags. Change `outputDir` accordingly.     |
+| `generateHTML`        | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Change the rendered HTML in pages.                                                       |
+| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)). |
+| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                           |
 
 ## Development Mode
 
-During development the OG image file name is the url slug of the page it's generated from. In production builds, a hash of the content will be used.
+During development the OG image file name is the url slug of the page it's generated from. In production builds, a hash of the content will be used. You'll have to handle this yourself, if you pass a custom `getOutputFileSlug`.
 
 ## Advanced Usage
 
