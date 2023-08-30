@@ -1,4 +1,6 @@
 const path = require('path');
+const slugify = require('@sindresorhus/slugify');
+const { getHash } = require('./getHash');
 
 module.exports = {
   /**
@@ -13,10 +15,13 @@ module.exports = {
   mergeOptions({ directoriesConfig, pluginOptions } = {}) {
     return {
       inputFileGlob: '**/*.og.*',
+      getOutputFileSlug: ({ svg, context }) =>
+        ['watch', 'serve'].includes(context.eleventy.env.runMode)
+          ? slugify(context.page.url) || 'index'
+          : getHash({ input: svg, hashLength: 10 }),
       outputFileExtension: 'png',
       outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images/'),
       urlPath: '/og-images/',
-      hashLength: 10,
       generateHTML: (outputUrl) => `<meta property="og:image" content="${outputUrl}" />`,
       ...pluginOptions,
 
