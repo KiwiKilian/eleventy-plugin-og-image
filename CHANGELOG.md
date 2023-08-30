@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.0.1...v2.1.0) (2023-08-30)
+
+
+### Features
+
+* add getOutputFileSlug ([#160](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/160)) ([f55cbdc](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/f55cbdcfd561bae388207589ed595a3aa2d99865))
+
 ## [2.0.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.0.0...v2.0.1) (2023-06-13)
 
 
