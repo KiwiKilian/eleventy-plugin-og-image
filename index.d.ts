@@ -11,10 +11,15 @@ type DirectoriesConfig = {
 
 type EleventyPluginOgImageOptions = {
   inputFileGlob?: string;
+  getOutputFileSlug?: (parameters: {
+    inputPath: string;
+    data: Record<string, any>;
+    svg: string;
+    context: Record<string, any>;
+  }) => string;
   outputFileExtension?: keyof FormatEnum;
   outputDir?: string;
   urlPath?: string;
-  hashLength?: number;
   generateHTML?: (outputUrl: string) => string;
 
   satoriOptions?: Partial<SatoriOptions>;
