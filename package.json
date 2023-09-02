@@ -54,10 +54,10 @@
     "node": ">=16"
   },
   "11ty": {
-    "compatibility": ">=1.0.0-beta.5"
+    "compatibility": ">=2.0.0-beta.1"
   },
   "peerDependencies": {
-    "@11ty/eleventy": ">=1.0.0-beta.5 || >=2.0.0-beta.1"
+    "@11ty/eleventy": ">=2.0.0-beta.1"
   },
   "dependencies": {
     "@11ty/eleventy-utils": "^1.0.1",
@@ -71,7 +71,7 @@
     "yoga-wasm-web": "^0.3.2"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy": "^2.0.1",
     "@fontsource/inter": "^5.0.1",
     "@kiwikilian/eslint-config": "^1.0.1",
     "@kiwikilian/prettier-config": "1.0.1",
