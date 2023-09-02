@@ -1,3 +1,11 @@
+## [2.1.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.0...v2.1.1) (2023-09-02)
+
+
+### Bug Fixes
+
+* @11ty/eleventy >= 2.x.x is required ([#164](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/164)) ([f2d6aa8](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/f2d6aa83da8b4c0eb9faf726236fdb227d0785c7))
+* omit output for permalink false ([#163](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/163)) ([432edd0](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/432edd0ad35de86998569ebdabc57a763cfc3eea))
+
 # [2.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.0.1...v2.1.0) (2023-08-30)
 
 
