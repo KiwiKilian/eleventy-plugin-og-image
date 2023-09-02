@@ -43,6 +43,10 @@ module.exports = (eleventyConfig, pluginOptions) => {
      * @returns {Promise<string>}
      */
     async function ogImage(inputPath, data) {
+      if (this.page.url === false) {
+        return null;
+      }
+
       const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig, pluginOptions });
 
       if (!fs.existsSync(TemplatePath.normalizeOperatingSystemFilePath(inputPath))) {
