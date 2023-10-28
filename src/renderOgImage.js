@@ -3,10 +3,10 @@ const { File } = require('@11ty/eleventy/src/Plugins/RenderPlugin');
 const { default: satori, init } = require('satori/wasm');
 const { Resvg } = require('@resvg/resvg-js');
 
-/* eslint-disable node/no-unpublished-require */
+/* eslint-disable n/no-unpublished-require */
 const { default: initYoga } = require('../build/yoga-wasm-web');
 const { html: htmlToSatori } = require('../build/satori-html');
-/* eslint-enable node/no-unpublished-require */
+/* eslint-enable n/no-unpublished-require */
 
 const Yoga = initYoga(fs.readFileSync(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
 init(Yoga);

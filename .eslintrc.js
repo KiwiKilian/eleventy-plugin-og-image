@@ -15,7 +15,6 @@ module.exports = {
       files: './test/**',
       rules: {
         'import/no-unresolved': ['off'],
-        'node/no-missing-require': ['error', { allowModules: ['ava'] }],
       },
     },
   ],

@@ -2,7 +2,6 @@ const esbuild = require('esbuild');
 
 esbuild
   .build({
-    // eslint-disable-next-line node/no-missing-require
     entryPoints: [require.resolve('yoga-wasm-web')],
     outfile: 'build/yoga-wasm-web.js',
     bundle: true,
@@ -14,7 +13,6 @@ esbuild
 
 esbuild
   .build({
-    // eslint-disable-next-line node/no-missing-require
     entryPoints: [require.resolve('satori-html')],
     outfile: 'build/satori-html.js',
     bundle: true,
