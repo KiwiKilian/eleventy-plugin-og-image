@@ -1,10 +1,9 @@
-const fs = require('fs');
-const twemoji = require('twemoji');
-const fetch = require('node-fetch');
-const EleventyPluginOgImage = require('../.eleventy');
+import fs from 'fs';
+import twemoji from 'twemoji';
+import EleventyPluginOgImage from '../.eleventy.js';
 
 /** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
-module.exports = (eleventyConfig) => {
+const config = (eleventyConfig) => {
   eleventyConfig.addShortcode('testShortcode', () => 'Eleventy Plugin OG Image');
 
   /** @type { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } */
@@ -37,3 +36,6 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPlugin(EleventyPluginOgImage, eleventyPluginOgImageOptions);
 };
+
+// eslint-disable-next-line import/no-default-export
+export default config;

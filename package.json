@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/KiwiKilian/eleventy-plugin-og-image#readme",
   "main": "./.eleventy.js",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -35,11 +36,9 @@
   "files": [
     ".eleventy.js",
     "index.d.ts",
-    "postinstall.js",
     "src"
   ],
   "scripts": {
-    "postinstall": "node postinstall.js",
     "semantic-release": "semantic-release",
     "test": "ava test/**/*.test.js",
     "lint": "eslint .",
@@ -62,16 +61,14 @@
   "dependencies": {
     "@11ty/eleventy-utils": "^1.0.1",
     "@resvg/resvg-js": "^2.2.0",
-    "@sindresorhus/slugify": "^1.1.2",
-    "esbuild": "^0.19.2",
-    "node-fetch": "^2.6.8",
+    "@sindresorhus/slugify": "^2.2.1",
     "satori": "^0.10.1",
     "satori-html": "^0.3.2",
     "sharp": "^0.32.0",
     "yoga-wasm-web": "^0.3.2"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy": "github:11ty/eleventy#main",
     "@fontsource/inter": "^5.0.1",
     "@kiwikilian/eslint-config": "^1.1.0",
     "@kiwikilian/prettier-config": "1.0.1",
