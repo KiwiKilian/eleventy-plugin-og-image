@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.1...v3.0.0) (2023-10-29)
+
+
+### Features
+
+* drop node 16 support ([83b88da](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/83b88da1570730d3c4547afd943e62f8ac788c41))
+* switch to ESM module ([21219b6](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/21219b6520660b250e5cd784c178f631957572ff))
+
+
+### BREAKING CHANGES
+
+* This package is now ESM-only to drop postinstall build steps
+* node >= 18 required
+
 ## [2.1.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.0...v2.1.1) (2023-09-02)
 
 
