@@ -1,5 +1,5 @@
-const test = require('ava');
-const { renderOgImage } = require('../src/renderOgImage');
+import test from 'ava';
+import { renderOgImage } from '../src/renderOgImage.js';
 
 test('works with example', async (t) => {
   const { html, svg, pngBuffer } = await renderOgImage({

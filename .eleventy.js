@@ -1,18 +1,15 @@
-const fs = require('fs');
-const fetch = require('node-fetch');
-const sharp = require('sharp');
-const { TemplatePath } = require('@11ty/eleventy-utils');
-const { mergeOptions } = require('./src/mergeOptions');
-const { getOutputParameters } = require('./src/getOutputParameters');
-const { renderOgImage } = require('./src/renderOgImage');
-
-globalThis.fetch = fetch;
+import fs from 'fs';
+import sharp from 'sharp';
+import { TemplatePath } from '@11ty/eleventy-utils';
+import { mergeOptions } from './src/mergeOptions.js';
+import { getOutputParameters } from './src/getOutputParameters.js';
+import { renderOgImage } from './src/renderOgImage.js';
 
 /**
  * @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig
  * @param { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } pluginOptions
  * */
-module.exports = (eleventyConfig, pluginOptions) => {
+const config = (eleventyConfig, pluginOptions) => {
   let directoriesConfig;
   eleventyConfig.on('eleventy.directories', (dir) => {
     directoriesConfig = dir;
@@ -22,8 +19,8 @@ module.exports = (eleventyConfig, pluginOptions) => {
    * @type { import('@11ty/eleventy/src/TemplateConfig') }
    */
   let templateConfig;
-  eleventyConfig.on('eleventy.config', (config) => {
-    templateConfig = config;
+  eleventyConfig.on('eleventy.config', (newTemplateConfig) => {
+    templateConfig = newTemplateConfig;
   });
 
   eleventyConfig.on('eleventy.before', () => {
@@ -74,3 +71,6 @@ module.exports = (eleventyConfig, pluginOptions) => {
     },
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default config;

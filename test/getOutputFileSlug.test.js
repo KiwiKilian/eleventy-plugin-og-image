@@ -1,6 +1,6 @@
-const test = require('ava');
-const { mergeOptions } = require('../src/mergeOptions');
-const { directoriesConfig } = require('./utils/directoriesConfig');
+import test from 'ava';
+import { mergeOptions } from '../src/mergeOptions.js';
+import { directoriesConfig } from './utils/directoriesConfig.js';
 
 const createContext = ({ url, runMode }) => ({
   page: { url },

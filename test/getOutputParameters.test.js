@@ -1,7 +1,7 @@
-const test = require('ava');
-const { getOutputParameters } = require('../src/getOutputParameters');
-const { mergeOptions } = require('../src/mergeOptions');
-const { directoriesConfig } = require('./utils/directoriesConfig');
+import test from 'ava';
+import { getOutputParameters } from '../src/getOutputParameters.js';
+import { mergeOptions } from '../src/mergeOptions.js';
+import { directoriesConfig } from './utils/directoriesConfig.js';
 
 const FILE_SLUG = 'file-slug';
 
