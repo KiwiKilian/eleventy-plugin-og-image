@@ -43,10 +43,10 @@
     "test": "ava test/**/*.test.js",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "example": "cd example && npx @11ty/eleventy",
+    "example": "npx @11ty/eleventy --config=./example/.eleventy.js --input=./example/ --output=./example/_site",
     "example:start": "npm run example -- --serve",
     "example:build": "npm run example",
-    "example:clean": "rimraf example/_site"
+    "example:clean": "rimraf ./example/_site"
   },
   "prettier": "@kiwikilian/prettier-config",
   "engines": {
