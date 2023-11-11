@@ -1,3 +1,17 @@
+# [3.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.0.0...v3.1.0) (2023-11-11)
+
+
+### Bug Fixes
+
+* align outputFilePath format ([7567630](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/75676308ef0ee8d3c909e10740d183f593b6388a))
+* resolve pathes relativ to input ([02647a8](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/02647a843c71d3994b8e7f61cf2f00d3325ca559))
+* upgrade eleventy peerDependency and compatibility ([34223f0](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/34223f0dcf26906ea161da253bfa5e7240a40113))
+
+
+### Features
+
+* improve example font loading ([7261b66](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/7261b660896aed85d57f0e4fb5953090ec362fa3))
+
 # [3.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.1...v3.0.0) (2023-10-29)
 
 
