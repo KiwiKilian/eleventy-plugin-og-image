@@ -1,9 +1,9 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import module from 'node:module';
 import twemoji from 'twemoji';
-import { createRequire } from 'module';
 import EleventyPluginOgImage from '../.eleventy.js';
 
-const require = createRequire(import.meta.url);
+const require = module.createRequire(import.meta.url);
 
 /** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
 const config = (eleventyConfig) => {

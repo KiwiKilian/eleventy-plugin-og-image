@@ -1,7 +1,5 @@
-import path from 'path';
-
+import path from 'node:path';
 import slugify from '@sindresorhus/slugify';
-
 import { getHash } from './getHash.js';
 
 /**
