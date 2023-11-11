@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import sharp from 'sharp';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import { mergeOptions } from './src/mergeOptions.js';

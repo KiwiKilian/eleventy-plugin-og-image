@@ -1,5 +1,5 @@
-import fs from 'fs';
-import { createRequire } from 'module';
+import fs from 'node:fs';
+import module from 'node:module';
 import { File } from '@11ty/eleventy/src/Plugins/RenderPlugin.js';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
@@ -9,7 +9,7 @@ import initYoga from 'yoga-wasm-web';
 import satori, { init } from 'satori/wasm';
 import { Resvg } from '@resvg/resvg-js';
 
-const require = createRequire(import.meta.url);
+const require = module.createRequire(import.meta.url);
 
 const Yoga = await initYoga(fs.readFileSync(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
 init(Yoga);

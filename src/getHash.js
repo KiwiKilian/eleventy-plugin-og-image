@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import crypto from 'node:crypto';
 
 /**
  * @param { string } input
@@ -7,5 +7,5 @@ import { createHash } from 'crypto';
  * @returns { string }
  * */
 export function getHash({ input, hashLength }) {
-  return createHash('sha256').update(input).digest('base64url').substring(0, hashLength);
+  return crypto.createHash('sha256').update(input).digest('base64url').substring(0, hashLength);
 }
