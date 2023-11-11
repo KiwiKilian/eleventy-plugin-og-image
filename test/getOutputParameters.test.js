@@ -12,6 +12,6 @@ test('returns proper defaults', (t) => {
   });
 
   t.is(outputFilename, `${FILE_SLUG}.png`);
-  t.is(outputFilePath, `_site/og-images/${FILE_SLUG}.png`);
+  t.is(outputFilePath, `./_site/og-images/${FILE_SLUG}.png`);
   t.is(outputUrl, `/og-images/${FILE_SLUG}.png`);
 });
