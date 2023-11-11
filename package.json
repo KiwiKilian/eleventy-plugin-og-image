@@ -53,10 +53,10 @@
     "node": ">=18"
   },
   "11ty": {
-    "compatibility": ">=2.0.0-beta.1"
+    "compatibility": ">=3.0.0-alpha.1"
   },
   "peerDependencies": {
-    "@11ty/eleventy": ">=2.0.0-beta.1"
+    "@11ty/eleventy": ">=3.0.0-alpha.1"
   },
   "dependencies": {
     "@11ty/eleventy-utils": "^1.0.1",
