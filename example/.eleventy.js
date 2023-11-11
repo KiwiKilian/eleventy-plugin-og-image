@@ -1,6 +1,9 @@
 import fs from 'fs';
 import twemoji from 'twemoji';
+import { createRequire } from 'module';
 import EleventyPluginOgImage from '../.eleventy.js';
+
+const require = createRequire(import.meta.url);
 
 /** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
 const config = (eleventyConfig) => {
@@ -14,7 +17,7 @@ const config = (eleventyConfig) => {
       fonts: [
         {
           name: 'Inter',
-          data: fs.readFileSync('../node_modules/@fontsource/inter/files/inter-latin-700-normal.woff'),
+          data: fs.readFileSync(require.resolve('@fontsource/inter/files/inter-latin-700-normal.woff')),
           weight: 700,
           style: 'normal',
         },
