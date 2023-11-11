@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import sharp from 'sharp';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import { mergeOptions } from './src/mergeOptions.js';
@@ -46,17 +47,24 @@ const config = (eleventyConfig, pluginOptions) => {
 
       const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig, pluginOptions });
 
-      if (!fs.existsSync(TemplatePath.normalizeOperatingSystemFilePath(inputPath))) {
-        throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${inputPath}`);
+      const joinedInputPath = TemplatePath.standardizeFilePath(path.join(directoriesConfig.input, inputPath));
+
+      if (!fs.existsSync(joinedInputPath)) {
+        throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
       }
 
-      const { svg, pngBuffer } = await renderOgImage({ inputPath, data, satoriOptions, templateConfig });
+      const { svg, pngBuffer } = await renderOgImage({
+        inputPath: joinedInputPath,
+        data,
+        satoriOptions,
+        templateConfig,
+      });
 
       const image = await sharp(pngBuffer).toFormat(options.outputFileExtension, sharpOptions);
 
       const { outputFilePath, outputUrl } = getOutputParameters({
         options,
-        fileSlug: options.getOutputFileSlug({ inputPath, data, svg, context: this }),
+        fileSlug: options.getOutputFileSlug({ inputPath: joinedInputPath, data, svg, context: this }),
       });
 
       if (!fs.existsSync(options.outputDir)) {
@@ -65,7 +73,7 @@ const config = (eleventyConfig, pluginOptions) => {
 
       await image.toFile(outputFilePath);
 
-      eleventyConfig.logger.log(`Writing ${outputFilePath} from ${inputPath}`);
+      eleventyConfig.logger.log(`Writing ${outputFilePath} from ${joinedInputPath}`);
 
       return options.generateHTML(outputUrl);
     },
