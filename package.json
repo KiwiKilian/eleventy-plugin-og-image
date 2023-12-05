@@ -64,7 +64,7 @@
     "@sindresorhus/slugify": "^2.2.1",
     "satori": "^0.10.1",
     "satori-html": "^0.3.2",
-    "sharp": "^0.32.0",
+    "sharp": "^0.33.0",
     "yoga-wasm-web": "^0.3.2"
   },
   "devDependencies": {
