@@ -10,7 +10,7 @@ import { renderOgImage } from './src/renderOgImage.js';
  * @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig
  * @param { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } pluginOptions
  * */
-const config = (eleventyConfig, pluginOptions) => {
+export default async function (eleventyConfig, pluginOptions) {
   let directoriesConfig;
   eleventyConfig.on('eleventy.directories', (dir) => {
     directoriesConfig = dir;
@@ -78,7 +78,4 @@ const config = (eleventyConfig, pluginOptions) => {
       return options.generateHTML(outputUrl);
     },
   );
-};
-
-// eslint-disable-next-line import/no-default-export
-export default config;
+}
