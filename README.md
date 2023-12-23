@@ -19,7 +19,7 @@ Add the plugin to your `.eleventy.js`:
 import EleventyPluginOgImage from 'eleventy-plugin-og-image';
 
 /** @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig */
-const config = (eleventyConfig) => {
+export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyPluginOgImage, {
     satoriOptions: {
       fonts: [
@@ -33,8 +33,6 @@ const config = (eleventyConfig) => {
     },
   });
 };
-
-export default config;
 ```
 
 Create an OG-image-template, using the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. This is an example `og-image.og.njk`:
