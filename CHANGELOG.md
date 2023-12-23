@@ -1,3 +1,10 @@
+# [3.2.0-beta.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.1.0...v3.2.0-beta.1) (2023-12-05)
+
+
+### Features
+
+* upgrade sharp ([0fa8b23](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/0fa8b23975a752522606eea6abbb2ce2d20220ba))
+
 # [3.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.0.0...v3.1.0) (2023-11-11)
 
 
