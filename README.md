@@ -18,7 +18,7 @@ Add the plugin to your `.eleventy.js`:
 ```js
 import EleventyPluginOgImage from 'eleventy-plugin-og-image';
 
-/** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
+/** @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig */
 const config = (eleventyConfig) => {
   eleventyConfig.addPlugin(EleventyPluginOgImage, {
     satoriOptions: {

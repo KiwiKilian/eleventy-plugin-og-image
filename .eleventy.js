@@ -7,7 +7,7 @@ import { getOutputParameters } from './src/getOutputParameters.js';
 import { renderOgImage } from './src/renderOgImage.js';
 
 /**
- * @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig
+ * @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig
  * @param { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } pluginOptions
  * */
 const config = (eleventyConfig, pluginOptions) => {
@@ -17,7 +17,7 @@ const config = (eleventyConfig, pluginOptions) => {
   });
 
   /**
-   * @type { import('@11ty/eleventy/src/TemplateConfig') }
+   * @type { import('@11ty/eleventy/src/TemplateConfig').default }
    */
   let templateConfig;
   eleventyConfig.on('eleventy.config', (newTemplateConfig) => {
