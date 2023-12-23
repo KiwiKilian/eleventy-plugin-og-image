@@ -5,8 +5,8 @@ import EleventyPluginOgImage from '../.eleventy.js';
 
 const require = module.createRequire(import.meta.url);
 
-const config = (eleventyConfig) => {
 /** @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig */
+export default async function (eleventyConfig) {
   eleventyConfig.addShortcode('testShortcode', () => 'Eleventy Plugin OG Image');
 
   /** @type { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } */
@@ -38,7 +38,4 @@ const config = (eleventyConfig) => {
   };
 
   eleventyConfig.addPlugin(EleventyPluginOgImage, eleventyPluginOgImageOptions);
-};
-
-// eslint-disable-next-line import/no-default-export
-export default config;
+}

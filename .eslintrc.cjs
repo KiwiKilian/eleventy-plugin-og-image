@@ -23,6 +23,13 @@ module.exports = {
 
   overrides: [
     {
+      files: '.eleventy.js',
+      rules: {
+        'func-names': ['off'],
+        'import/no-default-export': ['off'],
+      },
+    },
+    {
       files: './test/**',
       rules: {
         'import/no-unresolved': ['off'],
