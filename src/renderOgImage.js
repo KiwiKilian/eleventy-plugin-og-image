@@ -18,7 +18,7 @@ init(Yoga);
  * @param { string } inputPath
  * @param { Record<string, any> } [data]
  * @param { import('satori').SatoriOptions } satoriOptions
- * @param { import('@11ty/eleventy/src/TemplateConfig') } [templateConfig]
+ * @param { import('@11ty/eleventy/src/TemplateConfig').default } [templateConfig]
  *
  * @returns { Promise<{ html: string, svg: string, pngBuffer: Buffer }> }
  * */
