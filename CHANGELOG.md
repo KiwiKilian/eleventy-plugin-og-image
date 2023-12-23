@@ -1,3 +1,11 @@
+# [3.2.0-beta.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.1...v3.2.0-beta.2) (2023-12-23)
+
+
+### Bug Fixes
+
+* type imports ([24aa37b](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/24aa37b8f86c16eb1ec947a5b331de60534c90ac))
+* use released alpha version ([bb8519c](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/bb8519c7c1e57629804a3937bb1c4f0049c4309c))
+
 # [3.2.0-beta.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.1.0...v3.2.0-beta.1) (2023-12-05)
 
 
