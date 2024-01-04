@@ -5,7 +5,7 @@ This plugin helps to create Open Graph images in [Eleventy](https://www.11ty.dev
 ## Usage
 
 > [!IMPORTANT]  
-> This is an [ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). Your eleventy project needs to use ESM from `eleventy-plugin-og-image@3.0.0` onwards, which also requires `@11ty/eleventy3.0.0` or greater. 
+> This is an [ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). Your Eleventy project needs to use ESM from `eleventy-plugin-og-image@3.0.0` onwards, which also requires `@11ty/eleventy3.0.0` or greater. 
 
 Install the package:
 
@@ -60,7 +60,7 @@ Create an OG-image-template, using the supported HTML elements[^1] and CSS prope
 </div>
 ```
 
-Call the `ogImage` shortcode inside the `<head>` in a template. The first argument is the filePath of the OG-image-template (required), second argument is for data (optional). Usage example in Nunjucks, e.g. `example-page.njk`:
+Call the `ogImage` shortcode inside the `<head>` in a template. The first argument is the filePath of the OG-image-template (required, relative to your Eleventy input directory). The second argument is for data (optional). Usage example in Nunjucks, e.g. `example-page.njk`:
 
 ```njk
 {% ogImage "./og-image.og.njk", { title: "Hello World!" } %}
