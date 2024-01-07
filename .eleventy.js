@@ -74,7 +74,7 @@ export default async function (eleventyConfig, pluginOptions) {
 
       await image.toFile(outputFilePath);
 
-      eleventyConfig.logger.log(`Writing ${outputFilePath} from ${joinedInputPath}`);
+      eleventyConfig.logger.log(`Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`);
 
       return options.generateHTML(outputUrl);
     },
