@@ -1,3 +1,15 @@
+# [3.2.0-beta.3](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.2...v3.2.0-beta.3) (2024-01-07)
+
+
+### Bug Fixes
+
+* align logging paths ([5491207](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5491207214f961647249f5f83f7bd307b494a840))
+
+
+### Features
+
+* pass shortcode scoped data to OG templates ([a240aee](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/a240aee5ca49015605c307dc58d64e5ca64373d8)), closes [#211](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/211)
+
 # [3.2.0-beta.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.1...v3.2.0-beta.2) (2023-12-23)
 
 
