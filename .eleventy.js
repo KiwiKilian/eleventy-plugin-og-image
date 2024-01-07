@@ -48,6 +48,7 @@ export default async function (eleventyConfig, pluginOptions) {
       const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig, pluginOptions });
 
       const joinedInputPath = TemplatePath.standardizeFilePath(path.join(directoriesConfig.input, inputPath));
+      const mergedData = { page: this.page, eleventy: this.eleventy, ...data };
 
       if (!fs.existsSync(joinedInputPath)) {
         throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
@@ -55,7 +56,7 @@ export default async function (eleventyConfig, pluginOptions) {
 
       const { svg, pngBuffer } = await renderOgImage({
         inputPath: joinedInputPath,
-        data,
+        data: mergedData,
         satoriOptions,
         templateConfig,
       });
@@ -64,7 +65,7 @@ export default async function (eleventyConfig, pluginOptions) {
 
       const { outputFilePath, outputUrl } = getOutputParameters({
         options,
-        fileSlug: options.getOutputFileSlug({ inputPath: joinedInputPath, data, svg, context: this }),
+        fileSlug: options.getOutputFileSlug({ inputPath: joinedInputPath, data: mergedData, svg, context: this }),
       });
 
       if (!fs.existsSync(options.outputDir)) {
