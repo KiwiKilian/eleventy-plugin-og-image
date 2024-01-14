@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-og-image",
-  "version": "3.2.0-beta.3",
+  "version": "3.2.0-beta.4",
   "description": "A plugin to create Open Graph Images from JSX for Eleventy.",
   "author": {
     "name": "Kilian Finger",
