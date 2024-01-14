@@ -35,7 +35,7 @@ export default async function (eleventyConfig) {
 };
 ```
 
-Create an OG-image-template, using the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. [Shortcode scoped data](https://www.11ty.dev/docs/shortcodes/#scoped-data-in-shortcodes) from the parent template is available. This is an example `og-image.og.njk`:
+Create an OG-image-template, using the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. [Shortcode scoped data](https://www.11ty.dev/docs/shortcodes/#scoped-data-in-shortcodes) from the parent template is available. Additionally, some options will be available as data under the `eleventyPluginOgImage` key. This is an example `og-image.og.njk`:
 
 ```njk
 <style>

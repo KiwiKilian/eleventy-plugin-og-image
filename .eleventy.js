@@ -48,7 +48,17 @@ export default async function (eleventyConfig, pluginOptions) {
       const { satoriOptions, sharpOptions, ...options } = mergeOptions({ directoriesConfig, pluginOptions });
 
       const joinedInputPath = TemplatePath.standardizeFilePath(path.join(directoriesConfig.input, inputPath));
-      const mergedData = { page: this.page, eleventy: this.eleventy, ...data };
+      const mergedData = {
+        page: this.page,
+        eleventy: this.eleventy,
+        eleventyPluginOgImage: {
+          inputPath: joinedInputPath,
+          width: satoriOptions.width,
+          height: satoriOptions.height,
+          outputFileExtension: options.outputFileExtension,
+        },
+        ...data,
+      };
 
       if (!fs.existsSync(joinedInputPath)) {
         throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
