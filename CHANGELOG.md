@@ -1,3 +1,10 @@
+# [3.2.0-beta.4](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.3...v3.2.0-beta.4) (2024-01-14)
+
+
+### Features
+
+* add eleventyPluginOgImage data to rendering ([b63cc55](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b63cc55ea57e7aef096181f4edeae6dcbcb4918f)), closes [#215](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/215)
+
 # [3.2.0-beta.3](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.2...v3.2.0-beta.3) (2024-01-07)
 
 
