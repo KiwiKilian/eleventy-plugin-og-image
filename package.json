@@ -63,7 +63,7 @@
     "@11ty/eleventy-utils": "^1.0.1",
     "@resvg/resvg-js": "^2.2.0",
     "@sindresorhus/slugify": "^1.1.2",
-    "esbuild": "^0.19.2",
+    "esbuild": "^0.20.0",
     "node-fetch": "^2.6.8",
     "satori": "^0.10.1",
     "satori-html": "^0.3.2",
