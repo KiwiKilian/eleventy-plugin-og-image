@@ -79,7 +79,7 @@
     "@semantic-release/git": "^10.0.1",
     "ava": "^5.0.1",
     "eslint": "^8.26.0",
-    "prettier": "3.2.4",
+    "prettier": "3.2.5",
     "semantic-release": "^23.0.0",
     "twemoji": "^14.0.2"
   }
