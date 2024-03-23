@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.1...v2.1.2) (2024-03-23)
+
+
+### Bug Fixes
+
+* outputUrl on windows with forward slash ([e1bff34](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e1bff342a878876f6bc840e94edfa39b1ca7fa72)), closes [#234](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/234)
+
 ## [2.1.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.0...v2.1.1) (2023-09-02)
 
 
