@@ -8,6 +8,6 @@ module.exports = {
    * @returns { string }
    * */
   getHash({ input, hashLength }) {
-    return createHash('sha256').update(input).digest('base64url').substring(0, hashLength);
+    return createHash('sha256').update(input).digest('hex').substring(0, hashLength);
   },
 };

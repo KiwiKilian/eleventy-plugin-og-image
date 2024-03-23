@@ -18,7 +18,7 @@ module.exports = {
       getOutputFileSlug: ({ svg, context }) =>
         ['watch', 'serve'].includes(context.eleventy.env.runMode)
           ? slugify(context.page.url) || 'index'
-          : getHash({ input: svg, hashLength: 10 }),
+          : getHash({ input: svg, hashLength: 8 }),
       outputFileExtension: 'png',
       outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images/'),
       urlPath: '/og-images/',
