@@ -1,3 +1,11 @@
+# [3.2.0-beta.5](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.4...v3.2.0-beta.5) (2024-03-23)
+
+
+### Bug Fixes
+
+* hashes without special chars with hex digest ([47fb387](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/47fb387e9515c188a8710878c80e57a0de3a6cca))
+* outputUrl on windows with forward slash ([e1bff34](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e1bff342a878876f6bc840e94edfa39b1ca7fa72)), closes [#234](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/234)
+
 # [3.2.0-beta.4](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.3...v3.2.0-beta.4) (2024-01-14)
 
 
