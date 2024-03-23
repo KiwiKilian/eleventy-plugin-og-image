@@ -47,6 +47,6 @@ test('returns hash on build', (t) => {
       svg: '<svg />',
       context: createContext({ url: 'example/url', runMode: 'build' }),
     }),
-    '9o5yTSfY93',
+    'f68e724d',
   );
 });
