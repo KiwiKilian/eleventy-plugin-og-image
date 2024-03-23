@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.2...v2.1.3) (2024-03-23)
+
+
+### Bug Fixes
+
+* hashes without special chars with hex digest ([47fb387](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/47fb387e9515c188a8710878c80e57a0de3a6cca))
+
 ## [2.1.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v2.1.1...v2.1.2) (2024-03-23)
 
 
