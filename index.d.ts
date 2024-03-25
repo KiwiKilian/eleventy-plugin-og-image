@@ -9,21 +9,29 @@ type DirectoriesConfig = {
   output: string;
 };
 
+type SharpFormatOptions = Parameters<Sharp['toFormat']>[1];
+
 type EleventyPluginOgImageOptions = {
   inputFileGlob?: string;
-  getOutputFileSlug?: (parameters: {
-    inputPath: string;
-    data: Record<string, any>;
-    svg: string;
-    context: Record<string, any>;
-  }) => string;
+  hashLength?: number;
   outputFileExtension?: keyof FormatEnum;
   outputDir?: string;
+  previewDir?: string;
   urlPath?: string;
-  generateHTML?: (outputUrl: string) => string;
+
+  getOutputFileSlug?: () => Promise<string>;
+  generateHTML?: (outputUrl: string) => Promise<string>;
 
   satoriOptions?: Partial<SatoriOptions>;
-  sharpOptions?: Parameters<Sharp['toFormat']>[1];
+  sharpOptions?: SharpFormatOptions;
 };
 
-export { EleventyPluginOgImageOptions, DirectoriesConfig };
+type EleventyPluginOgImageMergedOptions = Omit<
+  Required<EleventyPluginOgImageOptions>,
+  'satoriOptions' | 'sharpOptions'
+> &
+  Pick<EleventyPluginOgImageOptions, 'sharpOptions'> & {
+    satoriOptions: SatoriOptions & { width: number; height: number };
+  };
+
+export { EleventyPluginOgImageOptions, EleventyPluginOgImageMergedOptions, DirectoriesConfig };
