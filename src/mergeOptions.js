@@ -1,27 +1,31 @@
 import path from 'node:path';
-import slugify from '@sindresorhus/slugify';
-import { getHash } from './getHash.js';
+
+export const INPUT_FILE_GLOB = '**/*.og.*';
 
 /**
- * @param { import('eleventy-plugin-og-image').DirectoriesConfig } [directoriesConfig]
- * @param { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } [pluginOptions]
- *
- * @returns {
- *   Omit<Required<EleventyPluginOgImageOptions>, 'sharpOptions'> &
- *   Pick<EleventyPluginOgImageOptions, 'sharpOptions'>
- * }
- * */
-export function mergeOptions({ directoriesConfig, pluginOptions } = {}) {
+ * @param {DirectoriesConfig} [directoriesConfig]
+ * @param {EleventyPluginOgImageOptions} [pluginOptions]
+ * @returns {EleventyPluginOgImageMergedOptions}
+ */
+export function mergeOptions({ directoriesConfig, pluginOptions }) {
   return {
-    inputFileGlob: '**/*.og.*',
-    getOutputFileSlug: ({ svg, context }) =>
-      ['watch', 'serve'].includes(context.eleventy.env.runMode)
-        ? slugify(context.page.url) || 'index'
-        : getHash({ input: svg, hashLength: 8 }),
+    inputFileGlob: INPUT_FILE_GLOB,
+    hashLength: 8,
     outputFileExtension: 'png',
-    outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images/'),
-    urlPath: '/og-images/',
-    generateHTML: (outputUrl) => `<meta property="og:image" content="${outputUrl}" />`,
+    outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images'),
+    previewDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images', 'preview'),
+    urlPath: 'og-images',
+
+    /** @this {OgImage} */
+    getOutputFileSlug() {
+      return this.hash();
+    },
+
+    /** @this {OgImage} */
+    async generateHTML() {
+      return `<meta property="og:image" content="${await this.outputUrl()}" />`;
+    },
+
     ...pluginOptions,
 
     satoriOptions: {
