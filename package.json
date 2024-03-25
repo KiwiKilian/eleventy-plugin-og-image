@@ -48,7 +48,6 @@
     "example:build": "npm run example",
     "example:clean": "rimraf ./example/_site"
   },
-  "prettier": "@kiwikilian/prettier-config",
   "engines": {
     "node": ">=18"
   },
@@ -77,6 +76,7 @@
     "ava": "^6.1.2",
     "eslint": "^8.26.0",
     "prettier": "3.2.5",
+    "prettier-plugin-jsdoc": "1.3.0",
     "semantic-release": "^23.0.0",
     "twemoji": "^14.0.2"
   }
