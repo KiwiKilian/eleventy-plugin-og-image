@@ -13,7 +13,6 @@ import crypto from 'node:crypto';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
-import slugify from '@sindresorhus/slugify';
 import { Util } from './Util.js';
 
 const require = module.createRequire(import.meta.url);
@@ -110,11 +109,6 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
-  async generateHtml() {
-    return this.options.generateHTML.bind(this)();
-  }
-
-  /** @returns {Promise<string>} */
   async outputFileName() {
     return `${await this.outputFileSlug()}.${this.options.outputFileExtension}`;
   }
@@ -132,15 +126,18 @@ export class OgImage {
     return fileUrl.pathname;
   }
 
-  /** @returns {string} */
-  previewFileSlug() {
-    return slugify(this.data.page.url) || 'index';
+  /** @returns {Promise<string>} */
+  async generateHtml() {
+    return this.options.generateHTML.bind(this)();
   }
 
   /** @returns {string} */
   previewFilePath() {
     return TemplatePath.standardizeFilePath(
-      path.join(this.options.outputDir, 'preview', `${this.previewFileSlug()}.${this.options.outputFileExtension}`),
+      path.join(
+        this.options.previewDir,
+        `${this.data.page.url.replace(/\/$/, '') || 'index'}.${this.options.outputFileExtension}`,
+      ),
     );
   }
 }

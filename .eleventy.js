@@ -32,6 +32,10 @@ export default async function (eleventyConfig, pluginOptions) {
   let previewMode;
 
   eleventyConfig.on('eleventy.before', ({ runMode }) => {
+    if (!fs.existsSync(mergedOptions.outputDir)) {
+      fs.mkdirSync(mergedOptions.outputDir, { recursive: true });
+    }
+
     previewMode = ['watch', 'serve'].includes(runMode);
 
     const previewDirExists = fs.existsSync(mergedOptions.previewDir);
@@ -87,10 +91,6 @@ export default async function (eleventyConfig, pluginOptions) {
       if (!fs.existsSync(await ogImage.outputFilePath())) {
         const image = await ogImage.render();
 
-        if (!fs.existsSync(options.outputDir)) {
-          fs.mkdirSync(options.outputDir, { recursive: true });
-        }
-
         await image.toFile(await ogImage.outputFilePath());
 
         eleventyConfig.logger.log(
@@ -99,6 +99,11 @@ export default async function (eleventyConfig, pluginOptions) {
       }
 
       if (previewMode) {
+        const dir = path.dirname(ogImage.previewFilePath());
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+
         fs.copyFileSync(await ogImage.outputFilePath(), ogImage.previewFilePath());
       }
 
