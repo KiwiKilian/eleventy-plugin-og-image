@@ -20,7 +20,7 @@ type EleventyPluginOgImageOptions = {
   urlPath?: string;
 
   getOutputFileSlug?: () => Promise<string>;
-  generateHTML?: (outputUrl: string) => Promise<string>;
+  generateHTML?: () => Promise<string>;
 
   satoriOptions?: Partial<SatoriOptions>;
   sharpOptions?: SharpFormatOptions;
