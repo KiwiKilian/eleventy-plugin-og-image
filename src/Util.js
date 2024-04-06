@@ -20,13 +20,16 @@ export class Util {
    * @param {EleventyPluginOgImageOptions} [pluginOptions]
    * @returns {EleventyPluginOgImageMergedOptions}
    */
-  static mergeOptions({ directoriesConfig, pluginOptions } = {}) {
+  static mergeOptions({ directoriesConfig, pluginOptions: { outputDir, previewDir, ...pluginOptions } = {} }) {
     return {
       inputFileGlob: '**/*.og.*',
       hashLength: 8,
       outputFileExtension: 'png',
-      outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images'),
-      previewDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'og-images', 'preview'),
+      outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', outputDir || 'og-images'),
+      previewDir: path.join(
+        directoriesConfig ? directoriesConfig.output : '',
+        ...(previewDir ? [previewDir] : ['og-images', 'preview']),
+      ),
       urlPath: 'og-images',
 
       /** @this {OgImage} */
