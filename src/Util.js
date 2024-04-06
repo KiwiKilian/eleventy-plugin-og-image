@@ -20,7 +20,7 @@ export class Util {
    * @param {EleventyPluginOgImageOptions} [pluginOptions]
    * @returns {EleventyPluginOgImageMergedOptions}
    */
-  static mergeOptions({ directoriesConfig, pluginOptions: { outputDir, previewDir, ...pluginOptions } = {} }) {
+  static mergeOptions({ directoriesConfig, pluginOptions: { outputDir, previewDir, urlPath, ...pluginOptions } = {} }) {
     return {
       inputFileGlob: '**/*.og.*',
       hashLength: 8,
@@ -30,7 +30,7 @@ export class Util {
         directoriesConfig ? directoriesConfig.output : '',
         ...(previewDir ? [previewDir] : ['og-images', 'preview']),
       ),
-      urlPath: 'og-images',
+      urlPath: urlPath || outputDir || 'og-images',
 
       /** @this {OgImage} */
       getOutputFileSlug() {
