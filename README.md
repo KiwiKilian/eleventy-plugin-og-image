@@ -39,24 +39,24 @@ Create an OG-image-template, using the supported HTML elements[^1] and CSS prope
 
 ```njk
 <style>
-    .root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(135deg, #ef629f, #eecda3);
-    }
+  .root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #ef629f, #eecda3);
+  }
 
-    .title {
-        color: white;
-        font-size: 80px;
-        margin: auto 0;
-    }
+  .title {
+    color: white;
+    font-size: 80px;
+    margin: auto 0;
+  }
 </style>
 
 <div class="root">
-    <h1 class="title">{{ title }}</h1>
+  <h1 class="title">{{ title }}</h1>
 </div>
 ```
 
