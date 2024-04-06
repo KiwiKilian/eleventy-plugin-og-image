@@ -11,8 +11,6 @@ export default async function (eleventyConfig) {
 
   /** @type {import('eleventy-plugin-og-image').EleventyPluginOgImageOptions} */
   const eleventyPluginOgImageOptions = {
-    outputFileExtension: 'png',
-
     satoriOptions: {
       fonts: [
         {
