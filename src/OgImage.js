@@ -76,7 +76,7 @@ export class OgImage {
   }
 
   /** @returns {Promise<Buffer>} */
-  async bitmapBuffer() {
+  async pngBuffer() {
     if (!this.results.pngBuffer) {
       this.results.pngBuffer = await new Resvg(await this.svg(), { font: { loadSystemFonts: false } }).render().asPng();
     }
@@ -90,7 +90,7 @@ export class OgImage {
    * @returns {Promise<Sharp>}
    */
   async render() {
-    return sharp(await this.bitmapBuffer()).toFormat(this.options.outputFileExtension, this.options.sharpOptions);
+    return sharp(await this.pngBuffer()).toFormat(this.options.outputFileExtension, this.options.sharpOptions);
   }
 
   /** @returns {Promise<string>} */
