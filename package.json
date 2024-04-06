@@ -30,7 +30,8 @@
       "default": "./.eleventy.js"
     },
     "./package.json": "./package.json",
-    "./render": "./src/renderOgImage.js"
+    "./og-image": "./src/OgImage.js",
+    "./util": "./src/Util.js"
   },
   "types": "./index.d.ts",
   "files": [
