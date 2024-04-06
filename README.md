@@ -87,17 +87,18 @@ For applied usage see the [example](./example).
 
 The following options can be passed when adding the plugin:
 
-| Property              | Type                                                                                                       | Default                                   |                                                                                             |
-|-----------------------| ---------------------------------------------------------------------------------------------------------- |-------------------------------------------|---------------------------------------------------------------------------------------------|
-| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                         |
-| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Generation of the output file slug. Return must be url safe and exclude the file extension. |
-| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                             |
-| `outputDir`           | `string`                                                                                                   | `_site/og-images/`                        | Directory into which OG images will be emitted. Change `urlPath` accordingly.               |
-| `previewDir`          | `string`                                                                                                   | `_site/og-images/preview/`                | Directory used for preview during `watch` and `serve`.                                       |
-| `urlPath`             | `string`                                                                                                   | `/og-images/`                             | URL-prefix which will be used in returned meta-tags. Change `outputDir` accordingly.        |
-| `generateHTML`        | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Change the rendered HTML in pages.                                                          |
-| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).    |
-| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                              |
+| Property              | Type                                                                                                       | Default                                   |                                                                                                                              |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                                                          |
+| `hashLength`          | `number`                                                                                                   | `8`                                       |                                                                                                                              |
+| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                                                              |
+| `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted.                                                                              |
+| `previewDir`          | `string`                                                                                                   | `og-images/preview`                       | Directory used for preview during `watch` and `serve`.                                                                       |
+| `urlPath`             | `string`                                                                                                   | value of `outputDir`                      | URL-prefix which will be used in returned meta-tags.                                                                         |
+| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/Util.js)                 | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
+| `generateHTML`        | `function`                                                                                                 | [See source](src/Util.js)                 | Change the rendered HTML in pages. Use `this` to access og image instance.                                                   |
+| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
+| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
 
 ## Development Mode
 
@@ -110,9 +111,9 @@ During development the OG image files are also copied into the `previewDir`, nam
 If you would like to build your own shortcode, you can directly use the `renderOgImage` function.
 
 ```js
-import { renderOgImage } from 'eleventy-plugin-og-image/render';
+import { OgImage } from 'eleventy-plugin-og-image/og-image';
 
-const { html, svg, pngBuffer } = await renderOgImage({ inputPath, data, satoriOptions, templateConfig });
+const image = await new OgImage({ inputPath, data, options, templateConfig }).render();
 ```
 
 ### Capture Output URL
@@ -121,7 +122,7 @@ If you don't want to directly generate HTML with the shortcode, you can modify t
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
-  generateHTML: (outputUrl) => outputUrl,
+  generateHTML: () => this.outputUrl(),
 });
 ```
 
