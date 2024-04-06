@@ -20,7 +20,7 @@ export class Util {
    * @param {EleventyPluginOgImageOptions} [pluginOptions]
    * @returns {EleventyPluginOgImageMergedOptions}
    */
-  static mergeOptions({ directoriesConfig, pluginOptions }) {
+  static mergeOptions({ directoriesConfig, pluginOptions } = {}) {
     return {
       inputFileGlob: '**/*.og.*',
       hashLength: 8,
