@@ -1,3 +1,10 @@
+# [4.0.0-beta.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2024-04-07)
+
+
+### Features
+
+* use fs promises ([0953dec](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/0953decd79b591f18a8b0344c43dd821c0898fef))
+
 # [4.0.0-beta.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.5...v4.0.0-beta.1) (2024-04-07)
 
 
