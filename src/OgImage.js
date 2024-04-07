@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import { promises as fs } from 'node:fs';
 import module from 'node:module';
 import { File } from '@11ty/eleventy/src/Plugins/RenderPlugin.js';
 /* eslint-disable import/no-unresolved */
@@ -17,7 +17,7 @@ import { sortObject } from './utils/index.js';
 
 const require = module.createRequire(import.meta.url);
 
-const Yoga = await initYoga(fs.readFileSync(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
+const Yoga = await initYoga(await fs.readFile(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
 init(Yoga);
 
 export class OgImage {

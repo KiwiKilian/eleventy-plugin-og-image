@@ -1,4 +1,5 @@
-import fs from 'node:fs';
+/* eslint-disable no-empty */
+import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import { mergeOptions } from './src/utils/index.js';
@@ -31,21 +32,21 @@ export default async function (eleventyConfig, pluginOptions) {
   /** @type {boolean} */
   let previewMode;
 
-  eleventyConfig.on('eleventy.before', ({ runMode }) => {
-    if (!fs.existsSync(mergedOptions.outputDir)) {
-      fs.mkdirSync(mergedOptions.outputDir, { recursive: true });
-    }
+  eleventyConfig.on('eleventy.before', async ({ runMode }) => {
+    try {
+      await fs.mkdir(mergedOptions.outputDir, { recursive: true });
+    } catch {}
 
     previewMode = ['watch', 'serve'].includes(runMode);
 
-    const previewDirExists = fs.existsSync(mergedOptions.previewDir);
-
     if (previewMode) {
-      if (!previewDirExists) {
-        fs.mkdirSync(mergedOptions.previewDir, { recursive: true });
-      }
-    } else if (previewDirExists) {
-      fs.rmSync(mergedOptions.previewDir, { recursive: true, force: true });
+      try {
+        await fs.mkdir(mergedOptions.previewDir, { recursive: true });
+      } catch {}
+    } else {
+      try {
+        await fs.rm(mergedOptions.previewDir, { recursive: true, force: true });
+      } catch {}
     }
   });
 
@@ -67,7 +68,9 @@ export default async function (eleventyConfig, pluginOptions) {
 
       const joinedInputPath = TemplatePath.standardizeFilePath(path.join(directoriesConfig.input, shortcodeInputPath));
 
-      if (!fs.existsSync(joinedInputPath)) {
+      try {
+        await fs.access(joinedInputPath);
+      } catch {
         throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
       }
 
@@ -89,32 +92,34 @@ export default async function (eleventyConfig, pluginOptions) {
       });
 
       const outputFilePath = await ogImage.outputFilePath();
+      const cacheFilePath = await ogImage.cacheFilePath();
 
-      if (!fs.existsSync(outputFilePath)) {
-        const cacheFilePath = await ogImage.cacheFilePath();
+      if (cacheFilePath !== outputFilePath) {
+        try {
+          await fs.copyFile(cacheFilePath, outputFilePath);
+        } catch {}
+      }
 
-        if (cacheFilePath !== outputFilePath && fs.existsSync(cacheFilePath)) {
-          fs.copyFileSync(cacheFilePath, outputFilePath);
-        } else {
-          const image = await ogImage.render();
+      try {
+        await fs.access(outputFilePath);
+      } catch {
+        const image = await ogImage.render();
 
-          await image.toFile(outputFilePath);
+        await image.toFile(outputFilePath);
 
-          eleventyConfig.logger.log(
-            `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
-          );
-        }
+        eleventyConfig.logger.log(
+          `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
+        );
       }
 
       if (previewMode) {
         const previewFilePath = ogImage.previewFilePath();
-        const dir = path.dirname(previewFilePath);
 
-        if (!fs.existsSync(dir)) {
-          fs.mkdirSync(dir, { recursive: true });
-        }
+        try {
+          await fs.mkdir(path.dirname(previewFilePath), { recursive: true });
+        } catch {}
 
-        fs.copyFileSync(outputFilePath, previewFilePath);
+        await fs.copyFile(outputFilePath, previewFilePath);
       }
 
       return ogImage.generateHtml();

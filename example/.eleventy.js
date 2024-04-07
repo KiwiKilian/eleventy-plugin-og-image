@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import { promises as fs } from 'node:fs';
 import module from 'node:module';
 import twemoji from 'twemoji';
 import EleventyPluginOgImage from '../.eleventy.js';
@@ -15,7 +15,7 @@ export default async function (eleventyConfig) {
       fonts: [
         {
           name: 'Inter',
-          data: fs.readFileSync(require.resolve('@fontsource/inter/files/inter-latin-700-normal.woff')),
+          data: await fs.readFile(require.resolve('@fontsource/inter/files/inter-latin-700-normal.woff')),
           weight: 700,
           style: 'normal',
         },
