@@ -127,6 +127,11 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
+  async cacheFilePath() {
+    return this.outputFilePath();
+  }
+
+  /** @returns {Promise<string>} */
   async generateHtml() {
     return this.options.generateHTML.bind(this)();
   }

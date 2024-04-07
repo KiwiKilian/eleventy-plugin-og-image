@@ -91,13 +91,19 @@ export default async function (eleventyConfig, pluginOptions) {
       const outputFilePath = await ogImage.outputFilePath();
 
       if (!fs.existsSync(outputFilePath)) {
-        const image = await ogImage.render();
+        const cacheFilePath = await ogImage.cacheFilePath();
 
-        await image.toFile(outputFilePath);
+        if (cacheFilePath !== outputFilePath && fs.existsSync(cacheFilePath)) {
+          fs.copyFileSync(cacheFilePath, outputFilePath);
+        } else {
+          const image = await ogImage.render();
 
-        eleventyConfig.logger.log(
-          `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
-        );
+          await image.toFile(outputFilePath);
+
+          eleventyConfig.logger.log(
+            `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
+          );
+        }
       }
 
       if (previewMode) {
