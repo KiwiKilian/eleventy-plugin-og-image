@@ -88,23 +88,27 @@ export default async function (eleventyConfig, pluginOptions) {
         templateConfig,
       });
 
-      if (!fs.existsSync(await ogImage.outputFilePath())) {
+      const outputFilePath = await ogImage.outputFilePath();
+
+      if (!fs.existsSync(outputFilePath)) {
         const image = await ogImage.render();
 
-        await image.toFile(await ogImage.outputFilePath());
+        await image.toFile(outputFilePath);
 
         eleventyConfig.logger.log(
-          `Writing ${TemplatePath.stripLeadingDotSlash(await ogImage.outputFilePath())} from ${joinedInputPath}`,
+          `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
         );
       }
 
       if (previewMode) {
-        const dir = path.dirname(ogImage.previewFilePath());
+        const previewFilePath = ogImage.previewFilePath();
+        const dir = path.dirname(previewFilePath);
+
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir, { recursive: true });
         }
 
-        fs.copyFileSync(await ogImage.outputFilePath(), ogImage.previewFilePath());
+        fs.copyFileSync(outputFilePath, previewFilePath);
       }
 
       return ogImage.generateHtml();
