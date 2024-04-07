@@ -1,3 +1,31 @@
+# [4.0.0-beta.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.5...v4.0.0-beta.1) (2024-04-07)
+
+
+### Bug Fixes
+
+* allow empty options for mergeOptions ([380a3c3](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/380a3c31b80d5100b36e47b5e712fb9a2dc5cf01))
+* generateHTML type ([f86acd4](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/f86acd4ba4cc25a1f8003c0c9f7ac7a00cf4a6d0))
+* join directories with output and preview dir ([155c7d8](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/155c7d866d77b4c127ae709eb06388ddc2a0316a))
+
+
+### Features
+
+* add cache file path ([9b3a1d6](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/9b3a1d60f7e24c7c95283de2b748b32383413575))
+* add caching ([17b46f3](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/17b46f399c43dbabeedcf843b8bec4e6b87e93d7))
+* add exports ([263499b](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/263499b065f81291c8716bd147917f456816e5e9))
+* allow OgImage custom class ([d31d320](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/d31d32036556f84fbfbf146e0aaa5f3dbcd63eb8))
+* improve preview path handling ([4462d10](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/4462d107d5c008b6ef2e650277c3a60c15976467))
+* improve types of this for function parameters ([5b0b269](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5b0b269814e40cbea00ffcebbc9aaccda35e4cb5))
+* reduce recalculations ([6a69780](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/6a697800d98af9d4e5b67de86aa4fed04d96cf3c))
+* set previewDir based on outputDir ([93906ec](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/93906eca0ea989b6e78c6d8c7a2919dcce0d181e))
+* urlPath default to outputDir ([fe9d54f](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/fe9d54fe7b18860d53cacc221d41055ae6b0804f))
+
+
+### BREAKING CHANGES
+
+* Plugin structure changed to OgImage class
+* Options changed, consult docs before upgrading
+
 # [3.2.0-beta.5](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.2.0-beta.4...v3.2.0-beta.5) (2024-03-23)
 
 
