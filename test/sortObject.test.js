@@ -1,7 +1,7 @@
 import test from 'ava';
 import { sortObject } from '../src/utils/index.js';
 
-test('sortObject sorts key', (t) => {
+test('sorts keys', (t) => {
   t.is(
     JSON.stringify({
       a: 'a',
