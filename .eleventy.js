@@ -71,7 +71,7 @@ export default async function (eleventyConfig, pluginOptions) {
         throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
       }
 
-      const ogImage = new OgImage({
+      const ogImage = new (pluginOptions.OgImage || OgImage)({
         inputPath: joinedInputPath,
         data: {
           page: this.page,

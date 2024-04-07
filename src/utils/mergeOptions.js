@@ -8,7 +8,7 @@ import path from 'node:path';
  * @returns {EleventyPluginOgImageMergedOptions}
  */
 export function mergeOptions({ directoriesConfig, pluginOptions }) {
-  const { outputDir, previewDir, urlPath, satoriOptions, ...options } = pluginOptions || {};
+  const { outputDir, previewDir, urlPath, OgImage, satoriOptions, ...options } = pluginOptions || {};
 
   return {
     inputFileGlob: '**/*.og.*',
