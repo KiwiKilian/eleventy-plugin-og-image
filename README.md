@@ -105,6 +105,9 @@ The following options can be passed when adding the plugin:
 
 During development the OG image files are also copied into the `previewDir`, named by the url slug of the pages they are generated from. The `previewDir` will be deleted during a production build.
 
+## Caching
+For better performance OG images are cached based on a hash from generated HTML and output options. If the file already exists, further transformations are skipped.
+
 ## Advanced Usage
 
 ### Custom Shortcode
