@@ -99,6 +99,7 @@ The following options can be passed when adding the plugin:
 | `generateHTML`        | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the rendered HTML in pages. Use `this` to access og image instance.                                                   |
 | `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
 | `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
+| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | Extend the `OgImage` class for maximum customization.                                                                        |
 
 ## Development Mode
 
