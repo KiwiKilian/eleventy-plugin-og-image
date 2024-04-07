@@ -31,7 +31,7 @@
     },
     "./package.json": "./package.json",
     "./og-image": "./src/OgImage.js",
-    "./util": "./src/Util.js"
+    "./utils": "./src/utils/index.js"
   },
   "types": "./index.d.ts",
   "files": [

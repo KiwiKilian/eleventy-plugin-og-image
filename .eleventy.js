@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { TemplatePath } from '@11ty/eleventy-utils';
+import { mergeOptions } from './src/utils/index.js';
 import { OgImage } from './src/OgImage.js';
-import { Util } from './src/Util.js';
 
 /**
  * @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig
@@ -18,7 +18,7 @@ export default async function (eleventyConfig, pluginOptions) {
   // Until https://github.com/11ty/eleventy/issues/2729 is fixed
   eleventyConfig.on('eleventy.directories', (dir) => {
     directoriesConfig = dir;
-    mergedOptions = Util.mergeOptions({ directoriesConfig, pluginOptions });
+    mergedOptions = mergeOptions({ directoriesConfig, pluginOptions });
   });
 
   /** @type {import('@11ty/eleventy/src/TemplateConfig').default} */
@@ -49,7 +49,7 @@ export default async function (eleventyConfig, pluginOptions) {
     }
   });
 
-  eleventyConfig.ignores.add(Util.mergeOptions({ pluginOptions }).inputFileGlob);
+  eleventyConfig.ignores.add(mergeOptions({ pluginOptions }).inputFileGlob);
 
   eleventyConfig.addAsyncShortcode(
     'ogImage',

@@ -13,7 +13,7 @@ import crypto from 'node:crypto';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
-import { Util } from './Util.js';
+import { sortObject } from './utils/index.js';
 
 const require = module.createRequire(import.meta.url);
 
@@ -97,8 +97,8 @@ export class OgImage {
     const hash = crypto.createHash('sha256');
 
     hash.update(await this.html());
-    hash.update(JSON.stringify(Util.sortObject(this.options.satoriOptions || {})));
-    hash.update(JSON.stringify(Util.sortObject(this.options.sharpOptions || {})));
+    hash.update(JSON.stringify(sortObject(this.options.satoriOptions || {})));
+    hash.update(JSON.stringify(sortObject(this.options.sharpOptions || {})));
 
     return hash.digest('hex').substring(0, this.options.hashLength);
   }
