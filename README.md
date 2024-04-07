@@ -5,7 +5,7 @@ This plugin helps to create Open Graph images in [Eleventy](https://www.11ty.dev
 ## Usage
 
 > [!IMPORTANT]  
-> This is an [ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). Your Eleventy project needs to use ESM from `eleventy-plugin-og-image@3.0.0` onwards, which also requires `@11ty/eleventy3.0.0` or greater. 
+> This is an [ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). Your Eleventy project needs to use ESM from `eleventy-plugin-og-image@3.0.0` onwards, which also requires `@11ty/eleventy3.0.0` or greater.
 
 Install the package:
 
@@ -18,7 +18,7 @@ Add the plugin to your `.eleventy.js`:
 ```js
 import EleventyPluginOgImage from 'eleventy-plugin-og-image';
 
-/** @param { import('@11ty/eleventy/src/UserConfig').default } eleventyConfig */
+/** @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig */
 export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyPluginOgImage, {
     satoriOptions: {
@@ -32,31 +32,31 @@ export default async function (eleventyConfig) {
       ],
     },
   });
-};
+}
 ```
 
 Create an OG-image-template, using the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. [Shortcode scoped data](https://www.11ty.dev/docs/shortcodes/#scoped-data-in-shortcodes) from the parent template is available. Additionally, some options will be available as data under the `eleventyPluginOgImage` key. This is an example `og-image.og.njk`:
 
 ```njk
 <style>
-    .root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(135deg, #ef629f, #eecda3);
-    }
+  .root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #ef629f, #eecda3);
+  }
 
-    .title {
-        color: white;
-        font-size: 80px;
-        margin: auto 0;
-    }
+  .title {
+    color: white;
+    font-size: 80px;
+    margin: auto 0;
+  }
 </style>
 
 <div class="root">
-    <h1 class="title">{{ title }}</h1>
+  <h1 class="title">{{ title }}</h1>
 </div>
 ```
 
@@ -87,20 +87,23 @@ For applied usage see the [example](./example).
 
 The following options can be passed when adding the plugin:
 
-| Property              | Type                                                                                                       | Default                                   |                                                                                             |
-|-----------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------|---------------------------------------------------------------------------------------------|
-| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                         |
-| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Generation of the output file slug. Return must be url safe and exclude the file extension. |
-| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                             |
-| `outputDir`           | `string`                                                                                                   | `_site/og-images/`                        | Directory into which OG images will be emitted. Change `urlPath` accordingly.               |
-| `urlPath`             | `string`                                                                                                   | `/og-images/`                             | URL-prefix which will be used in returned meta-tags. Change `outputDir` accordingly.        |
-| `generateHTML`        | `function`                                                                                                 | [See source](src/mergeOptions.js)         | Change the rendered HTML in pages.                                                          |
-| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).    |
-| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                              |
+| Property              | Type                                                                                                       | Default                                   |                                                                                                                              |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                                                          |
+| `hashLength`          | `number`                                                                                                   | `8`                                       |                                                                                                                              |
+| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                                                              |
+| `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted. Relative to your eleventy `output`.                                          |
+| `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` and `serve`. Relative to your eleventy `output`.                                   |
+| `urlPath`             | `string`                                                                                                   | `${outputDir}`                            | URL-prefix which will be used in returned meta-tags.                                                                         |
+| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
+| `generateHTML`        | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the rendered HTML in pages. Use `this` to access og image instance.                                                   |
+| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
+| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
+| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | Extend the `OgImage` class for maximum customization.                                                                        |
 
 ## Development Mode
 
-During development the OG image file name is the url slug of the page it's generated from. In production builds, a hash of the content will be used. You'll have to handle this yourself, if you pass a custom `getOutputFileSlug`.
+During development the OG image files are also copied into the `previewDir`, named by the url slug of the pages they are generated from. The `previewDir` will be deleted during a production build.
 
 ## Advanced Usage
 
@@ -109,9 +112,9 @@ During development the OG image file name is the url slug of the page it's gener
 If you would like to build your own shortcode, you can directly use the `renderOgImage` function.
 
 ```js
-import { renderOgImage } from 'eleventy-plugin-og-image/render';
+import { OgImage } from 'eleventy-plugin-og-image/og-image';
 
-const { html, svg, pngBuffer } = await renderOgImage({ inputPath, data, satoriOptions, templateConfig });
+const image = await new OgImage({ inputPath, data, options, templateConfig }).render();
 ```
 
 ### Capture Output URL
@@ -120,7 +123,7 @@ If you don't want to directly generate HTML with the shortcode, you can modify t
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
-  generateHTML: (outputUrl) => outputUrl,
+  generateHTML: () => this.outputUrl(),
 });
 ```
 
