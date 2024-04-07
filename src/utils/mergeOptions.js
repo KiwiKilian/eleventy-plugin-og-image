@@ -10,15 +10,15 @@ import path from 'node:path';
 export function mergeOptions({ directoriesConfig, pluginOptions }) {
   const { outputDir, previewDir, urlPath, OgImage, satoriOptions, ...options } = pluginOptions || {};
 
+  const eleventyOutput = directoriesConfig ? directoriesConfig.output : '';
+  const joinedOutputDir = path.join(eleventyOutput, outputDir || 'og-images');
+
   return {
     inputFileGlob: '**/*.og.*',
     hashLength: 8,
     outputFileExtension: 'png',
-    outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', outputDir || 'og-images'),
-    previewDir: path.join(
-      directoriesConfig ? directoriesConfig.output : '',
-      ...(previewDir ? [previewDir] : ['og-images', 'preview']),
-    ),
+    outputDir: joinedOutputDir,
+    previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
 
     /** @this {OgImage} */
