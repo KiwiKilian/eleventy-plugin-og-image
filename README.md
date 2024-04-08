@@ -122,23 +122,23 @@ const image = await new OgImage({ inputPath, data, options, templateConfig }).re
 
 ### Capture Output URL
 
-If you don't want to directly generate HTML with the shortcode, you can modify the `generateHTML` option to directly return the `outputUrl`:
+If you don't want to directly generate HTML with the shortcode, you can modify the `generateHTML` option to directly return the `outputURL`:
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
-  generateHTML: () => this.outputUrl(),
+  generateHTML: () => this.outputURL(),
 });
 ```
 
-Now you can capture the `outputUrl` in your page, e.g. in Nunjucks:
+Now you can capture the `outputURL` in your page, e.g. in Nunjucks:
 
 ```njk
-{% setAsync "ogOutputUrl" -%}
+{% setAsync "ogOutputURL" -%}
     {% ogImage "./og-image.og.njk", { title: "Hello World!" } %}
 {%- endsetAsync %}
 ```
 
-And use it anywhere below with `{{ ogOutputUrl }}`.
+And use it anywhere below with `{{ ogOutputURL }}`.
 
 ## Acknowledgements & Attributions
 

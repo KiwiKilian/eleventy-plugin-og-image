@@ -119,7 +119,7 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
-  async outputUrl() {
+  async outputURL() {
     const fileUrl = new url.URL('file://');
     fileUrl.pathname = path.join(this.options.urlPath, await this.outputFileName());
 
@@ -132,7 +132,7 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
-  async generateHtml() {
+  async generateHTML() {
     return this.options.generateHTML.bind(this)();
   }
 

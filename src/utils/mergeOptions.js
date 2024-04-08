@@ -28,7 +28,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
 
     /** @this {OgImage} */
     async generateHTML() {
-      return `<meta property="og:image" content="${await this.outputUrl()}" />`;
+      return `<meta property="og:image" content="${await this.outputURL()}" />`;
     },
 
     ...options,
