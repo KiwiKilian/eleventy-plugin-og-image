@@ -122,7 +122,7 @@ export default async function (eleventyConfig, pluginOptions) {
         await fs.copyFile(outputFilePath, previewFilePath);
       }
 
-      return ogImage.generateHtml();
+      return ogImage.generateHTML();
     },
   );
 }
