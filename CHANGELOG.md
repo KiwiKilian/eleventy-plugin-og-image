@@ -1,3 +1,10 @@
+# [4.0.0-beta.3](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2024-04-08)
+
+
+### Bug Fixes
+
+* generateHTML and outputURL capitalization ([5e911b0](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5e911b0e785c7ec1fd8cbb140acd6664bc82318a))
+
 # [4.0.0-beta.2](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2024-04-07)
 
 
