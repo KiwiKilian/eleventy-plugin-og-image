@@ -1,3 +1,10 @@
+# [4.0.0-beta.4](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2024-04-15)
+
+
+### Bug Fixes
+
+* update docs about arrow functions ([e6639e5](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e6639e5012df1cc0cc3d8c65ef7a990fa38b0e82)), closes [#239](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/239) [#241](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/241)
+
 # [4.0.0-beta.3](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2024-04-08)
 
 
