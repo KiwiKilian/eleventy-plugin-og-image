@@ -35,7 +35,7 @@ export default async function (eleventyConfig) {
 }
 ```
 
-Create an OG-image-template, using the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. [Shortcode scoped data](https://www.11ty.dev/docs/shortcodes/#scoped-data-in-shortcodes) from the parent template is available. Additionally, some options will be available as data under the `eleventyPluginOgImage` key. This is an example `og-image.og.njk`:
+Create an OG-image-template anywhere in your input directory. Use only the supported HTML elements[^1] and CSS properties[^2]. CSS in `<style>` tags will be inlined, remote images fetched. [Shortcode scoped data](https://www.11ty.dev/docs/shortcodes/#scoped-data-in-shortcodes) from the parent template is available. Additionally, some options will be available in the `eleventyPluginOgImage` key. This is an example `og-image.og.njk`:
 
 ```njk
 <style>
@@ -60,7 +60,7 @@ Create an OG-image-template, using the supported HTML elements[^1] and CSS prope
 </div>
 ```
 
-Call the `ogImage` shortcode inside the `<head>` in a template. The first argument is the filePath of the OG-image-template (required, relative to your Eleventy input directory). The second argument is for data (optional). Usage example in Nunjucks, e.g. `example-page.njk`:
+Call the `ogImage` shortcode inside the `<head>` in a template or layout. The first argument is the filePath of the OG-image-template (required, relative to your Eleventy input directory). The second argument is for data (optional). Usage example in Nunjucks, e.g. `example-page.njk`:
 
 ```njk
 {% ogImage "./og-image.og.njk", { title: "Hello World!" } %}
@@ -101,18 +101,30 @@ The following options can be passed when adding the plugin:
 | `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
 | `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | Extend the `OgImage` class for maximum customization.                                                                        |
 
+> [!IMPORTANT]
+> Both `getOutputFileSlug` and `generateHTML` must be defined as a function and **NOT** as an arrow function.
+> Otherwise `this` [will not be defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#cannot_be_used_as_methods).
+
+```diff
+- getOutputFileSlug: async () => {},
+- generateHTML: async () => {},
++ async getOutputFileSlug() {},
++ async generateHTML() {},
+```
+
 ## Development Mode
 
 During development the OG image files are also copied into the `previewDir`, named by the url slug of the pages they are generated from. The `previewDir` will be deleted during a production build.
 
 ## Caching
+
 For better performance OG images are cached based on a hash from generated HTML and output options. If the file already exists, further transformations are skipped.
 
 ## Advanced Usage
 
 ### Custom Shortcode
 
-If you would like to build your own shortcode, you can directly use the `renderOgImage` function.
+If you would like to build your own shortcode, you can directly use the `OgImage` class.
 
 ```js
 import { OgImage } from 'eleventy-plugin-og-image/og-image';
@@ -120,13 +132,17 @@ import { OgImage } from 'eleventy-plugin-og-image/og-image';
 const image = await new OgImage({ inputPath, data, options, templateConfig }).render();
 ```
 
+Alternatively you can also extend this class and pass it as `OgImage` option to the plugin.
+
 ### Capture Output URL
 
 If you don't want to directly generate HTML with the shortcode, you can modify the `generateHTML` option to directly return the `outputURL`:
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
-  generateHTML: () => this.outputURL(),
+  async generateHTML() {
+    return this.outputURL();
+  },
 });
 ```
 
