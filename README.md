@@ -5,7 +5,7 @@ This plugin helps to create Open Graph images in [Eleventy](https://www.11ty.dev
 ## Usage
 
 > [!NOTE]
-> This is the documentation for eleventy-plugin-og-image@2.x.x. If your project already uses @11ty/eleventy3.x.x and switched to ESM it's recommended to use the [current beta of this plugin](https://github.com/KiwiKilian/eleventy-plugin-og-image/tree/beta).
+> This is the documentation for `eleventy-plugin-og-image` `^2.0.0`. If your project already uses `@11ty/eleventy` `>=3.0.0-alpha.1` and switched to ESM it's recommended to use the [current beta of this plugin](https://github.com/KiwiKilian/eleventy-plugin-og-image/tree/beta).
 
 Install the package:
 
