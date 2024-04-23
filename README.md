@@ -10,7 +10,7 @@ This plugin helps to create Open Graph images in [Eleventy](https://www.11ty.dev
 Install the package:
 
 ```shell
-npm install eleventy-plugin-og-image --save-dev
+npm install eleventy-plugin-og-image@beta --save-dev
 ```
 
 Add the plugin to your `.eleventy.js`:
