@@ -145,4 +145,37 @@ export class OgImage {
       ),
     );
   }
+
+  /** @returns {Promise<string>} */
+  async previewHtml() {
+    return `<html>
+<head>
+  <title>OG Image: ${this.data.page.url}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    #eleventy-plugin-og-image-html {
+      width: ${this.options.satoriOptions.width}px;
+      height: ${this.options.satoriOptions.height}px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div id="eleventy-plugin-og-image-html">${await this.html()}</div>
+${await this.svg()}
+<img
+  width="${this.options.satoriOptions.width}"
+  height="${this.options.satoriOptions.height}"
+  src="${await this.outputURL()}"/>
+</body>
+</html>
+`;
+  }
 }

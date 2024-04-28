@@ -93,7 +93,7 @@ The following options can be passed when adding the plugin:
 | `hashLength`          | `number`                                                                                                   | `8`                                       |                                                                                                                              |
 | `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                                                              |
 | `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted. Relative to your eleventy `output`.                                          |
-| `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` and `serve`. Relative to your eleventy `output`.                                   |
+| `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` or `serve`. Relative to your eleventy `output`.                                    |
 | `urlPath`             | `string`                                                                                                   | `${outputDir}`                            | URL-prefix which will be used in returned meta-tags.                                                                         |
 | `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
 | `generateHTML`        | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the rendered HTML in pages. Use `this` to access og image instance.                                                   |
@@ -112,9 +112,9 @@ The following options can be passed when adding the plugin:
 + async generateHTML() {},
 ```
 
-## Development Mode
+## Preview Mode during Development
 
-During development the OG image files are also copied into the `previewDir`, named by the url slug of the pages they are generated from. The `previewDir` will be deleted during a production build.
+During development with `watch` or `serve` the OG image files are also copied into the `previewDir`, named by the url slug of the pages they are generated from. Next to it there is a HTML placed which shows the generated HTML, SVG and output image. The `previewDir` will be deleted during a production build.
 
 ## Caching
 
