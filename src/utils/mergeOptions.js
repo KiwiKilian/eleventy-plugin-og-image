@@ -27,7 +27,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     },
 
     /** @this {OgImage} */
-    async generateHTML() {
+    async shortcodeOutput() {
       return `<meta property="og:image" content="${await this.outputURL()}" />`;
     },
 
