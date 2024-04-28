@@ -95,20 +95,20 @@ The following options can be passed when adding the plugin:
 | `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted. Relative to your eleventy `output`.                                          |
 | `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` or `serve`. Relative to your eleventy `output`.                                    |
 | `urlPath`             | `string`                                                                                                   | `${outputDir}`                            | URL-prefix which will be used in returned meta-tags.                                                                         |
-| `getOutputFileSlug`   | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
+| `outputFileSlug`      | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
 | `shortcodeOutput`     | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the HTML returned by the shortcode in pages. Use `this` to access og image instance.                                  |
 | `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
 | `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
 | `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | Extend the `OgImage` class for maximum customization.                                                                        |
 
 > [!IMPORTANT]
-> Both `getOutputFileSlug` and `shortcodeOutput` must be defined as a function and **NOT** as an arrow function.
+> Both `outputFileSlug` and `shortcodeOutput` must be defined as a function and **NOT** as an arrow function.
 > Otherwise `this` [will not be defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#cannot_be_used_as_methods).
 
 ```diff
-- getOutputFileSlug: async () => {},
+- outputFileSlug: async () => {},
 - shortcodeOutput: async () => {},
-+ async getOutputFileSlug() {},
++ async outputFileSlug() {},
 + async shortcodeOutput() {},
 ```
 

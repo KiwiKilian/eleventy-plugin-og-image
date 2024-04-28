@@ -105,7 +105,7 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async outputFileSlug() {
-    return this.options.getOutputFileSlug.bind(this)();
+    return this.options.outputFileSlug.bind(this)();
   }
 
   /** @returns {Promise<string>} */
