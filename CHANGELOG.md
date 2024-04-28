@@ -1,3 +1,18 @@
+# [4.0.0-beta.5](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2024-04-28)
+
+
+### Features
+
+* add previewHtml ([7406914](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/740691462418edc6e45dd6edb7dc6bb0ea708a6f))
+* rename generateHTML to shortcodeOutput ([a5cd8fd](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/a5cd8fd76ac0014e5ba2240875592d2159c554d3))
+* rename getOutputFileSlug to outputFileSlug ([3923a5c](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/3923a5c47da83f8486b54d02f37b5dd4ef48ac2f))
+
+
+### BREAKING CHANGES
+
+* rename getOutputFileSlug to outputFileSlug
+* rename generateHTML to shortcodeOutput
+
 # [4.0.0-beta.4](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2024-04-15)
 
 
