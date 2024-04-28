@@ -132,8 +132,8 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
-  async generateHTML() {
-    return this.options.generateHTML.bind(this)();
+  async shortcodeOutput() {
+    return this.options.shortcodeOutput.bind(this)();
   }
 
   /** @returns {string} */

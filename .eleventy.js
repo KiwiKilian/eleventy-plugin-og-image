@@ -123,7 +123,7 @@ export default async function (eleventyConfig, pluginOptions) {
         await fs.writeFile(`${previewFilePath}.html`, await ogImage.previewHtml());
       }
 
-      return ogImage.generateHTML();
+      return ogImage.shortcodeOutput();
     },
   );
 }
