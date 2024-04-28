@@ -22,7 +22,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     urlPath: urlPath || outputDir || 'og-images',
 
     /** @this {OgImage} */
-    getOutputFileSlug() {
+    outputFileSlug() {
       return this.hash();
     },
 
