@@ -99,7 +99,7 @@ The following options can be passed when adding the plugin:
 | `shortcodeOutput`     | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the HTML returned by the shortcode in pages. Use `this` to access og image instance.                                  |
 | `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
 | `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
-| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | Extend the `OgImage` class for maximum customization.                                                                        |
+| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | [Extend the `OgImage`](#extending-ogimage-class) class for maximum customization.                                            |
 
 > [!IMPORTANT]
 > Both `outputFileSlug` and `shortcodeOutput` must be defined as a function and **NOT** as an arrow function.
@@ -122,6 +122,28 @@ For better performance OG images are cached based on a hash from generated HTML 
 
 ## Advanced Usage
 
+### Extending OgImage Class
+
+You can extend and overwrite any of the functions from the [`OgImage`](src/OgImage.js) class. Than you can pass your custom class as the `OgImage` parameter to the plugin.
+
+```js
+import EleventyPluginOgImage from 'eleventy-plugin-og-image';
+import { OgImage } from 'eleventy-plugin-og-image/og-image';
+
+export class CustomOgImage extends BaseOgImage {
+  async shortcodeOutput() {
+    return this.outputUrl();
+  }
+}
+
+/** @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig */
+export default async function (eleventyConfig) {
+  eleventyConfig.addPlugin(EleventyPluginOgImage, {
+    OgImage: CustomOgImage,
+  });
+}
+```
+
 ### Custom Shortcode
 
 If you would like to build your own shortcode, you can directly use the `OgImage` class.
@@ -132,11 +154,9 @@ import { OgImage } from 'eleventy-plugin-og-image/og-image';
 const image = await new OgImage({ inputPath, data, options, templateConfig }).render();
 ```
 
-Alternatively you can also extend this class and pass it as `OgImage` option to the plugin.
-
 ### Capture Output URL
 
-If you don't want to directly generate HTML with the shortcode, you can modify the `shortcodeOutput` option to directly return the `outputUrl`:
+If you don't want to directly generate HTML with the shortcode, you can modify the `shortcodeOutput` option or class function to directly return the `outputUrl`:
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
