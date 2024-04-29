@@ -1,3 +1,10 @@
+# [4.0.0-beta.6](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2024-04-29)
+
+
+### Bug Fixes
+
+* release ([8d74d25](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/8d74d252673d2592f58062799721647ef7fd392c))
+
 # [4.0.0-beta.5](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2024-04-28)
 
 
