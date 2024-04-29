@@ -119,7 +119,7 @@ export class OgImage {
   }
 
   /** @returns {Promise<string>} */
-  async outputURL() {
+  async outputUrl() {
     const fileUrl = new url.URL('file://');
     fileUrl.pathname = path.join(this.options.urlPath, await this.outputFileName());
 
@@ -173,7 +173,7 @@ ${await this.svg()}
 <img
   width="${this.options.satoriOptions.width}"
   height="${this.options.satoriOptions.height}"
-  src="${await this.outputURL()}"/>
+  src="${await this.outputUrl()}"/>
 </body>
 </html>
 `;
