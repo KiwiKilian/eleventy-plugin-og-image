@@ -80,7 +80,7 @@
     "ava": "^6.1.2",
     "eslint": "^8.26.0",
     "prettier": "3.2.5",
-    "semantic-release": "^23.0.0",
+    "semantic-release": "^24.0.0",
     "twemoji": "^14.0.2"
   }
 }
