@@ -1,3 +1,15 @@
+# [4.0.0-beta.7](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2024-06-06)
+
+
+### Features
+
+* pass instance as parameter ([b04eaf6](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b04eaf6016038632136879ee33460611bab5c61a)), closes [#252](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/252)
+
+
+### BREAKING CHANGES
+
+* outputFileSlug and shortcodeOutput options get OgImage instance as parameter instead of this
+
 # [4.0.0-beta.6](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2024-04-29)
 
 
