@@ -87,23 +87,19 @@ For applied usage see the [example](./example).
 
 The following options can be passed when adding the plugin:
 
-| Property              | Type                                                                                                       | Default                                   |                                                                                                                              |
-| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                                                          |
-| `hashLength`          | `number`                                                                                                   | `8`                                       |                                                                                                                              |
-| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                                                              |
-| `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted. Relative to your eleventy `output`.                                          |
-| `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` or `serve`. Relative to your eleventy `output`.                                    |
-| `urlPath`             | `string`                                                                                                   | `${outputDir}`                            | URL-prefix which will be used in returned meta-tags.                                                                         |
-| `outputFileSlug`      | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension. Use `this` to access og image instance. |
-| `shortcodeOutput`     | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the HTML returned by the shortcode in pages. Use `this` to access og image instance.                                  |
-| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).                                     |
-| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                                                               |
-| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | [Extend the `OgImage`](#extending-ogimage-class) class for maximum customization.                                            |
-
-> [!IMPORTANT]
-> Both `outputFileSlug` and `shortcodeOutput` must be defined as a function and **NOT** as an arrow function.
-> Otherwise `this` [will not be defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#cannot_be_used_as_methods).
+| Property              | Type                                                                                                       | Default                                   |                                                                                           |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `inputFileGlob`       | `glob`                                                                                                     | `**/*.og.*`                               | This must match the OG-image-templates to prevent HTML compilation.                       |
+| `hashLength`          | `number`                                                                                                   | `8`                                       |                                                                                           |
+| `outputFileExtension` | [sharp output file formats](https://sharp.pixelplumbing.com/api-output#toformat)                           | `png`                                     |                                                                                           |
+| `outputDir`           | `string`                                                                                                   | `og-images`                               | Directory into which OG images will be emitted. Relative to your eleventy `output`.       |
+| `previewDir`          | `string`                                                                                                   | `${outputDir}/preview`                    | Directory used for preview during `watch` or `serve`. Relative to your eleventy `output`. |
+| `urlPath`             | `string`                                                                                                   | `${outputDir}`                            | URL-prefix which will be used in returned meta-tags.                                      |
+| `outputFileSlug`      | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Generation of the output file slug, must be url safe and exclude the file extension.      |
+| `shortcodeOutput`     | `function`                                                                                                 | [See source](src/utils/mergeOptions.js)   | Change the HTML returned by the shortcode in pages.                                       |
+| `satoriOptions`       | [satori options](https://github.com/search?q=repo:vercel/satori+%22export+type+SatoriOptions%22&type=code) | `{ width: 1200, height: 630, fonts: [] }` | If an OG-image-template contains text, it's required to load a font ([example](#usage)).  |
+| `sharpOptions`        | [sharp output options](https://sharp.pixelplumbing.com/api-output#toformat)                                | `undefined`                               | Options must be corresponding to chosen `outputFileExtension`.                            |
+| `OgImage`             | `class CustomOgImage extends OgImage`                                                                      | [`OgImage`](src/OgImage.js)               | [Extend the `OgImage`](#extending-ogimage-class) class for maximum customization.         |
 
 ```diff
 - outputFileSlug: async () => {},
@@ -124,7 +120,7 @@ For better performance OG images are cached based on a hash from generated HTML 
 
 ### Extending OgImage Class
 
-You can extend and overwrite any of the functions from the [`OgImage`](src/OgImage.js) class. Than you can pass your custom class as the `OgImage` parameter to the plugin.
+You can extend and overwrite any of the functions from the [`OgImage`](src/OgImage.js) class. Then you can pass your custom class as the `OgImage` parameter to the plugin.
 
 ```js
 import EleventyPluginOgImage from 'eleventy-plugin-og-image';
@@ -160,8 +156,8 @@ If you don't want to directly generate HTML with the shortcode, you can modify t
 
 ```js
 eleventyConfig.addPlugin(EleventyPluginOgImage, {
-  async shortcodeOutput() {
-    return this.outputUrl();
+  async shortcodeOutput(ogImage) {
+    return ogImage.outputUrl();
   },
 });
 ```

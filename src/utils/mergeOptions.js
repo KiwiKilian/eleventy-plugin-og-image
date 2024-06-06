@@ -21,15 +21,11 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
 
-    /** @this {OgImage} */
-    outputFileSlug() {
-      return this.hash();
-    },
+    /** @param {OgImage} ogImage */
+    outputFileSlug: (ogImage) => ogImage.hash(),
 
-    /** @this {OgImage} */
-    async shortcodeOutput() {
-      return `<meta property="og:image" content="${await this.outputUrl()}" />`;
-    },
+    /** @param {OgImage} ogImage */
+    shortcodeOutput: async (ogImage) => `<meta property="og:image" content="${await ogImage.outputUrl()}" />`,
 
     ...options,
 
