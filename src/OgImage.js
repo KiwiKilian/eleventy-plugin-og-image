@@ -105,7 +105,7 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async outputFileSlug() {
-    return this.options.outputFileSlug.bind(this)();
+    return this.options.outputFileSlug(this);
   }
 
   /** @returns {Promise<string>} */
@@ -133,7 +133,7 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async shortcodeOutput() {
-    return this.options.shortcodeOutput.bind(this)();
+    return this.options.shortcodeOutput(this);
   }
 
   /** @returns {string} */

@@ -20,8 +20,8 @@ type EleventyPluginOgImageOptions = {
   previewDir?: string;
   urlPath?: string;
 
-  outputFileSlug?(this: OgImage): Promise<string>;
-  shortcodeOutput?(this: OgImage): Promise<string>;
+  outputFileSlug?(ogImage: OgImage): Promise<string>;
+  shortcodeOutput?(ogImage: OgImage): Promise<string>;
 
   OgImage?: typeof OgImage;
 
