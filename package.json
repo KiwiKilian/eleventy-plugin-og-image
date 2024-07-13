@@ -67,7 +67,7 @@
     "node-fetch": "^2.6.8",
     "satori": "^0.10.1",
     "satori-html": "^0.3.2",
-    "sharp": "^0.32.0",
+    "sharp": "^0.33.4",
     "yoga-wasm-web": "^0.3.2"
   },
   "devDependencies": {
