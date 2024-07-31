@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs';
 import module from 'node:module';
-import { File } from '@11ty/eleventy/src/Plugins/RenderPlugin.js';
+import { RenderPlugin } from '@11ty/eleventy';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
 import { html as htmlToSatori } from 'satori-html';
@@ -59,7 +59,7 @@ export class OgImage {
   /** @returns {Promise<string>} */
   async html() {
     if (!this.results.html) {
-      this.results.html = await (await File(this.inputPath, { templateConfig: this.templateConfig }))(this.data);
+      this.results.html = await (await RenderPlugin.File(this.inputPath, { templateConfig: this.templateConfig }))(this.data);
     }
 
     return this.results.html;
