@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs';
 import module from 'node:module';
-import { File } from '@11ty/eleventy/src/Plugins/RenderPlugin.js';
+import { RenderPlugin } from '@11ty/eleventy';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
 import { html as htmlToSatori } from 'satori-html';
@@ -14,6 +14,8 @@ import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
 import { sortObject } from './utils/index.js';
+
+const { File } = RenderPlugin;
 
 const require = module.createRequire(import.meta.url);
 
