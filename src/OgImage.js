@@ -15,8 +15,6 @@ import path from 'node:path';
 import url from 'node:url';
 import { sortObject } from './utils/index.js';
 
-const { File } = RenderPlugin;
-
 const require = module.createRequire(import.meta.url);
 
 const Yoga = await initYoga(await fs.readFile(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
@@ -61,7 +59,7 @@ export class OgImage {
   /** @returns {Promise<string>} */
   async html() {
     if (!this.results.html) {
-      this.results.html = await (await File(this.inputPath, { templateConfig: this.templateConfig }))(this.data);
+      this.results.html = await (await RenderPlugin.File(this.inputPath, { templateConfig: this.templateConfig }))(this.data);
     }
 
     return this.results.html;
