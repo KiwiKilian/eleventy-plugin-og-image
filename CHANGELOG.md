@@ -1,3 +1,10 @@
+# [4.0.0-beta.8](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2024-07-31)
+
+
+### Bug Fixes
+
+* RenderPlugin.File import ([#267](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/267)) ([4906d64](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/4906d6420d964df728fe656a7db01449ab8fe907))
+
 # [4.0.0-beta.7](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2024-06-06)
 
 
