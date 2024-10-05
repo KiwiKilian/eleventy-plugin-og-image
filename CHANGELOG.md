@@ -1,3 +1,11 @@
+# [4.0.0-beta.9](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.8...v4.0.0-beta.9) (2024-10-05)
+
+
+### Features
+
+* update dependencies ([75aae59](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/75aae59f5c76a1089656927956d902f4c48be3a8))
+* upgrade eleventy depency to stable v3 ([6e96800](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/6e9680084208eb2e853a2240820af1f8f03ee1f0))
+
 # [4.0.0-beta.8](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2024-07-31)
 
 
