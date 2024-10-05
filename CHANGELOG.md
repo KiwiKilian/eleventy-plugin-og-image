@@ -1,3 +1,10 @@
+# [4.0.0-beta.10](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.9...v4.0.0-beta.10) (2024-10-05)
+
+
+### Features
+
+* release with npm provenance ([7123708](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/712370899fca3763b82e02d6aee57fce384d9df7))
+
 # [4.0.0-beta.9](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.8...v4.0.0-beta.9) (2024-10-05)
 
 
