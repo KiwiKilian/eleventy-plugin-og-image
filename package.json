@@ -39,6 +39,9 @@
     "index.d.ts",
     "src"
   ],
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "semantic-release": "semantic-release",
     "test": "ava test/**/*.test.js",

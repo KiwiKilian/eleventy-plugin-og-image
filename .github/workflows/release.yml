@@ -41,9 +41,16 @@ jobs:
     name: Release
     needs: [lint, test, example-build]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
+      - name: Audit Signatures
+        run: npm audit signatures
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
