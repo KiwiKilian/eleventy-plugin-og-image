@@ -1,21 +1,21 @@
-const fs = require('fs');
-const twemoji = require('twemoji');
-const fetch = require('node-fetch');
-const EleventyPluginOgImage = require('../.eleventy');
+import { promises as fs } from 'node:fs';
+import module from 'node:module';
+import twemoji from 'twemoji';
+import EleventyPluginOgImage from '../.eleventy.js';
 
-/** @param { import('@11ty/eleventy/src/UserConfig') } eleventyConfig */
-module.exports = (eleventyConfig) => {
+const require = module.createRequire(import.meta.url);
+
+/** @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig */
+export default async function (eleventyConfig) {
   eleventyConfig.addShortcode('testShortcode', () => 'Eleventy Plugin OG Image');
 
-  /** @type { import('eleventy-plugin-og-image').EleventyPluginOgImageOptions } */
+  /** @type {import('eleventy-plugin-og-image').EleventyPluginOgImageOptions} */
   const eleventyPluginOgImageOptions = {
-    outputFileExtension: 'png',
-
     satoriOptions: {
       fonts: [
         {
           name: 'Inter',
-          data: fs.readFileSync('../node_modules/@fontsource/inter/files/inter-latin-700-normal.woff'),
+          data: await fs.readFile(require.resolve('@fontsource/inter/files/inter-latin-700-normal.woff')),
           weight: 700,
           style: 'normal',
         },
@@ -36,4 +36,4 @@ module.exports = (eleventyConfig) => {
   };
 
   eleventyConfig.addPlugin(EleventyPluginOgImage, eleventyPluginOgImageOptions);
-};
+}

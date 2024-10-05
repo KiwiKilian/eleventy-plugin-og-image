@@ -1,5 +1,3 @@
 !.eleventy.js
 index.d.ts
-
-# Build results
-/build/
+.eslintrc.cjs
