@@ -1,3 +1,54 @@
+# [4.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.1.0...v4.0.0) (2024-10-05)
+
+
+### Bug Fixes
+
+* align logging paths ([5491207](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5491207214f961647249f5f83f7bd307b494a840))
+* allow empty options for mergeOptions ([380a3c3](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/380a3c31b80d5100b36e47b5e712fb9a2dc5cf01))
+* generateHTML and outputURL capitalization ([5e911b0](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5e911b0e785c7ec1fd8cbb140acd6664bc82318a))
+* generateHTML type ([f86acd4](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/f86acd4ba4cc25a1f8003c0c9f7ac7a00cf4a6d0))
+* hashes without special chars with hex digest ([47fb387](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/47fb387e9515c188a8710878c80e57a0de3a6cca))
+* join directories with output and preview dir ([155c7d8](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/155c7d866d77b4c127ae709eb06388ddc2a0316a))
+* outputUrl on windows with forward slash ([e1bff34](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e1bff342a878876f6bc840e94edfa39b1ca7fa72)), closes [#234](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/234)
+* release ([8d74d25](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/8d74d252673d2592f58062799721647ef7fd392c))
+* RenderPlugin.File import ([#267](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/267)) ([4906d64](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/4906d6420d964df728fe656a7db01449ab8fe907))
+* type imports ([24aa37b](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/24aa37b8f86c16eb1ec947a5b331de60534c90ac))
+* update docs about arrow functions ([e6639e5](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/e6639e5012df1cc0cc3d8c65ef7a990fa38b0e82)), closes [#239](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/239) [#241](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/241)
+* use released alpha version ([bb8519c](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/bb8519c7c1e57629804a3937bb1c4f0049c4309c))
+
+
+### Features
+
+* add cache file path ([9b3a1d6](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/9b3a1d60f7e24c7c95283de2b748b32383413575))
+* add caching ([17b46f3](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/17b46f399c43dbabeedcf843b8bec4e6b87e93d7))
+* add eleventyPluginOgImage data to rendering ([b63cc55](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b63cc55ea57e7aef096181f4edeae6dcbcb4918f)), closes [#215](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/215)
+* add exports ([263499b](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/263499b065f81291c8716bd147917f456816e5e9))
+* add previewHtml ([7406914](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/740691462418edc6e45dd6edb7dc6bb0ea708a6f))
+* allow OgImage custom class ([d31d320](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/d31d32036556f84fbfbf146e0aaa5f3dbcd63eb8))
+* improve preview path handling ([4462d10](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/4462d107d5c008b6ef2e650277c3a60c15976467))
+* improve types of this for function parameters ([5b0b269](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/5b0b269814e40cbea00ffcebbc9aaccda35e4cb5))
+* pass instance as parameter ([b04eaf6](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b04eaf6016038632136879ee33460611bab5c61a)), closes [#252](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/252)
+* pass shortcode scoped data to OG templates ([a240aee](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/a240aee5ca49015605c307dc58d64e5ca64373d8)), closes [#211](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/211)
+* reduce recalculations ([6a69780](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/6a697800d98af9d4e5b67de86aa4fed04d96cf3c))
+* release with npm provenance ([7123708](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/712370899fca3763b82e02d6aee57fce384d9df7))
+* rename generateHTML to shortcodeOutput ([a5cd8fd](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/a5cd8fd76ac0014e5ba2240875592d2159c554d3))
+* rename getOutputFileSlug to outputFileSlug ([3923a5c](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/3923a5c47da83f8486b54d02f37b5dd4ef48ac2f))
+* set previewDir based on outputDir ([93906ec](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/93906eca0ea989b6e78c6d8c7a2919dcce0d181e))
+* update dependencies ([75aae59](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/75aae59f5c76a1089656927956d902f4c48be3a8))
+* upgrade eleventy depency to stable v3 ([6e96800](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/6e9680084208eb2e853a2240820af1f8f03ee1f0))
+* upgrade sharp ([0fa8b23](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/0fa8b23975a752522606eea6abbb2ce2d20220ba))
+* urlPath default to outputDir ([fe9d54f](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/fe9d54fe7b18860d53cacc221d41055ae6b0804f))
+* use fs promises ([0953dec](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/0953decd79b591f18a8b0344c43dd821c0898fef))
+
+
+### BREAKING CHANGES
+
+* outputFileSlug and shortcodeOutput options get OgImage instance as parameter instead of this
+* rename getOutputFileSlug to outputFileSlug
+* rename generateHTML to shortcodeOutput
+* Plugin structure changed to OgImage class
+* Options changed, consult docs before upgrading
+
 # [4.0.0-beta.10](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0-beta.9...v4.0.0-beta.10) (2024-10-05)
 
 
