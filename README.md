@@ -183,4 +183,5 @@ Furthermore, it would not be possible without:
 - [sharp](https://github.com/lovell/sharp)
 
 [^1]: Only a subset of HTML elements is [supported by satori](https://github.com/vercel/satori#html-elements).
+
 [^2]: Only a subset of CSS properties are supported by [yoga-layout](https://github.com/facebook/yoga), which is [used by satori](https://github.com/vercel/satori#css).

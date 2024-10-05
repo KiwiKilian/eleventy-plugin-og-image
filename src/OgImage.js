@@ -59,7 +59,9 @@ export class OgImage {
   /** @returns {Promise<string>} */
   async html() {
     if (!this.results.html) {
-      this.results.html = await (await RenderPlugin.File(this.inputPath, { templateConfig: this.templateConfig }))(this.data);
+      this.results.html = await (
+        await RenderPlugin.File(this.inputPath, { templateConfig: this.templateConfig })
+      )(this.data);
     }
 
     return this.results.html;
