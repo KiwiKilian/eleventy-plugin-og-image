@@ -1,5 +1,6 @@
 import { SatoriOptions } from 'satori';
 import { FormatEnum, Sharp } from 'sharp';
+import { OgImage } from './src/OgImage.js';
 
 type DirectoriesConfig = {
   input: string;
@@ -9,21 +10,31 @@ type DirectoriesConfig = {
   output: string;
 };
 
+type SharpFormatOptions = Parameters<Sharp['toFormat']>[1];
+
 type EleventyPluginOgImageOptions = {
   inputFileGlob?: string;
-  getOutputFileSlug?: (parameters: {
-    inputPath: string;
-    data: Record<string, any>;
-    svg: string;
-    context: Record<string, any>;
-  }) => string;
+  hashLength?: number;
   outputFileExtension?: keyof FormatEnum;
   outputDir?: string;
+  previewDir?: string;
   urlPath?: string;
-  generateHTML?: (outputUrl: string) => string;
+
+  outputFileSlug?(ogImage: OgImage): Promise<string>;
+  shortcodeOutput?(ogImage: OgImage): Promise<string>;
+
+  OgImage?: typeof OgImage;
 
   satoriOptions?: Partial<SatoriOptions>;
-  sharpOptions?: Parameters<Sharp['toFormat']>[1];
+  sharpOptions?: SharpFormatOptions;
 };
 
-export { EleventyPluginOgImageOptions, DirectoriesConfig };
+type EleventyPluginOgImageMergedOptions = Omit<
+  Required<EleventyPluginOgImageOptions>,
+  'OgImage' | 'satoriOptions' | 'sharpOptions'
+> &
+  Pick<EleventyPluginOgImageOptions, 'sharpOptions'> & {
+    satoriOptions: SatoriOptions & { width: number; height: number };
+  };
+
+export { EleventyPluginOgImageOptions, EleventyPluginOgImageMergedOptions, DirectoriesConfig };
