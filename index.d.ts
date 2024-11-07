@@ -1,6 +1,48 @@
 import { SatoriOptions } from 'satori';
 import { FormatEnum, Sharp } from 'sharp';
-import { OgImage } from './src/OgImage.js';
+import TemplateConfig from '@11ty/eleventy/src/TemplateConfig';
+
+export interface OgImage {
+  inputPath: string;
+
+  data: Record<string, any>;
+
+  options: EleventyPluginOgImageMergedOptions;
+
+  templateConfig: typeof TemplateConfig;
+
+  results: {
+    html?: string;
+    svg?: string;
+    pngBuffer?: Buffer;
+  };
+
+  html(): Promise<string>;
+
+  svg(): Promise<string>;
+
+  pngBuffer(): Promise<Buffer>;
+
+  render(): Promise<Sharp>;
+
+  hash(): Promise<string>;
+
+  outputFileSlug(): Promise<string>;
+
+  outputFileName(): Promise<string>;
+
+  outputFilePath(): Promise<string>;
+
+  outputUrl(): Promise<string>;
+
+  cacheFilePath(): Promise<string>;
+
+  shortcodeOutput(): Promise<string>;
+
+  previewFilePath(): string;
+
+  previewHtml(): Promise<string>;
+}
 
 type DirectoriesConfig = {
   input: string;
@@ -23,7 +65,7 @@ type EleventyPluginOgImageOptions = {
   outputFileSlug?(ogImage: OgImage): Promise<string>;
   shortcodeOutput?(ogImage: OgImage): Promise<string>;
 
-  OgImage?: typeof OgImage;
+  OgImage?: OgImage;
 
   satoriOptions?: Partial<SatoriOptions>;
   sharpOptions?: SharpFormatOptions;
