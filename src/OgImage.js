@@ -20,6 +20,7 @@ const require = module.createRequire(import.meta.url);
 const Yoga = await initYoga(await fs.readFile(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
 init(Yoga);
 
+/** @implements {import('eleventy-plugin-og-image').OgImage} */
 export class OgImage {
   /** @type {string} */
   inputPath;
@@ -27,7 +28,7 @@ export class OgImage {
   /** @type {Record<string, any>} */
   data;
 
-  /** @type {EleventyPluginOgImageMergedOptions} */
+  /** @type {import('eleventy-plugin-og-image').EleventyPluginOgImageMergedOptions} */
   options;
 
   /** @type {import('@11ty/eleventy/src/TemplateConfig').default} */
@@ -46,7 +47,7 @@ export class OgImage {
   /**
    * @param {string} inputPath
    * @param {Record<string, any>} data
-   * @param {EleventyPluginOgImageMergedOptions} options
+   * @param {import('eleventy-plugin-og-image').EleventyPluginOgImageMergedOptions} options
    * @param {import('@11ty/eleventy/src/TemplateConfig').default} templateConfig
    */
   constructor({ inputPath, data, options, templateConfig }) {
@@ -88,7 +89,7 @@ export class OgImage {
   /**
    * Returns the configured output format
    *
-   * @returns {Promise<Sharp>}
+   * @returns {Promise<import('sharp').Sharp>}
    */
   async render() {
     return sharp(await this.pngBuffer()).toFormat(this.options.outputFileExtension, this.options.sharpOptions);
