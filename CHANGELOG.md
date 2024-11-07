@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0...v4.0.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* improve types ([b384921](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b384921af2daa672be75e2af773e3f384aa56b90))
+
 # [4.0.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v3.1.0...v4.0.0) (2024-10-05)
 
 
