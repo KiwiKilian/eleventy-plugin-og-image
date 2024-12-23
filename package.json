@@ -62,7 +62,7 @@
     "@11ty/eleventy": ">=3.0.0"
   },
   "dependencies": {
-    "@11ty/eleventy-utils": "^1.0.3",
+    "@11ty/eleventy-utils": "^2.0.0",
     "@resvg/resvg-js": "^2.6.2",
     "satori": "^0.12.0",
     "satori-html": "^0.3.2",
