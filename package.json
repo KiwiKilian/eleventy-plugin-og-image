@@ -70,7 +70,7 @@
     "yoga-wasm-web": "^0.3.3"
   },
   "devDependencies": {
-    "@11ty/eleventy": "3.0.0",
+    "@11ty/eleventy": "3.1.0",
     "@fontsource/inter": "5.2.5",
     "@kiwikilian/eslint-config": "1.1.0",
     "@kiwikilian/prettier-config": "1.0.1",
