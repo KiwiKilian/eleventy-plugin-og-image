@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.1...v4.1.0) (2025-06-28)
+
+
+### Features
+
+* add previewMode option ([ac1fcfe](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/ac1fcfe4d6a172c67c1733ad83eecebf6f313105))
+
 ## [4.0.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.0...v4.0.1) (2024-11-07)
 
 
