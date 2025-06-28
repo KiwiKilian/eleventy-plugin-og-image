@@ -18,6 +18,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     hashLength: 8,
     outputFileExtension: 'png',
     outputDir: joinedOutputDir,
+    previewMode: 'auto',
     previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
 

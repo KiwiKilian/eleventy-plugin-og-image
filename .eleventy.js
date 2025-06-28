@@ -30,16 +30,17 @@ export default async function (eleventyConfig, pluginOptions) {
   });
 
   /** @type {boolean} */
-  let previewMode;
+  let previewEnabled;
 
   eleventyConfig.on('eleventy.before', async ({ runMode }) => {
     try {
       await fs.mkdir(mergedOptions.outputDir, { recursive: true });
     } catch {}
 
-    previewMode = ['watch', 'serve'].includes(runMode);
+    previewEnabled =
+      mergedOptions.previewMode === 'auto' ? ['watch', 'serve'].includes(runMode) : mergedOptions.previewMode;
 
-    if (previewMode) {
+    if (previewEnabled) {
       try {
         await fs.mkdir(mergedOptions.previewDir, { recursive: true });
       } catch {}
@@ -112,7 +113,7 @@ export default async function (eleventyConfig, pluginOptions) {
         );
       }
 
-      if (previewMode) {
+      if (previewEnabled) {
         const previewFilePath = ogImage.previewFilePath();
 
         try {
