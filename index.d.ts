@@ -59,6 +59,7 @@ type EleventyPluginOgImageOptions = {
   hashLength?: number;
   outputFileExtension?: keyof FormatEnum;
   outputDir?: string;
+  previewMode?: 'auto' | boolean;
   previewDir?: string;
   urlPath?: string;
 
