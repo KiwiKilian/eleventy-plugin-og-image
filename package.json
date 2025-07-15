@@ -76,7 +76,7 @@
     "@kiwikilian/prettier-config": "1.0.1",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "ava": "6.4.0",
+    "ava": "6.4.1",
     "eslint": "8.57.1",
     "prettier": "3.6.2",
     "prettier-plugin-jinja-template": "2.1.0",
