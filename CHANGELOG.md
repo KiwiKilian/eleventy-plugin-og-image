@@ -1,3 +1,15 @@
+# [4.2.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.1.0...v4.2.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* add alt tag to preview ([d8e8430](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/d8e84306057cc3c71b501c07b1cb2a288c5c8c9e))
+
+
+### Features
+
+* bump satori from 0.15.2 to 0.16.1 ([b5c3cc5](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/b5c3cc5fb5be4ef8347f8fad2defb2c86d76fe75))
+
 # [4.1.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.0.1...v4.1.0) (2025-06-28)
 
 
