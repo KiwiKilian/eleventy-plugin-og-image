@@ -1,12 +1,9 @@
-import { promises as fs } from 'node:fs';
-import module from 'node:module';
 import { RenderPlugin } from '@11ty/eleventy';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
 import { html as htmlToSatori } from 'satori-html';
-import initYoga from 'yoga-wasm-web';
 /* eslint-enable import/no-unresolved */
-import satori, { init } from 'satori/wasm';
+import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import sharp from 'sharp';
 import crypto from 'node:crypto';
@@ -14,11 +11,6 @@ import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
 import { sortObject } from './utils/index.js';
-
-const require = module.createRequire(import.meta.url);
-
-const Yoga = await initYoga(await fs.readFile(require.resolve('yoga-wasm-web/dist/yoga.wasm')));
-init(Yoga);
 
 /** @implements {import('eleventy-plugin-og-image').OgImage} */
 export class OgImage {
