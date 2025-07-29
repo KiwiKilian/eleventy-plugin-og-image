@@ -166,6 +166,7 @@ export class OgImage {
 <div id="eleventy-plugin-og-image-html">${await this.html()}</div>
 ${await this.svg()}
 <img
+  alt="OG Image: ${this.data.page.url}"
   width="${this.options.satoriOptions.width}"
   height="${this.options.satoriOptions.height}"
   src="${await this.outputUrl()}"/>
