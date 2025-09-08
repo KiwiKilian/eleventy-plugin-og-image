@@ -64,7 +64,7 @@
   "dependencies": {
     "@11ty/eleventy-utils": "^2.0.1",
     "@resvg/resvg-js": "^2.6.2",
-    "satori": "^0.16.1",
+    "satori": "^0.18.2",
     "satori-html": "^0.3.2",
     "sharp": "^0.34.1"
   },
