@@ -1,6 +1,5 @@
 import { SatoriOptions } from 'satori';
 import { FormatEnum, Sharp } from 'sharp';
-import TemplateConfig from '@11ty/eleventy/src/TemplateConfig';
 
 export interface OgImage {
   inputPath: string;
@@ -9,7 +8,7 @@ export interface OgImage {
 
   options: EleventyPluginOgImageMergedOptions;
 
-  templateConfig: typeof TemplateConfig;
+  templateConfig: typeof import('@11ty/eleventy/src/TemplateConfig').default;
 
   results: {
     html?: string;
@@ -81,3 +80,8 @@ type EleventyPluginOgImageMergedOptions = Omit<
   };
 
 export { EleventyPluginOgImageOptions, EleventyPluginOgImageMergedOptions, DirectoriesConfig };
+
+export default function (
+  eleventyConfig: typeof import('@11ty/eleventy/src/UserConfig').default,
+  pluginOptions?: EleventyPluginOgImageOptions,
+): Promise<void>;
