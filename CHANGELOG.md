@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.2.0...v4.2.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* add types for default export ([#367](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/367)) ([37bb900](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/37bb900872a167341228e749b16ea63017874d5c))
+
 ## [4.2.1-beta.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.2.0...v4.2.1-beta.1) (2025-10-29)
 
 
