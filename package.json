@@ -78,7 +78,7 @@
     "ava": "8.0.0",
     "eslint": "8.57.1",
     "prettier": "3.8.3",
-    "prettier-plugin-jinja-template": "2.1.0",
+    "prettier-plugin-jinja-template": "2.2.0",
     "prettier-plugin-jsdoc": "1.8.0",
     "semantic-release": "25.0.3",
     "twemoji": "14.0.2"
