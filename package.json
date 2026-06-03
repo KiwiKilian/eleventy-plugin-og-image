@@ -76,7 +76,7 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "ava": "8.0.1",
-    "eslint": "8.57.1",
+    "eslint": "10.4.1",
     "prettier": "3.8.3",
     "prettier-plugin-jinja-template": "2.2.0",
     "prettier-plugin-jsdoc": "1.8.0",
