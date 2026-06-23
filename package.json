@@ -79,7 +79,7 @@
     "eslint": "8.57.1",
     "prettier": "3.8.4",
     "prettier-plugin-jinja-template": "2.2.0",
-    "prettier-plugin-jsdoc": "1.8.0",
+    "prettier-plugin-jsdoc": "1.8.1",
     "semantic-release": "25.0.5",
     "twemoji": "14.0.2"
   }
