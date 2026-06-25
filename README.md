@@ -72,6 +72,7 @@ Create an OG-image-template anywhere in the input directory. Use only the suppor
 
 <div class="root">
   <h1 class="title">{{ title }}</h1>
+  <img src="data:image/png;base64,xxxxxx=" width="xxx" height="xxx"></img><!-- since Eleventy >v3.1.2 calling an image from an absolute URL as required per the Satori pdepency severely impacts build performance. Base64 allows to avoid performance problems. -->
 </div>
 ```
 
