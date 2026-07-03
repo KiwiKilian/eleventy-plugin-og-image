@@ -26,6 +26,9 @@ export class OgImage {
   /** @type {import('@11ty/eleventy/src/TemplateConfig').default} */
   templateConfig;
 
+  /** @type {import('@11ty/eleventy/src/EleventyExtensionMap').default | undefined} */
+  extensionMap;
+
   /**
    * @private
    * @type {{ html?: string; svg?: string; pngBuffer?: Buffer }}
@@ -41,19 +44,24 @@ export class OgImage {
    * @param {Record<string, any>} data
    * @param {import('eleventy-plugin-og-image').EleventyPluginOgImageMergedOptions} options
    * @param {import('@11ty/eleventy/src/TemplateConfig').default} templateConfig
+   * @param {import('@11ty/eleventy/src/EleventyExtensionMap').default} [extensionMap]
    */
-  constructor({ inputPath, data, options, templateConfig }) {
+  constructor({ inputPath, data, options, templateConfig, extensionMap }) {
     this.inputPath = inputPath;
     this.data = data;
     this.options = options;
     this.templateConfig = templateConfig;
+    this.extensionMap = extensionMap;
   }
 
   /** @returns {Promise<string>} */
   async html() {
     if (!this.results.html) {
       this.results.html = await (
-        await RenderPlugin.File(this.inputPath, { templateConfig: this.templateConfig })
+        await RenderPlugin.File(this.inputPath, {
+          templateConfig: this.templateConfig,
+          extensionMap: this.extensionMap,
+        })
       )(this.data);
     }
 
