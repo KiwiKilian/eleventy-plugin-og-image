@@ -25,8 +25,15 @@ export default async function (eleventyConfig, pluginOptions) {
   /** @type {import('@11ty/eleventy/src/TemplateConfig').default} */
   let templateConfig;
 
+  /** @type {import('@11ty/eleventy/src/EleventyExtensionMap').default} */
+  let extensionMap;
+
   eleventyConfig.on('eleventy.config', (newTemplateConfig) => {
     templateConfig = newTemplateConfig;
+  });
+
+  eleventyConfig.on('eleventy.extensionmap', (map) => {
+    extensionMap = map;
   });
 
   /** @type {boolean} */
@@ -90,6 +97,7 @@ export default async function (eleventyConfig, pluginOptions) {
         },
         options: mergedOptions,
         templateConfig,
+        extensionMap,
       });
 
       const outputFilePath = await ogImage.outputFilePath();
