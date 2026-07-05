@@ -10,6 +10,8 @@ export interface OgImage {
 
   templateConfig: typeof import('@11ty/eleventy/src/TemplateConfig').default;
 
+  extensionMap?: typeof import('@11ty/eleventy/src/EleventyExtensionMap').default;
+
   results: {
     html?: string;
     svg?: string;
