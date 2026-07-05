@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.2.1...v4.3.0) (2026-07-05)
+
+
+### Features
+
+* add support for Eleventy extension map in OgImage class ([#428](https://github.com/KiwiKilian/eleventy-plugin-og-image/issues/428)) ([ebc723f](https://github.com/KiwiKilian/eleventy-plugin-og-image/commit/ebc723fe1fb1c4b7246dc2334ced46db79b83dc5))
+
 ## [4.2.1](https://github.com/KiwiKilian/eleventy-plugin-og-image/compare/v4.2.0...v4.2.1) (2025-10-30)
 
 
