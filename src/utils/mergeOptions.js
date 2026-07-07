@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { computeOptionsHash, prepareOptionsForHash } from './computeOptionsHash.js';
+import { pageUrlSlug } from './pageUrlSlug.js';
 
 /**
  * Merges the plugin options with defaults
@@ -9,7 +10,17 @@ import { computeOptionsHash, prepareOptionsForHash } from './computeOptionsHash.
  * @returns {EleventyPluginOgImageMergedOptions}
  */
 export function mergeOptions({ directoriesConfig, pluginOptions }) {
-  const { outputDir, previewDir, urlPath, OgImage, satoriOptions, sharpOptions, ...options } = pluginOptions || {};
+  const {
+    outputDir,
+    previewDir,
+    urlPath,
+    OgImage,
+    satoriOptions,
+    sharpOptions,
+    slugStrategy = 'contentHash',
+    outputFileSlug,
+    ...options
+  } = pluginOptions || {};
 
   const eleventyOutput = directoriesConfig ? directoriesConfig.output : '';
   const joinedOutputDir = path.join(eleventyOutput, outputDir || 'og-images');
@@ -31,11 +42,20 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     previewMode: 'auto',
     previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
+    slugStrategy,
     preparedOptionsForHash,
     optionsHash: computeOptionsHash(mergedSatoriOptions, sharpOptions, preparedOptionsForHash),
 
     /** @param {OgImage} ogImage */
-    outputFileSlug: (ogImage) => ogImage.hash(),
+    outputFileSlug:
+      outputFileSlug ||
+      (async (ogImage) => {
+        if (ogImage.options.slugStrategy === 'pageUrl') {
+          return pageUrlSlug(ogImage.data);
+        }
+
+        return ogImage.hash();
+      }),
 
     /** @param {OgImage} ogImage */
     shortcodeOutput: async (ogImage) => `<meta property="og:image" content="${await ogImage.outputUrl()}" />`,

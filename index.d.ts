@@ -69,6 +69,7 @@ type EleventyPluginOgImageOptions = {
   previewMode?: 'auto' | boolean;
   previewDir?: string;
   urlPath?: string;
+  slugStrategy?: 'contentHash' | 'pageUrl';
 
   outputFileSlug?(ogImage: OgImage): Promise<string>;
   shortcodeOutput?(ogImage: OgImage): Promise<string>;
