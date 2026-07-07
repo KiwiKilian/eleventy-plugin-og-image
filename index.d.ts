@@ -12,6 +12,8 @@ export interface OgImage {
 
   extensionMap?: typeof import('@11ty/eleventy/src/EleventyExtensionMap').default;
 
+  buildCache?: import('./src/buildCache.js').BuildCache;
+
   results: {
     html?: string;
     svg?: string;

@@ -10,6 +10,7 @@ import crypto from 'node:crypto';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
+import { buildCacheKey } from './buildCache.js';
 
 /** @implements {import('eleventy-plugin-og-image').OgImage} */
 export class OgImage {
@@ -38,23 +39,75 @@ export class OgImage {
     pngBuffer: undefined,
   };
 
+  /** @type {import('./buildCache.js').BuildCache | undefined} */
+  buildCache;
+
+  /**
+   * @private
+   * @type {string | undefined}
+   */
+  #cacheKey;
+
   /**
    * @param {string} inputPath
    * @param {Record<string, any>} data
    * @param {import('eleventy-plugin-og-image').EleventyPluginOgImageMergedOptions} options
    * @param {import('@11ty/eleventy/src/TemplateConfig').default} templateConfig
    * @param {import('@11ty/eleventy/src/EleventyExtensionMap').default} [extensionMap]
+   * @param {import('./buildCache.js').BuildCache} [buildCache]
    */
-  constructor({ inputPath, data, options, templateConfig, extensionMap }) {
+  constructor({ inputPath, data, options, templateConfig, extensionMap, buildCache }) {
     this.inputPath = inputPath;
     this.data = data;
     this.options = options;
     this.templateConfig = templateConfig;
     this.extensionMap = extensionMap;
+    this.buildCache = buildCache;
+  }
+
+  /** @returns {string} */
+  getCacheKey() {
+    if (!this.#cacheKey) {
+      this.#cacheKey = buildCacheKey(
+        this.inputPath,
+        this.data,
+        this.options.optionsHash ?? '',
+      );
+    }
+
+    return this.#cacheKey;
+  }
+
+  /** @private */
+  hydrateFromBuildCache() {
+    const cached = this.buildCache?.get(this.getCacheKey());
+
+    if (!cached) {
+      return;
+    }
+
+    if (cached.html) {
+      this.results.html = cached.html;
+    }
+
+    if (cached.svg) {
+      this.results.svg = cached.svg;
+    }
+
+    if (cached.pngBuffer) {
+      this.results.pngBuffer = cached.pngBuffer;
+    }
+  }
+
+  /** @private */
+  updateBuildCache() {
+    this.buildCache?.set(this.getCacheKey(), this.results);
   }
 
   /** @returns {Promise<string>} */
   async html() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.html) {
       this.results.html = await (
         await RenderPlugin.File(this.inputPath, {
@@ -62,6 +115,8 @@ export class OgImage {
           extensionMap: this.extensionMap,
         })
       )(this.data);
+
+      this.updateBuildCache();
     }
 
     return this.results.html;
@@ -69,8 +124,11 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async svg() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.svg) {
       this.results.svg = await satori(htmlToSatori(await this.html()), this.options.satoriOptions);
+      this.updateBuildCache();
     }
 
     return this.results.svg;
@@ -78,8 +136,11 @@ export class OgImage {
 
   /** @returns {Promise<Buffer>} */
   async pngBuffer() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.pngBuffer) {
       this.results.pngBuffer = await new Resvg(await this.svg(), { font: { loadSystemFonts: false } }).render().asPng();
+      this.updateBuildCache();
     }
 
     return this.results.pngBuffer;

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import { mergeOptions } from './src/utils/index.js';
 import { OgImage } from './src/OgImage.js';
+import { BuildCache } from './src/buildCache.js';
 
 /**
  * @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig
@@ -39,7 +40,10 @@ export default async function (eleventyConfig, pluginOptions) {
   /** @type {boolean} */
   let previewEnabled;
 
+  const buildCache = new BuildCache();
+
   eleventyConfig.on('eleventy.before', async ({ runMode }) => {
+    buildCache.clear();
     try {
       await fs.mkdir(mergedOptions.outputDir, { recursive: true });
     } catch {}
@@ -98,6 +102,7 @@ export default async function (eleventyConfig, pluginOptions) {
         options: mergedOptions,
         templateConfig,
         extensionMap,
+        buildCache,
       });
 
       const outputFilePath = await ogImage.outputFilePath();
