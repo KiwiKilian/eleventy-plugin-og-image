@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { computeOptionsHash } from './computeOptionsHash.js';
+import { computeOptionsHash, prepareOptionsForHash } from './computeOptionsHash.js';
 
 /**
  * Merges the plugin options with defaults
@@ -21,6 +21,8 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     ...satoriOptions,
   };
 
+  const preparedOptionsForHash = prepareOptionsForHash(mergedSatoriOptions, sharpOptions);
+
   return {
     inputFileGlob: '**/*.og.*',
     hashLength: 8,
@@ -29,7 +31,8 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     previewMode: 'auto',
     previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
-    optionsHash: computeOptionsHash(mergedSatoriOptions, sharpOptions),
+    preparedOptionsForHash,
+    optionsHash: computeOptionsHash(mergedSatoriOptions, sharpOptions, preparedOptionsForHash),
 
     /** @param {OgImage} ogImage */
     outputFileSlug: (ogImage) => ogImage.hash(),

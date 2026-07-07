@@ -85,6 +85,10 @@ type EleventyPluginOgImageMergedOptions = Omit<
 > &
   Pick<EleventyPluginOgImageOptions, 'sharpOptions'> & {
     optionsHash: string;
+    preparedOptionsForHash: {
+      satori: Record<string, unknown>;
+      sharp: Record<string, unknown>;
+    };
     satoriOptions: SatoriOptions & { width: number; height: number };
   };
 

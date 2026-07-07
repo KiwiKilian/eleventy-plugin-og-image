@@ -1,5 +1,5 @@
 import test from 'ava';
-import { computeOptionsHash } from '../src/utils/index.js';
+import { computeOptionsHash, prepareOptionsForHash } from '../src/utils/index.js';
 
 test('computeOptionsHash is stable for identical options', (t) => {
   const satoriOptions = { width: 1200, height: 630, fonts: [] };
@@ -21,6 +21,20 @@ test('computeOptionsHash replaces font data buffers with digests', (t) => {
 
   t.false(withFont.includes('font-binary'));
   t.regex(withFont, /[a-f0-9]{64}/);
+});
+
+test('prepareOptionsForHash memoizes sorted option shapes', (t) => {
+  const satoriOptions = {
+    width: 1200,
+    height: 630,
+    fonts: [{ name: 'Inter', data: Buffer.from('font'), weight: 700, style: 'normal' }],
+  };
+
+  const prepared = prepareOptionsForHash(satoriOptions, { quality: 80 });
+
+  t.deepEqual(Object.keys(prepared.satori), ['fonts', 'height', 'width']);
+  t.deepEqual(Object.keys(prepared.sharp), ['quality']);
+  t.is(computeOptionsHash(satoriOptions, { quality: 80 }, prepared), computeOptionsHash(satoriOptions, { quality: 80 }));
 });
 
 test('computeOptionsHash matches legacy hash input for default options', (t) => {

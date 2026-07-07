@@ -27,15 +27,33 @@ function sanitizeFontData(value) {
 }
 
 /**
+ * @typedef {{ satori: Record<string, unknown>; sharp: Record<string, unknown> }} PreparedOptionsForHash
+ */
+
+/**
+ * Sorts and sanitizes options once so they can be reused for stable hashing.
+ *
+ * @param {import('satori').SatoriOptions | undefined} satoriOptions
+ * @param {import('sharp').Sharp['toFormat'] extends (format: infer F, options?: infer O) => any ? O : never} [sharpOptions]
+ * @returns {PreparedOptionsForHash}
+ */
+export function prepareOptionsForHash(satoriOptions, sharpOptions) {
+  return {
+    satori: sortObject(sanitizeFontData(satoriOptions || {})),
+    sharp: sortObject(sharpOptions || {}),
+  };
+}
+
+/**
  * Returns a stable string representation of satori and sharp options for hashing.
  *
  * @param {import('satori').SatoriOptions | undefined} satoriOptions
  * @param {import('sharp').Sharp['toFormat'] extends (format: infer F, options?: infer O) => any ? O : never} [sharpOptions]
+ * @param {PreparedOptionsForHash} [preparedOptionsForHash]
  * @returns {string}
  */
-export function computeOptionsHash(satoriOptions, sharpOptions) {
-  const sanitizedSatori = sortObject(sanitizeFontData(satoriOptions || {}));
-  const sortedSharp = sortObject(sharpOptions || {});
+export function computeOptionsHash(satoriOptions, sharpOptions, preparedOptionsForHash) {
+  const prepared = preparedOptionsForHash || prepareOptionsForHash(satoriOptions, sharpOptions);
 
-  return `${JSON.stringify(sanitizedSatori)}${JSON.stringify(sortedSharp)}`;
+  return `${JSON.stringify(prepared.satori)}${JSON.stringify(prepared.sharp)}`;
 }
