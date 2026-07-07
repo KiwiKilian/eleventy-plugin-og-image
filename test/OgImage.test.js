@@ -3,6 +3,9 @@ import sharp from 'sharp';
 import { OgImage } from '../src/OgImage.js';
 import { testConstructor } from './utils/testConstructor.js';
 
+const PAGE_URL = 'example/url';
+const HASH = '759d60a8';
+
 test('html returns html string', async (t) => {
   const ogImage = new OgImage(testConstructor);
 
@@ -93,11 +96,8 @@ test('previewHtml includes rendered html, svg, and image tag', async (t) => {
   t.regex(previewHtml, new RegExp(`<title>OG Image: ${PAGE_URL}</title>`));
   t.regex(previewHtml, /<div id="eleventy-plugin-og-image-html">/);
   t.regex(previewHtml, /^<html>/);
-  t.regex(previewHtml, new RegExp(`src=\"/og-images/${HASH}\\.png\"`));
+  t.regex(previewHtml, new RegExp(`src="/og-images/${HASH}\\.png"`));
 });
-
-const PAGE_URL = 'example/url';
-const HASH = '759d60a8';
 
 test('hash returns hash', async (t) => {
   const ogImage = new OgImage(testConstructor);

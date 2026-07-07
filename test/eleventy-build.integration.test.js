@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import test from 'ava';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -5,10 +6,12 @@ import os from 'node:os';
 import Eleventy from '@11ty/eleventy';
 
 async function pathExists(p) {
-  return fs
+  const exists = await fs
     .access(p)
     .then(() => true)
     .catch(() => false);
+
+  return exists;
 }
 
 async function mkTmpDir(t) {
@@ -19,6 +22,7 @@ async function mkTmpDir(t) {
       await fs.rm(dir, { recursive: true, force: true });
     } catch {}
   });
+
   return dir;
 }
 
@@ -141,7 +145,9 @@ export default async function (eleventyConfig) {
   const stat1 = await fs.stat(imageOutPath);
 
   // Ensure mtime resolution changes if rewritten
-  await new Promise((r) => setTimeout(r, 20));
+  await new Promise((resolve) => {
+    setTimeout(resolve, 20);
+  });
 
   const elev2 = new Eleventy(inputDir, outputDir, { configPath, quietMode: true });
   await elev2.init();

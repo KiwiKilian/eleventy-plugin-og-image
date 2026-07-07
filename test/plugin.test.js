@@ -1,3 +1,11 @@
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-empty */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable lines-between-class-members */
+/* eslint-disable newline-before-return */
+/* eslint-disable no-plusplus */
 import test from 'ava';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
