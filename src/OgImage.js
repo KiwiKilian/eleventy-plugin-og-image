@@ -10,7 +10,6 @@ import crypto from 'node:crypto';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
-import { sortObject } from './utils/index.js';
 
 /** @implements {import('eleventy-plugin-og-image').OgImage} */
 export class OgImage {
@@ -100,8 +99,14 @@ export class OgImage {
     const hash = crypto.createHash('sha256');
 
     hash.update(await this.html());
-    hash.update(JSON.stringify(sortObject(this.options.satoriOptions || {})));
-    hash.update(JSON.stringify(sortObject(this.options.sharpOptions || {})));
+
+    if (this.options.optionsHash !== undefined) {
+      hash.update(this.options.optionsHash);
+    } else {
+      const { computeOptionsHash } = await import('./utils/computeOptionsHash.js');
+
+      hash.update(computeOptionsHash(this.options.satoriOptions, this.options.sharpOptions));
+    }
 
     return hash.digest('hex').substring(0, this.options.hashLength);
   }

@@ -108,10 +108,12 @@ test('hash returns hash', async (t) => {
 });
 
 test('hash handles missing satoriOptions and present sharpOptions', async (t) => {
+  const { optionsHash, ...optionsWithoutHash } = testConstructor.options;
+
   const ogImage = new OgImage({
     ...testConstructor,
     options: {
-      ...testConstructor.options,
+      ...optionsWithoutHash,
       satoriOptions: undefined,
       sharpOptions: { quality: 80 },
     },
