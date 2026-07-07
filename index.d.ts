@@ -14,6 +14,10 @@ export interface OgImage {
 
   buildCache?: import('./src/buildCache.js').BuildCache;
 
+  templateMtime?: number;
+
+  resolvedOutputFileName?: string;
+
   results: {
     html?: string;
     svg?: string;
@@ -70,6 +74,7 @@ type EleventyPluginOgImageOptions = {
   previewDir?: string;
   urlPath?: string;
   slugStrategy?: 'contentHash' | 'pageUrl';
+  manifest?: boolean;
 
   outputFileSlug?(ogImage: OgImage): Promise<string>;
   shortcodeOutput?(ogImage: OgImage): Promise<string>;

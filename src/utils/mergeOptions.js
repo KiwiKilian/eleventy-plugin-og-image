@@ -19,6 +19,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     sharpOptions,
     slugStrategy = 'contentHash',
     outputFileSlug,
+    manifest = true,
     ...options
   } = pluginOptions || {};
 
@@ -43,6 +44,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     previewDir: path.join(...(previewDir ? [eleventyOutput, previewDir] : [joinedOutputDir, 'preview'])),
     urlPath: urlPath || outputDir || 'og-images',
     slugStrategy,
+    manifest,
     preparedOptionsForHash,
     optionsHash: computeOptionsHash(mergedSatoriOptions, sharpOptions, preparedOptionsForHash),
 

@@ -41,14 +41,19 @@ function serializeValue(value) {
  * @param {string} inputPath
  * @param {Record<string, any>} data
  * @param {string} optionsHash
+ * @param {number} [templateMtime]
  * @returns {string}
  */
-export function buildCacheKey(inputPath, data, optionsHash) {
+export function buildCacheKey(inputPath, data, optionsHash, templateMtime) {
   const hash = crypto.createHash('sha256');
 
   hash.update(inputPath);
   hash.update(optionsHash);
   hash.update(JSON.stringify(sortObject(serializeValue(data) || {})));
+
+  if (templateMtime !== undefined) {
+    hash.update(String(templateMtime));
+  }
 
   return hash.digest('hex');
 }

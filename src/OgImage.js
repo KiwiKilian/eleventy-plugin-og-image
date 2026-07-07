@@ -43,6 +43,12 @@ export class OgImage {
   /** @type {import('./buildCache.js').BuildCache | undefined} */
   buildCache;
 
+  /** @type {number | undefined} */
+  templateMtime;
+
+  /** @type {string | undefined} */
+  resolvedOutputFileName;
+
   /**
    * @private
    * @type {string | undefined}
@@ -56,14 +62,16 @@ export class OgImage {
    * @param {import('@11ty/eleventy/src/TemplateConfig').default} templateConfig
    * @param {import('@11ty/eleventy/src/EleventyExtensionMap').default} [extensionMap]
    * @param {import('./buildCache.js').BuildCache} [buildCache]
+   * @param {number} [templateMtime]
    */
-  constructor({ inputPath, data, options, templateConfig, extensionMap, buildCache }) {
+  constructor({ inputPath, data, options, templateConfig, extensionMap, buildCache, templateMtime }) {
     this.inputPath = inputPath;
     this.data = data;
     this.options = options;
     this.templateConfig = templateConfig;
     this.extensionMap = extensionMap;
     this.buildCache = buildCache;
+    this.templateMtime = templateMtime;
   }
 
   /** @returns {string} */
@@ -73,6 +81,7 @@ export class OgImage {
         this.inputPath,
         this.data,
         this.options.optionsHash ?? '',
+        this.templateMtime,
       );
     }
 
@@ -200,6 +209,10 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async outputFileName() {
+    if (this.resolvedOutputFileName) {
+      return this.resolvedOutputFileName;
+    }
+
     return `${await this.outputFileSlug()}.${this.options.outputFileExtension}`;
   }
 
