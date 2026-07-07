@@ -72,6 +72,39 @@ async function createTmpDir(t) {
   return dir;
 }
 
+test.serial('eleventy.before skips manifest when manifest option is false', async (t) => {
+  const stub = createEleventyConfigStub();
+  const root = await createTmpDir(t);
+
+  const siteDir = path.join(root, '_site');
+
+  await plugin(stub.eleventyConfig, {
+    outputDir: 'og-images',
+    manifest: false,
+    inputFileGlob: '**/*.og.*',
+  });
+
+  for (const fn of stub.listeners['eleventy.directories'] || []) {
+    fn({ input: root, output: siteDir, includes: '_includes', data: '_data' });
+  }
+
+  for (const fn of stub.listeners['eleventy.before'] || []) {
+    await fn({ runMode: 'build' });
+  }
+
+  for (const fn of stub.listeners['eleventy.after'] || []) {
+    await fn();
+  }
+
+  const manifestPath = path.join(siteDir, 'og-images', '.og-image-manifest.json');
+  const exists = await fs
+    .access(manifestPath)
+    .then(() => true)
+    .catch(() => false);
+
+  t.false(exists);
+});
+
 test.serial('plugin registers ignores and shortcode', async (t) => {
   const stub = createEleventyConfigStub();
 

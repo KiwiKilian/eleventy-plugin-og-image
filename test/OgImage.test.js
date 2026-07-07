@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { OgImage } from '../src/OgImage.js';
+import { BuildCache } from '../src/buildCache.js';
 import { testConstructor } from './utils/testConstructor.js';
 
 const PAGE_URL = 'example/url';
@@ -56,6 +57,42 @@ test('writeToFile passthrough writes png buffer without sharp conversion', async
   t.deepEqual(await fs.readFile(outputPath), pngBuffer);
 });
 
+test('build cache reuses svg and png buffers across instances', async (t) => {
+  const buildCache = new BuildCache();
+  const sharedData = { page: { url: '/shared/' }, title: 'Shared' };
+
+  const first = new OgImage({ ...testConstructor, data: sharedData, buildCache });
+  const second = new OgImage({ ...testConstructor, data: sharedData, buildCache });
+
+  await first.html();
+  await first.svg();
+  const firstPng = await first.pngBuffer();
+  const secondPng = await second.pngBuffer();
+
+  t.is(firstPng, secondPng);
+});
+
+test('writeToFile uses sharp when output is not png passthrough', async (t) => {
+  const ogImage = new OgImage({
+    ...testConstructor,
+    options: {
+      ...testConstructor.options,
+      outputFileExtension: 'jpeg',
+      sharpOptions: { quality: 80 },
+    },
+  });
+
+  const outputPath = path.join(os.tmpdir(), `og-image-sharp-${process.pid}.jpeg`);
+
+  t.teardown(async () => {
+    await fs.rm(outputPath, { force: true });
+  });
+
+  await ogImage.writeToFile(outputPath);
+
+  t.true((await fs.stat(outputPath)).size > 0);
+});
+
 test('writeToFile uses sharp when sharpOptions are set', async (t) => {
   const ogImage = new OgImage({
     ...testConstructor,
@@ -89,6 +126,16 @@ test('respects dimensions', async (t) => {
 
   t.is(width, 120);
   t.is(height, 63);
+});
+
+test('getCacheKey works when optionsHash is not set', (t) => {
+  const { optionsHash, ...optionsWithoutHash } = testConstructor.options;
+  const ogImage = new OgImage({
+    ...testConstructor,
+    options: optionsWithoutHash,
+  });
+
+  t.regex(ogImage.getCacheKey(), /^[a-f0-9]{64}$/);
 });
 
 test('returns cached result', async (t) => {

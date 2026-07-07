@@ -1,7 +1,7 @@
 import test from 'ava';
 import { RenderPlugin } from '@11ty/eleventy';
 import { OgImage } from '../src/OgImage.js';
-import { BuildCache } from '../src/buildCache.js';
+import { BuildCache, buildCacheKey } from '../src/buildCache.js';
 import { testConstructor } from './utils/testConstructor.js';
 
 test('build cache deduplicates html rendering across OgImage instances', async (t) => {
@@ -29,6 +29,30 @@ test('build cache deduplicates html rendering across OgImage instances', async (
 
   t.is(renderCount, 1);
   t.is(firstHtml, secondHtml);
+});
+
+test('buildCacheKey includes template mtime when provided', (t) => {
+  const data = { page: { url: '/shared/' } };
+
+  t.not(
+    buildCacheKey('./input.og.njk', data, 'options-hash'),
+    buildCacheKey('./input.og.njk', data, 'options-hash', 123),
+  );
+});
+
+test('buildCacheKey ignores functions and serializes buffers', (t) => {
+  const key = buildCacheKey(
+    './input.og.njk',
+    {
+      page: { url: '/' },
+      ignored: () => {},
+      bin: Buffer.from('x'),
+      nested: [{ fn: () => {} }, () => {}],
+    },
+    'options-hash',
+  );
+
+  t.regex(key, /^[a-f0-9]{64}$/);
 });
 
 test('build cache is cleared between builds', (t) => {

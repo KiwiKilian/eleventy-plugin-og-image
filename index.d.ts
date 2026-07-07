@@ -75,6 +75,7 @@ type EleventyPluginOgImageOptions = {
   urlPath?: string;
   slugStrategy?: 'contentHash' | 'pageUrl';
   manifest?: boolean;
+  maxConcurrency?: number;
 
   outputFileSlug?(ogImage: OgImage): Promise<string>;
   shortcodeOutput?(ogImage: OgImage): Promise<string>;

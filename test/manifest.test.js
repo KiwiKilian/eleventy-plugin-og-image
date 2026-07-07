@@ -18,6 +18,17 @@ async function createTmpDir(t) {
   return dir;
 }
 
+test('manifest save tolerates mkdir failures', async (t) => {
+  const dir = await createTmpDir(t);
+  const manifestPath = path.join(dir, 'manifest-as-file', '.og-image-manifest.json');
+  await fs.writeFile(path.join(dir, 'manifest-as-file'), 'not a dir', 'utf8');
+
+  const manifest = new OgImageManifest(manifestPath);
+  manifest.set('/page/', { dataHash: 'abc', outputFileName: 'page.png' });
+
+  await t.throwsAsync(async () => manifest.save());
+});
+
 test('manifest persists entries between load and save', async (t) => {
   const dir = await createTmpDir(t);
   const manifestPath = path.join(dir, '.og-image-manifest.json');

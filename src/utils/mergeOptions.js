@@ -20,6 +20,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     slugStrategy = 'contentHash',
     outputFileSlug,
     manifest = true,
+    maxConcurrency,
     ...options
   } = pluginOptions || {};
 
@@ -45,6 +46,7 @@ export function mergeOptions({ directoriesConfig, pluginOptions }) {
     urlPath: urlPath || outputDir || 'og-images',
     slugStrategy,
     manifest,
+    maxConcurrency,
     preparedOptionsForHash,
     optionsHash: computeOptionsHash(mergedSatoriOptions, sharpOptions, preparedOptionsForHash),
 

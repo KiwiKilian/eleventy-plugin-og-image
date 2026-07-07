@@ -6,6 +6,7 @@ import { mergeOptions } from './src/utils/index.js';
 import { OgImage } from './src/OgImage.js';
 import { BuildCache, buildCacheKey } from './src/buildCache.js';
 import { OgImageManifest } from './src/manifest.js';
+import { ConcurrencyLimiter } from './src/concurrencyLimiter.js';
 
 /**
  * @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig
@@ -44,6 +45,7 @@ export default async function (eleventyConfig, pluginOptions) {
   const buildCache = new BuildCache();
   /** @type {OgImageManifest | undefined} */
   let manifest;
+  const renderLimiter = new ConcurrencyLimiter(pluginOptions?.maxConcurrency);
 
   eleventyConfig.on('eleventy.before', async ({ runMode }) => {
     buildCache.clear();
@@ -162,11 +164,13 @@ export default async function (eleventyConfig, pluginOptions) {
       try {
         await fs.access(outputFilePath);
       } catch {
-        if (ogImage.canPassthroughPng?.()) {
-          await ogImage.writeToFile(outputFilePath);
-        } else {
-          await (await ogImage.render()).toFile(outputFilePath);
-        }
+        await renderLimiter.run(async () => {
+          if (ogImage.canPassthroughPng?.()) {
+            await ogImage.writeToFile(outputFilePath);
+          } else {
+            await (await ogImage.render()).toFile(outputFilePath);
+          }
+        });
 
         eleventyConfig.logger.log(
           `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
