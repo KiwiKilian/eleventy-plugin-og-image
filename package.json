@@ -45,6 +45,7 @@
   "scripts": {
     "semantic-release": "semantic-release",
     "test": "ava test/**/*.test.js",
+    "test:coverage": "c8 --100 --all --include=.eleventy.js --include=src/**/*.js ava test/**/*.test.js",
     "lint": "eslint .",
     "prettier": "prettier --write .",
     "example": "npx @11ty/eleventy --config=example/.eleventy.js --input=example --output=example/_site",
@@ -76,6 +77,7 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "ava": "8.0.1",
+    "c8": "^11.0.0",
     "eslint": "8.57.1",
     "prettier": "3.9.4",
     "prettier-plugin-jinja-template": "2.2.0",
