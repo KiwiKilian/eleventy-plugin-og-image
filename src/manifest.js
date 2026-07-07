@@ -32,7 +32,9 @@ export class OgImageManifest {
   async save() {
     try {
       await fs.mkdir(path.dirname(this.#manifestPath), { recursive: true });
-    } catch {}
+    } catch {
+      // Directory may already exist.
+    }
 
     await fs.writeFile(this.#manifestPath, `${JSON.stringify(this.#entries, null, 2)}\n`, 'utf8');
   }

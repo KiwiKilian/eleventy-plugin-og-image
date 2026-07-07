@@ -37,7 +37,7 @@ export class ConcurrencyLimiter {
   /** @returns {Promise<void>} */
   #acquire() {
     if (this.#running < this.#max) {
-      this.#running++;
+      this.#running += 1;
 
       return Promise.resolve();
     }
@@ -50,11 +50,11 @@ export class ConcurrencyLimiter {
   }
 
   #release() {
-    this.#running--;
+    this.#running -= 1;
     const next = this.#queue.shift();
 
     if (next) {
-      this.#running++;
+      this.#running += 1;
       next();
     }
   }

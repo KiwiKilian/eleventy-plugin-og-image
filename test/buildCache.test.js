@@ -10,7 +10,7 @@ test('build cache deduplicates html rendering across OgImage instances', async (
 
   const originalFile = RenderPlugin.File;
   RenderPlugin.File = async () => {
-    renderCount++;
+    renderCount += 1;
 
     return async () => '<div class="root"></div>\n';
   };

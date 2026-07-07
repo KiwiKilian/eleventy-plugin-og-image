@@ -7,10 +7,10 @@ test('concurrency limiter runs all tasks when maxConcurrency is unset', async (t
 
   await Promise.all([
     limiter.run(async () => {
-      count++;
+      count += 1;
     }),
     limiter.run(async () => {
-      count++;
+      count += 1;
     }),
   ]);
 
@@ -25,12 +25,12 @@ test('concurrency limiter limits parallel execution', async (t) => {
   await Promise.all(
     Array.from({ length: 3 }, () =>
       limiter.run(async () => {
-        running++;
+        running += 1;
         maxRunning = Math.max(maxRunning, running);
         await new Promise((resolve) => {
           setTimeout(resolve, 10);
         });
-        running--;
+        running -= 1;
       }),
     ),
   );
