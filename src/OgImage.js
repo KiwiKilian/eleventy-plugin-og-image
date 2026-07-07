@@ -1,4 +1,5 @@
 import { RenderPlugin } from '@11ty/eleventy';
+import { promises as fs } from 'node:fs';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
 import { html as htmlToSatori } from 'satori-html';
@@ -153,6 +154,26 @@ export class OgImage {
    */
   async render() {
     return sharp(await this.pngBuffer()).toFormat(this.options.outputFileExtension, this.options.sharpOptions);
+  }
+
+  /** @returns {boolean} */
+  canPassthroughPng() {
+    return this.options.outputFileExtension === 'png' && !this.options.sharpOptions;
+  }
+
+  /**
+   * Writes the rendered image to disk, skipping Sharp when PNG passthrough is possible.
+   *
+   * @param {string} outputFilePath
+   */
+  async writeToFile(outputFilePath) {
+    if (this.canPassthroughPng()) {
+      await fs.writeFile(outputFilePath, await this.pngBuffer());
+
+      return;
+    }
+
+    await (await this.render()).toFile(outputFilePath);
   }
 
   /** @returns {Promise<string>} */

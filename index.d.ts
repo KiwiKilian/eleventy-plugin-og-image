@@ -28,6 +28,10 @@ export interface OgImage {
 
   render(): Promise<Sharp>;
 
+  canPassthroughPng(): boolean;
+
+  writeToFile(outputFilePath: string): Promise<void>;
+
   hash(): Promise<string>;
 
   outputFileSlug(): Promise<string>;

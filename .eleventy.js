@@ -117,9 +117,11 @@ export default async function (eleventyConfig, pluginOptions) {
       try {
         await fs.access(outputFilePath);
       } catch {
-        const image = await ogImage.render();
-
-        await image.toFile(outputFilePath);
+        if (ogImage.canPassthroughPng?.()) {
+          await ogImage.writeToFile(outputFilePath);
+        } else {
+          await (await ogImage.render()).toFile(outputFilePath);
+        }
 
         eleventyConfig.logger.log(
           `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,

@@ -1,4 +1,7 @@
 import test from 'ava';
+import { promises as fs } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import sharp from 'sharp';
 import { OgImage } from '../src/OgImage.js';
 import { testConstructor } from './utils/testConstructor.js';
@@ -34,6 +37,35 @@ test('pngBuffer returns Buffer', async (t) => {
   const pngBuffer = await ogImage.pngBuffer();
 
   t.true(pngBuffer instanceof Buffer);
+});
+
+test('writeToFile passthrough writes png buffer without sharp conversion', async (t) => {
+  const ogImage = new OgImage(testConstructor);
+  const pngBuffer = await ogImage.pngBuffer();
+
+  t.true(ogImage.canPassthroughPng());
+
+  const outputPath = path.join(os.tmpdir(), `og-image-passthrough-${process.pid}.png`);
+
+  t.teardown(async () => {
+    await fs.rm(outputPath, { force: true });
+  });
+
+  await ogImage.writeToFile(outputPath);
+
+  t.deepEqual(await fs.readFile(outputPath), pngBuffer);
+});
+
+test('writeToFile uses sharp when sharpOptions are set', async (t) => {
+  const ogImage = new OgImage({
+    ...testConstructor,
+    options: {
+      ...testConstructor.options,
+      sharpOptions: { quality: 80 },
+    },
+  });
+
+  t.false(ogImage.canPassthroughPng());
 });
 
 test('render returns sharp object', async (t) => {
