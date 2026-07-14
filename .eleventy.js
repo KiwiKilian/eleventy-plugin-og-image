@@ -4,6 +4,9 @@ import path from 'node:path';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import { mergeOptions } from './src/utils/index.js';
 import { OgImage } from './src/OgImage.js';
+import { BuildCache, buildCacheKey } from './src/buildCache.js';
+import { OgImageManifest } from './src/manifest.js';
+import { ConcurrencyLimiter } from './src/concurrencyLimiter.js';
 
 /**
  * @param {import('@11ty/eleventy/src/UserConfig').default} eleventyConfig
@@ -39,10 +42,24 @@ export default async function (eleventyConfig, pluginOptions) {
   /** @type {boolean} */
   let previewEnabled;
 
+  const buildCache = new BuildCache();
+  /** @type {OgImageManifest | undefined} */
+  let manifest;
+  const renderLimiter = new ConcurrencyLimiter(pluginOptions?.maxConcurrency);
+
   eleventyConfig.on('eleventy.before', async ({ runMode }) => {
+    buildCache.clear();
+
     try {
       await fs.mkdir(mergedOptions.outputDir, { recursive: true });
     } catch {}
+
+    if (mergedOptions.manifest) {
+      manifest = new OgImageManifest(path.join(mergedOptions.outputDir, '.og-image-manifest.json'));
+      await manifest.load();
+    } else {
+      manifest = undefined;
+    }
 
     previewEnabled =
       mergedOptions.previewMode === 'auto' ? ['watch', 'serve'].includes(runMode) : mergedOptions.previewMode;
@@ -55,6 +72,12 @@ export default async function (eleventyConfig, pluginOptions) {
       try {
         await fs.rm(mergedOptions.previewDir, { recursive: true, force: true });
       } catch {}
+    }
+  });
+
+  eleventyConfig.on('eleventy.after', async () => {
+    if (manifest) {
+      await manifest.save();
     }
   });
 
@@ -82,25 +105,54 @@ export default async function (eleventyConfig, pluginOptions) {
         throw new Error(`Could not find file for the \`ogImage\` shortcode, looking for: ${joinedInputPath}`);
       }
 
+      const templateStat = await fs.stat(joinedInputPath);
+      const templateMtime = templateStat.mtimeMs;
+      const ogImageData = {
+        page: this.page,
+        eleventy: this.eleventy,
+        eleventyPluginOgImage: {
+          inputPath: joinedInputPath,
+          width: satoriOptions.width,
+          height: satoriOptions.height,
+          outputFileExtension: options.outputFileExtension,
+        },
+        ...data,
+      };
+
       const ogImage = new (pluginOptions.OgImage || OgImage)({
         inputPath: joinedInputPath,
-        data: {
-          page: this.page,
-          eleventy: this.eleventy,
-          eleventyPluginOgImage: {
-            inputPath: joinedInputPath,
-            width: satoriOptions.width,
-            height: satoriOptions.height,
-            outputFileExtension: options.outputFileExtension,
-          },
-          ...data,
-        },
+        data: ogImageData,
         options: mergedOptions,
         templateConfig,
         extensionMap,
+        buildCache,
+        templateMtime,
       });
 
-      const outputFilePath = await ogImage.outputFilePath();
+      const dataHash = buildCacheKey(
+        joinedInputPath,
+        ogImageData,
+        mergedOptions.optionsHash,
+        templateMtime,
+      );
+
+      let outputFilePath;
+
+      if (manifest) {
+        const manifestEntry = manifest.get(this.page.url);
+
+        if (manifestEntry?.dataHash === dataHash) {
+          outputFilePath = TemplatePath.standardizeFilePath(
+            path.join(mergedOptions.outputDir, manifestEntry.outputFileName),
+          );
+          ogImage.resolvedOutputFileName = manifestEntry.outputFileName;
+        }
+      }
+
+      if (!outputFilePath) {
+        outputFilePath = await ogImage.outputFilePath();
+      }
+
       const cacheFilePath = await ogImage.cacheFilePath();
 
       if (cacheFilePath !== outputFilePath) {
@@ -112,13 +164,24 @@ export default async function (eleventyConfig, pluginOptions) {
       try {
         await fs.access(outputFilePath);
       } catch {
-        const image = await ogImage.render();
-
-        await image.toFile(outputFilePath);
+        await renderLimiter.run(async () => {
+          if (ogImage.canPassthroughPng?.()) {
+            await ogImage.writeToFile(outputFilePath);
+          } else {
+            await (await ogImage.render()).toFile(outputFilePath);
+          }
+        });
 
         eleventyConfig.logger.log(
           `Writing ${TemplatePath.stripLeadingDotSlash(outputFilePath)} from ${joinedInputPath}`,
         );
+      }
+
+      if (manifest) {
+        manifest.set(this.page.url, {
+          dataHash,
+          outputFileName: ogImage.resolvedOutputFileName || path.basename(outputFilePath),
+        });
       }
 
       if (previewEnabled) {
