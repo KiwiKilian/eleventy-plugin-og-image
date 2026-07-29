@@ -12,6 +12,12 @@ export interface OgImage {
 
   extensionMap?: typeof import('@11ty/eleventy/src/EleventyExtensionMap').default;
 
+  buildCache?: import('./src/buildCache.js').BuildCache;
+
+  templateMtime?: number;
+
+  resolvedOutputFileName?: string;
+
   results: {
     html?: string;
     svg?: string;
@@ -25,6 +31,10 @@ export interface OgImage {
   pngBuffer(): Promise<Buffer>;
 
   render(): Promise<Sharp>;
+
+  canPassthroughPng(): boolean;
+
+  writeToFile(outputFilePath: string): Promise<void>;
 
   hash(): Promise<string>;
 
@@ -63,6 +73,9 @@ type EleventyPluginOgImageOptions = {
   previewMode?: 'auto' | boolean;
   previewDir?: string;
   urlPath?: string;
+  slugStrategy?: 'contentHash' | 'pageUrl';
+  manifest?: boolean;
+  maxConcurrency?: number;
 
   outputFileSlug?(ogImage: OgImage): Promise<string>;
   shortcodeOutput?(ogImage: OgImage): Promise<string>;
@@ -78,6 +91,11 @@ type EleventyPluginOgImageMergedOptions = Omit<
   'OgImage' | 'satoriOptions' | 'sharpOptions'
 > &
   Pick<EleventyPluginOgImageOptions, 'sharpOptions'> & {
+    optionsHash: string;
+    preparedOptionsForHash: {
+      satori: Record<string, unknown>;
+      sharp: Record<string, unknown>;
+    };
     satoriOptions: SatoriOptions & { width: number; height: number };
   };
 

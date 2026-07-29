@@ -19,3 +19,7 @@ yarn-error.log*
 
 # Artefacts
 .DS_Store
+
+# Test coverage
+/coverage/
+/.nyc_output/

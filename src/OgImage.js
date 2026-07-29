@@ -1,4 +1,5 @@
 import { RenderPlugin } from '@11ty/eleventy';
+import { promises as fs } from 'node:fs';
 /* eslint-disable import/no-unresolved */
 // https://github.com/import-js/eslint-plugin-import/issues/2132
 import { html as htmlToSatori } from 'satori-html';
@@ -10,7 +11,7 @@ import crypto from 'node:crypto';
 import { TemplatePath } from '@11ty/eleventy-utils';
 import path from 'node:path';
 import url from 'node:url';
-import { sortObject } from './utils/index.js';
+import { buildCacheKey } from './buildCache.js';
 
 /** @implements {import('eleventy-plugin-og-image').OgImage} */
 export class OgImage {
@@ -39,23 +40,84 @@ export class OgImage {
     pngBuffer: undefined,
   };
 
+  /** @type {import('./buildCache.js').BuildCache | undefined} */
+  buildCache;
+
+  /** @type {number | undefined} */
+  templateMtime;
+
+  /** @type {string | undefined} */
+  resolvedOutputFileName;
+
+  /**
+   * @private
+   * @type {string | undefined}
+   */
+  #cacheKey;
+
   /**
    * @param {string} inputPath
    * @param {Record<string, any>} data
    * @param {import('eleventy-plugin-og-image').EleventyPluginOgImageMergedOptions} options
    * @param {import('@11ty/eleventy/src/TemplateConfig').default} templateConfig
    * @param {import('@11ty/eleventy/src/EleventyExtensionMap').default} [extensionMap]
+   * @param {import('./buildCache.js').BuildCache} [buildCache]
+   * @param {number} [templateMtime]
    */
-  constructor({ inputPath, data, options, templateConfig, extensionMap }) {
+  constructor({ inputPath, data, options, templateConfig, extensionMap, buildCache, templateMtime }) {
     this.inputPath = inputPath;
     this.data = data;
     this.options = options;
     this.templateConfig = templateConfig;
     this.extensionMap = extensionMap;
+    this.buildCache = buildCache;
+    this.templateMtime = templateMtime;
+  }
+
+  /** @returns {string} */
+  getCacheKey() {
+    if (!this.#cacheKey) {
+      this.#cacheKey = buildCacheKey(
+        this.inputPath,
+        this.data,
+        this.options.optionsHash ?? '',
+        this.templateMtime,
+      );
+    }
+
+    return this.#cacheKey;
+  }
+
+  /** @private */
+  hydrateFromBuildCache() {
+    const cached = this.buildCache?.get(this.getCacheKey());
+
+    if (!cached) {
+      return;
+    }
+
+    if (cached.html) {
+      this.results.html = cached.html;
+    }
+
+    if (cached.svg) {
+      this.results.svg = cached.svg;
+    }
+
+    if (cached.pngBuffer) {
+      this.results.pngBuffer = cached.pngBuffer;
+    }
+  }
+
+  /** @private */
+  updateBuildCache() {
+    this.buildCache?.set(this.getCacheKey(), this.results);
   }
 
   /** @returns {Promise<string>} */
   async html() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.html) {
       this.results.html = await (
         await RenderPlugin.File(this.inputPath, {
@@ -63,6 +125,8 @@ export class OgImage {
           extensionMap: this.extensionMap,
         })
       )(this.data);
+
+      this.updateBuildCache();
     }
 
     return this.results.html;
@@ -70,8 +134,11 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async svg() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.svg) {
       this.results.svg = await satori(htmlToSatori(await this.html()), this.options.satoriOptions);
+      this.updateBuildCache();
     }
 
     return this.results.svg;
@@ -79,8 +146,11 @@ export class OgImage {
 
   /** @returns {Promise<Buffer>} */
   async pngBuffer() {
+    this.hydrateFromBuildCache();
+
     if (!this.results.pngBuffer) {
       this.results.pngBuffer = await new Resvg(await this.svg(), { font: { loadSystemFonts: false } }).render().asPng();
+      this.updateBuildCache();
     }
 
     return this.results.pngBuffer;
@@ -95,13 +165,39 @@ export class OgImage {
     return sharp(await this.pngBuffer()).toFormat(this.options.outputFileExtension, this.options.sharpOptions);
   }
 
+  /** @returns {boolean} */
+  canPassthroughPng() {
+    return this.options.outputFileExtension === 'png' && !this.options.sharpOptions;
+  }
+
+  /**
+   * Writes the rendered image to disk, skipping Sharp when PNG passthrough is possible.
+   *
+   * @param {string} outputFilePath
+   */
+  async writeToFile(outputFilePath) {
+    if (this.canPassthroughPng()) {
+      await fs.writeFile(outputFilePath, await this.pngBuffer());
+
+      return;
+    }
+
+    await (await this.render()).toFile(outputFilePath);
+  }
+
   /** @returns {Promise<string>} */
   async hash() {
     const hash = crypto.createHash('sha256');
 
     hash.update(await this.html());
-    hash.update(JSON.stringify(sortObject(this.options.satoriOptions || {})));
-    hash.update(JSON.stringify(sortObject(this.options.sharpOptions || {})));
+
+    if (this.options.optionsHash !== undefined) {
+      hash.update(this.options.optionsHash);
+    } else {
+      const { computeOptionsHash } = await import('./utils/computeOptionsHash.js');
+
+      hash.update(computeOptionsHash(this.options.satoriOptions, this.options.sharpOptions));
+    }
 
     return hash.digest('hex').substring(0, this.options.hashLength);
   }
@@ -113,6 +209,10 @@ export class OgImage {
 
   /** @returns {Promise<string>} */
   async outputFileName() {
+    if (this.resolvedOutputFileName) {
+      return this.resolvedOutputFileName;
+    }
+
     return `${await this.outputFileSlug()}.${this.options.outputFileExtension}`;
   }
 

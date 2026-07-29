@@ -159,6 +159,20 @@ import { OgImage } from 'eleventy-plugin-og-image/og-image';
 const image = await new OgImage({ inputPath, data, options, templateConfig }).render();
 ```
 
+## Development
+
+Run the test suite:
+
+```shell
+npm test
+```
+
+Run tests with **100% coverage thresholds** (lines/branches/functions/statements) across `.eleventy.js` and `src/**/*.js`:
+
+```shell
+npm run test:coverage
+```
+
 ### Capture Output URL
 
 The plugins shortcode create a `meta` tag per default, modify the `shortcodeOutput` option or class function to directly return the `outputUrl`:
