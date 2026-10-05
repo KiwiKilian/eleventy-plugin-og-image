@@ -73,7 +73,7 @@
     "@fontsource/inter": "5.3.0",
     "@kiwikilian/eslint-config": "1.1.0",
     "@kiwikilian/prettier-config": "1.0.1",
-    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/changelog": "7.0.0",
     "@semantic-release/git": "11.0.1",
     "ava": "8.0.1",
     "eslint": "8.57.1",
